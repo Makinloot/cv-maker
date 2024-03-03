@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "roboto";
+  src: url("./assets/fonts/Roboto-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Roboto-Regular.woff") format("woff"),
+    url("./assets/fonts/Roboto-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "roboto-bold";
+  src: url("./assets/fonts/Roboto-Bold.woff2") format("woff2"),
+    url("./assets/fonts/Roboto-Bold.woff") format("woff"),
+    url("./assets/fonts/Roboto-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "nino-mtavruli";
+  src: url("./assets/fonts/BPGNinoMtavruli.woff2") format("woff2"),
+    url("./assets/fonts/BPGNinoMtavruli.woff") format("woff"),
+    url("./assets/fonts/BPGNinoMtavruli.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "glaho";
+  src: url("./assets/fonts/BPGGlaho.woff2") format("woff2"),
+    url("./assets/fonts/BPGGlaho.woff") format("woff"),
+    url("./assets/fonts/BPGGlaho.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}

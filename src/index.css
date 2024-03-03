@@ -1,0 +1,18 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "roboto";
+}
+
+.container {
+  width: 1800px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
