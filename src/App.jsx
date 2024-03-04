@@ -1,5 +1,11 @@
+import NormalCV from "./components/cv-templates/NormalCV";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <NormalCV />
+    </>
+  );
 }
 
 export default App;
