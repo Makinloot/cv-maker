@@ -58,14 +58,14 @@ const PDFStyles = StyleSheet.create({
     // fontFamily: "georgianBold",
     letterSpacing: 1.15,
     fontSize: 24,
-    // textTransform: "capitalize",
+    textTransform: "capitalize",
   },
   welcomeTitleSecondary: {
     // fontFamily: "georgianBold",
     fontFamily: "roboto-bold",
     letterSpacing: 1.15,
     fontSize: 24,
-    // textTransform: "capitalize",
+    textTransform: "capitalize",
   },
   welcomeSubTitle: {
     fontFamily: "roboto",
@@ -120,7 +120,7 @@ const PDFStyles = StyleSheet.create({
     fontFamily: "roboto-bold",
     // fontFamily: "georgianBold",
     fontSize: 12,
-    // textTransform: "capitalize",
+    textTransform: "capitalize",
   },
   siderDetailsText: {
     fontFamily: "roboto",

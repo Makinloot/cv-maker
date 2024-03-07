@@ -8,7 +8,22 @@ import {
   Link,
 } from "@react-pdf/renderer";
 import PDFStyles from "./PDFStyles";
+import { useAppContext } from "../../context/CVContext";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 const NormalCV = () => {
+  const { data } = useAppContext();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  // check if data is equal to null
+  useEffect(() => {
+    if (data === null) navigate("/");
+    else setLoading(false);
+  }, [data, navigate]);
+
+  if (loading) return <div>loading...</div>;
   return (
     <PDFViewer style={PDFStyles.viewerContainer}>
       <Document>
@@ -44,62 +59,57 @@ const NormalCV = () => {
                 <View style={PDFStyles.siderDetailsStroke} />
                 <View style={PDFStyles.siderDetailsTextContainer}>
                   <Text style={PDFStyles.siderDetailsTitleSmall}>Phone</Text>
-                  <Text style={PDFStyles.siderDetailsText}>
-                    +995 592 592 332
-                  </Text>
+                  <Text style={PDFStyles.siderDetailsText}>{data.phone}</Text>
                 </View>
                 <View style={PDFStyles.siderDetailsTextContainer}>
                   <Text style={PDFStyles.siderDetailsTitleSmall}>Email</Text>
-                  <Text style={PDFStyles.siderDetailsText}>
-                    Epitashvilisalome.87@gmail.com
-                  </Text>
+                  <Text style={PDFStyles.siderDetailsText}>{data.email}</Text>
                 </View>
-                <View style={PDFStyles.siderDetailsTextContainer}>
-                  <Text style={PDFStyles.siderDetailsTitleSmall}>Address</Text>
-                  <Text style={PDFStyles.siderDetailsText}>
-                    Shiraki street 3, 0144, Tbilisi, Georgia.
-                  </Text>
-                </View>
-                <View style={[PDFStyles.siderDetailsTextContainer]}>
-                  <Text style={PDFStyles.siderDetailsTitleSmall}>Github</Text>
-                  <Link
-                    src="https://github.com/Makinloot"
-                    style={{ color: "white" }}
-                  >
-                    <Text style={[PDFStyles.siderDetailsText]}>
-                      Visit Github Profile
+                {data.address && (
+                  <View style={PDFStyles.siderDetailsTextContainer}>
+                    <Text style={PDFStyles.siderDetailsTitleSmall}>
+                      Address
                     </Text>
-                  </Link>
-                </View>
-                <View style={[PDFStyles.siderDetailsTextContainer]}>
-                  <Text style={PDFStyles.siderDetailsTitleSmall}>Linkedin</Text>
-                  <Link
-                    src="https://www.linkedin.com/in/tornike-epitashvili-274906180/"
-                    style={{ color: "white" }}
-                  >
-                    <Text style={[PDFStyles.siderDetailsText]}>
-                      Visit Linkedin Profile
+                    <Text style={PDFStyles.siderDetailsText}>
+                      {data.address}
                     </Text>
-                  </Link>
-                </View>
-                <View style={[PDFStyles.siderDetailsTextContainer]}>
-                  <Text style={PDFStyles.siderDetailsTitleSmall}>
-                    Instagram
-                  </Text>
-                  <Link
-                    src="https://www.instagram.com/seed_9777"
-                    style={{ color: "white" }}
-                  >
-                    <Text style={[PDFStyles.siderDetailsText]}>
-                      Visit Instagram Profile
-                    </Text>
-                  </Link>
-                </View>
+                  </View>
+                )}
+                {data.socials?.map(
+                  (social) =>
+                    social.socialName && (
+                      <View
+                        style={[PDFStyles.siderDetailsTextContainer]}
+                        key={uuidv4()}
+                      >
+                        <Text style={PDFStyles.siderDetailsTitleSmall}>
+                          {social.socialName}
+                        </Text>
+                        <Link
+                          src={social.socialLink}
+                          style={{ color: "white" }}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.open(social.socialLink, "_blank");
+                          }}
+                        >
+                          <Text
+                            style={[
+                              PDFStyles.siderDetailsText,
+                              { textTransform: "capitalize" },
+                            ]}
+                          >
+                            Visit {social.socialName} profile
+                          </Text>
+                        </Link>
+                      </View>
+                    )
+                )}
               </View>
             </View>
             {/* end of contact section */}
             {/* information section */}
-            <View style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}>
+            {/* <View style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}>
               <View>
                 <Text style={PDFStyles.title}>Information</Text>
                 <View style={PDFStyles.siderDetailsStroke} />
@@ -116,31 +126,37 @@ const NormalCV = () => {
                   <Text style={PDFStyles.siderDetailsText}>Male</Text>
                 </View>
               </View>
-            </View>
+            </View> */}
             {/* end of information section */}
             {/* education section */}
-            <View style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}>
-              <Text style={PDFStyles.title}>Education</Text>
-              <View style={PDFStyles.siderDetailsStroke} />
-              <View style={PDFStyles.siderDetailsTextContainer}>
-                <Text style={PDFStyles.siderDetailsText}>2008</Text>
-                <Text style={PDFStyles.siderDetailsTitleSmall}>
-                  Enter your degree
-                </Text>
-                <Text style={PDFStyles.siderDetailsText}>
-                  University/College
-                </Text>
+            {data.education[0]?.educationStart && (
+              <View
+                style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}
+              >
+                <Text style={PDFStyles.title}>Education</Text>
+                <View style={PDFStyles.siderDetailsStroke} />
+                {data.education?.map(
+                  (item) =>
+                    item.educationStart && (
+                      <View
+                        style={PDFStyles.siderDetailsTextContainer}
+                        key={uuidv4()}
+                      >
+                        <Text style={PDFStyles.siderDetailsText}>
+                          {item.educationStart}{" "}
+                          {item.educationEnd && `- ${item.educationEnd}`}
+                        </Text>
+                        <Text style={PDFStyles.siderDetailsTitleSmall}>
+                          {item.degree}
+                        </Text>
+                        <Text style={PDFStyles.siderDetailsText}>
+                          {item.college}
+                        </Text>
+                      </View>
+                    )
+                )}
               </View>
-              <View style={PDFStyles.siderDetailsTextContainer}>
-                <Text style={PDFStyles.siderDetailsText}>2008</Text>
-                <Text style={PDFStyles.siderDetailsTitleSmall}>
-                  Enter your degree
-                </Text>
-                <Text style={PDFStyles.siderDetailsText}>
-                  University/College
-                </Text>
-              </View>
-            </View>
+            )}
             {/* end of education section */}
             {/* languages section */}
             <View style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}>
@@ -171,7 +187,7 @@ const NormalCV = () => {
             {/* end of languages section */}
             {/* skills section */}
             <View style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}>
-              <Text style={PDFStyles.title}>Skills</Text>
+              <Text style={PDFStyles.title}>Expertise</Text>
               <View style={PDFStyles.siderDetailsStroke} />
               <View style={{ display: "flex", flexDirection: "row" }}>
                 <View style={{ flex: 1 }}>
@@ -265,8 +281,12 @@ const NormalCV = () => {
                   flexWrap: "wrap",
                 }}
               >
-                <Text style={PDFStyles.welcomeTitlePrimary}>Tornike</Text>
-                <Text style={PDFStyles.welcomeTitleSecondary}>Epitashvili</Text>
+                <Text style={PDFStyles.welcomeTitlePrimary}>
+                  {data.firstName}
+                </Text>
+                <Text style={PDFStyles.welcomeTitleSecondary}>
+                  {data.lastName}
+                </Text>
               </View>
               <Text style={PDFStyles.welcomeSubTitle}>React Developer</Text>
               {/* character limit should be 840 */}
