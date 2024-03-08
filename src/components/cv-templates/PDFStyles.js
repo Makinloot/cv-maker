@@ -50,7 +50,7 @@ const PDFStyles = StyleSheet.create({
     display: "flex",
     gap: 5,
     height: 206,
-    padding: "10px 20px 10px",
+    padding: "10px 20px 20px",
     borderBottom: "2px solid black",
   },
   welcomeTitlePrimary: {
@@ -70,7 +70,7 @@ const PDFStyles = StyleSheet.create({
   welcomeSubTitle: {
     fontFamily: "roboto",
     // fontFamily: "georgianRegular",
-    // textTransform: "capitalize",
+    textTransform: "capitalize",
     fontSize: 14,
     letterSpacing: 1.15,
   },
@@ -86,6 +86,7 @@ const PDFStyles = StyleSheet.create({
   // experience styles
   experienceContainer: {
     marginTop: 10,
+    padding: "0 20px",
   },
   experienceItemContainer: {
     margin: "5px 0",

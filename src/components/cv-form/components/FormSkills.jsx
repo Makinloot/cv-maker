@@ -27,7 +27,6 @@ const FormSkills = () => {
   };
   return (
     <>
-      <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>Expertise</p>
       <Row>
         <Col span={24}>
           <Form.Item

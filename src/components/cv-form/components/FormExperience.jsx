@@ -1,0 +1,192 @@
+/* eslint-disable react/prop-types */
+import { useState } from "react";
+import { Button, Col, DatePicker, Form, Input, Row } from "antd";
+import style from "../CVForm.module.css";
+
+const FormExperience = () => {
+  const [experience, setExperience] = useState(0);
+  const [experienceValue, setExperienceValue] = useState({
+    position: "",
+    position2: "",
+    position3: "",
+  });
+  return (
+    <>
+      <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>Experience</p>
+      <ExperienceComponent
+        startDateName={"experienceStart"}
+        endDateName={"experienceEnd"}
+        positionName={"position"}
+        aboutJobName={"aboutJob"}
+        companyName={"company"}
+        experienceValue={experienceValue.position}
+        setExperienceValue={setExperienceValue}
+      />
+      {experience > 0 && (
+        <ExperienceComponent
+          startDateName={"experienceStart2"}
+          endDateName={"experienceEnd2"}
+          positionName={"position2"}
+          aboutJobName={"aboutJob2"}
+          companyName={"company2"}
+          experienceValue={experienceValue.position2}
+          setExperienceValue={setExperienceValue}
+        />
+      )}
+      {experience > 1 && (
+        <ExperienceComponent
+          startDateName={"experienceStart3"}
+          endDateName={"experienceEnd3"}
+          positionName={"position3"}
+          aboutJobName={"aboutJob3"}
+          companyName={"company3"}
+          experienceValue={experienceValue.position3}
+          setExperienceValue={setExperienceValue}
+        />
+      )}
+      <div className="flexBetween">
+        <Button
+          className="w100"
+          onClick={() => setExperience(experience + 1)}
+          disabled={
+            experienceValue.position === ""
+              ? true
+              : experience > 1
+              ? true
+              : false
+          }
+          type="primary"
+        >
+          Add experience
+        </Button>
+        <Button
+          className="w100"
+          onClick={() => setExperience(experience - 1)}
+          disabled={experience < 1 ? true : false}
+          type="primary"
+          danger
+        >
+          Remove experience
+        </Button>
+      </div>
+    </>
+  );
+};
+
+const ExperienceComponent = ({
+  startDateName,
+  endDateName,
+  positionName,
+  companyName,
+  aboutJobName,
+  setExperienceValue,
+  experienceValue,
+}) => {
+  return (
+    <>
+      <Row gutter={8}>
+        <Col span={12}>
+          <Form.Item
+            className={style.formItem}
+            labelCol={{ style: { padding: "0 0 2px" } }}
+            label={"Start date"}
+            name={startDateName}
+          >
+            <DatePicker
+              className="w100"
+              picker="month"
+              format="MM.YYYY"
+              onChange={(e) => {
+                if (e === null) {
+                  setExperienceValue((prevValue) => ({
+                    ...prevValue,
+                    [positionName]: "",
+                  }));
+                } else {
+                  setExperienceValue((prevValue) => ({
+                    ...prevValue,
+                    [positionName]: e.format("MM.YYYY"),
+                  }));
+                }
+              }}
+            />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item
+            className={style.formItem}
+            labelCol={{ style: { padding: "0 0 2px" } }}
+            label={"End date"}
+            name={endDateName}
+          >
+            <DatePicker
+              className="w100"
+              picker="month"
+              format="MM.YYYY"
+              disabled={experienceValue === "" ? true : false}
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Col span={24}>
+        <Form.Item
+          className={style.formItem}
+          labelCol={{ style: { padding: "0 0 2px" } }}
+          label={"Position"}
+          name={positionName}
+          rules={[
+            {
+              required: experienceValue === "" ? false : true,
+              message: "Please enter position",
+            },
+          ]}
+        >
+          <Input
+            placeholder="Position"
+            disabled={experienceValue === "" ? true : false}
+          />
+        </Form.Item>
+      </Col>
+      <Col span={24}>
+        <Form.Item
+          className={style.formItem}
+          labelCol={{ style: { padding: "0 0 2px" } }}
+          label={"Company"}
+          name={companyName}
+          rules={[
+            {
+              required: experienceValue === "" ? false : true,
+              message: "Please enter company",
+            },
+          ]}
+        >
+          <Input
+            placeholder="Company"
+            disabled={experienceValue === "" ? true : false}
+          />
+        </Form.Item>
+      </Col>
+      <Col span={24}>
+        <Form.Item
+          className={style.formItem}
+          labelCol={{ style: { padding: "0 0 2px" } }}
+          label={"About job"}
+          name={aboutJobName}
+          rules={[
+            {
+              required: experienceValue === "" ? false : true,
+              message: "Please enter about job",
+            },
+          ]}
+        >
+          <Input.TextArea
+            placeholder="About job"
+            disabled={experienceValue === "" ? true : false}
+          />
+        </Form.Item>
+      </Col>
+    </>
+  );
+};
+
+export default FormExperience;

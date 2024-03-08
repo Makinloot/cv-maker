@@ -6,6 +6,7 @@ import FormLanguages from "./components/FormLanguages";
 import FormEducation from "./components/FormEducation";
 import FormSocials from "./components/FormSocials";
 import FormSkills from "./components/FormSkills";
+import FormExperience from "./components/FormExperience";
 
 const CVForm = () => {
   const navigate = useNavigate();
@@ -68,7 +69,41 @@ const CVForm = () => {
             level: values.languageLevel4 || null,
           },
         ],
+        profession: values.profession,
+        aboutMe: values.aboutMe,
         skills: values.skills,
+        experience: [
+          {
+            startDate:
+              values.experienceStart &&
+              values.experienceStart.format("MM.YYYY"),
+            endDate:
+              values.experienceEnd && values.experienceEnd.format("MM.YYYY"),
+            position: values.position,
+            companyName: values.company,
+            aboutJob: values.aboutJob,
+          },
+          {
+            startDate:
+              values.experienceStart2 &&
+              values.experienceStart2.format("MM.YYYY"),
+            endDate:
+              values.experienceEnd2 && values.experienceEnd2.format("MM.YYYY"),
+            position: values.position2,
+            companyName: values.company2,
+            aboutJob: values.aboutJob2,
+          },
+          {
+            startDate:
+              values.experienceStart3 &&
+              values.experienceStart3.format("MM.YYYY"),
+            endDate:
+              values.experienceEnd3 && values.experienceEnd3.format("MM.YYYY"),
+            position: values.position3,
+            companyName: values.company3,
+            aboutJob: values.aboutJob3,
+          },
+        ],
       };
       await setData(cvData);
       console.log("data", cvData);
@@ -81,6 +116,18 @@ const CVForm = () => {
   const onFinishFailed = (values) => {
     console.log(values);
     console.log("failed to submit");
+  };
+
+  const validateAboutMe = (_, value) => {
+    if (!value) {
+      return Promise.reject(new Error("Profession is required"));
+    } else if (value.length > 840) {
+      return Promise.reject(new Error("Maximum character limit exceeded"));
+    } else if (value.length < 500) {
+      return Promise.reject(new Error("Minimum 500 characters"));
+    } else {
+      return Promise.resolve();
+    }
   };
 
   return (
@@ -180,8 +227,45 @@ const CVForm = () => {
             <FormEducation />
             {/* languages */}
             <FormLanguages />
+            <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>About me</p>
+            {/* profession */}
+            <Col span={24}>
+              <Form.Item
+                className={style.formItem}
+                labelCol={{ style: { padding: "0 0 2px" } }}
+                label={"Profession"}
+                name={"profession"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Profession is required",
+                  },
+                ]}
+              >
+                <Input placeholder="Profession" />
+              </Form.Item>
+            </Col>
+            {/* about me */}
+            <Col span={24}>
+              <Form.Item
+                className={style.formItem}
+                labelCol={{ style: { padding: "0 0 2px" } }}
+                label={"About me"}
+                name={"aboutMe"}
+                rules={[
+                  {
+                    required: true,
+                    validator: validateAboutMe,
+                  },
+                ]}
+              >
+                <Input.TextArea placeholder="About me" />
+              </Form.Item>
+            </Col>
             {/* skills */}
             <FormSkills />
+            {/* experience */}
+            <FormExperience />
             <Button htmlType="submit">submit</Button>
           </Form>
         </div>
