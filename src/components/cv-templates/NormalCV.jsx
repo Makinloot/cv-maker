@@ -159,113 +159,117 @@ const NormalCV = () => {
             )}
             {/* end of education section */}
             {/* languages section */}
-            <View style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}>
-              <Text style={PDFStyles.title}>Languages</Text>
-              <View style={PDFStyles.siderDetailsStroke} />
-              <View style={{ display: "flex", flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                  <View style={PDFStyles.siderDetailsTextContainer}>
-                    <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      Georgian
-                    </Text>
-                  </View>
-                  <View style={PDFStyles.siderDetailsTextContainer}>
-                    <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      Russian
-                    </Text>
-                  </View>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <View style={PDFStyles.siderDetailsTextContainer}>
-                    <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      English
-                    </Text>
-                  </View>
-                </View>
+            {data.languages[0]?.language && (
+              <View
+                style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}
+              >
+                <Text style={PDFStyles.title}>Languages</Text>
+                <View style={PDFStyles.siderDetailsStroke} />
+                {data.languages.map(
+                  (language) =>
+                    language.language && (
+                      <View style={{ flexDirection: "row" }} key={uuidv4()}>
+                        <View
+                          style={[
+                            PDFStyles.siderDetailsTextContainer,
+                            { flex: 0.5 },
+                          ]}
+                        >
+                          <Text style={[PDFStyles.siderDetailsTitleSmall]}>
+                            {language.language}
+                          </Text>
+                        </View>
+                        <View
+                          style={[
+                            PDFStyles.siderDetailsTextContainer,
+                            { flex: 0.5 },
+                          ]}
+                        >
+                          <Text style={[PDFStyles.siderDetailsTitleSmall]}>
+                            {language.level}
+                          </Text>
+                        </View>
+                      </View>
+                    )
+                )}
               </View>
-            </View>
+            )}
             {/* end of languages section */}
             {/* skills section */}
-            <View style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}>
-              <Text style={PDFStyles.title}>Expertise</Text>
-              <View style={PDFStyles.siderDetailsStroke} />
-              <View style={{ display: "flex", flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
+            {data.skills?.length > 0 && data.skills[0] && (
+              <View
+                style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}
+              >
+                <Text style={PDFStyles.title}>Expertise</Text>
+                <View style={PDFStyles.siderDetailsStroke} />
+                <View style={{ display: "flex", flexDirection: "row" }}>
+                  {data.skills.map((item) => (
+                    <View
+                      style={[
+                        PDFStyles.siderDetailsTextContainer,
+                        { flex: 0.5 },
+                      ]}
+                      key={uuidv4()}
+                    >
+                      <Text style={[PDFStyles.siderDetailsTitleSmall]}>
+                        {item}
+                      </Text>
+                    </View>
+                  ))}
+
+                  {/* <View style={{ flex: 1 }}>
                   <View style={PDFStyles.siderDetailsTextContainer}>
-                    <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      {/* {language.name} */}
-                      {/* ქართული */}
-                      HTML
-                    </Text>
+                    <Text style={[PDFStyles.siderDetailsTitleSmall]}>HTML</Text>
                   </View>
                   <View style={PDFStyles.siderDetailsTextContainer}>
                     <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      {/* {language.name} */}
-                      {/* ქართული */}
                       Javascript
                     </Text>
                   </View>
                   <View style={PDFStyles.siderDetailsTextContainer}>
                     <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      {/* {language.name} */}
-                      {/* ქართული */}
                       React
                     </Text>
                   </View>
                   <View style={PDFStyles.siderDetailsTextContainer}>
                     <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      {/* {language.name} */}
-                      {/* ქართული */}
                       Firebase
                     </Text>
                   </View>
                   <View style={PDFStyles.siderDetailsTextContainer}>
                     <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      {/* {language.name} */}
-                      {/* ქართული */}
                       Illustrator
                     </Text>
                   </View>
                 </View>
                 <View style={{ flex: 1 }}>
                   <View style={PDFStyles.siderDetailsTextContainer}>
-                    <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      {/* {language.name} */}
-                      {/* ქართული */}
-                      CSS
-                    </Text>
+                    <Text style={[PDFStyles.siderDetailsTitleSmall]}>CSS</Text>
                   </View>
                   <View style={PDFStyles.siderDetailsTextContainer}>
                     <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      {/* {language.name} */}
-                      {/* ქართული */}
                       Typescript
                     </Text>
                   </View>
                   <View style={PDFStyles.siderDetailsTextContainer}>
                     <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      {/* {language.name} */}
-                      {/* ქართული */}
                       Node JS
                     </Text>
                   </View>
                   <View style={PDFStyles.siderDetailsTextContainer}>
                     <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      {/* {language.name} */}
-                      {/* ქართული */}
                       Git/Github
                     </Text>
                   </View>
                   <View style={PDFStyles.siderDetailsTextContainer}>
                     <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                      {/* {language.name} */}
-                      {/* ქართული */}
                       Photoshop
                     </Text>
                   </View>
+                </View> */}
                 </View>
               </View>
-            </View>
+            )}
             {/* end of skills section */}
           </View>
           {/* end of sider */}
