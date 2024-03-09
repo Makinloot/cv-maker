@@ -41,6 +41,7 @@ const FormSkills = () => {
               placeholder="Type and select values"
               value={selectedValues}
               onChange={handleSelectChange}
+              allowClear
             >
               {renderOptions()}
             </Select>

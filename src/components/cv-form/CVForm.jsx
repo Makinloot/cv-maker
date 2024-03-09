@@ -7,17 +7,21 @@ import FormEducation from "./components/FormEducation";
 import FormSocials from "./components/FormSocials";
 import FormSkills from "./components/FormSkills";
 import FormExperience from "./components/FormExperience";
+import FormImage from "./components/FormImage";
+import FormPhone from "./components/FormPhone";
 
 const CVForm = () => {
   const navigate = useNavigate();
   const { setData } = useAppContext();
 
+  // submit form
   const onFinish = async (values) => {
     console.log("values", values);
     try {
       const cvData = {
         firstName: values.firstName,
         lastName: values.lastName,
+        prefix: values.prefix,
         phone: values.phone,
         email: values.email,
         address: values.address,
@@ -104,6 +108,7 @@ const CVForm = () => {
             aboutJob: values.aboutJob3,
           },
         ],
+        image: values.image && values.image[0].thumbUrl,
       };
       await setData(cvData);
       console.log("data", cvData);
@@ -113,14 +118,16 @@ const CVForm = () => {
     }
   };
 
+  // submit error
   const onFinishFailed = (values) => {
     console.log(values);
     console.log("failed to submit");
   };
 
+  // about me textarea validation
   const validateAboutMe = (_, value) => {
     if (!value) {
-      return Promise.reject(new Error("Profession is required"));
+      return Promise.reject(new Error("Required field"));
     } else if (value.length > 840) {
       return Promise.reject(new Error("Maximum character limit exceeded"));
     } else if (value.length < 500) {
@@ -141,6 +148,7 @@ const CVForm = () => {
             layout="vertical"
             className={style.formWrapper}
           >
+            <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>About me</p>
             {/* name */}
             <Row gutter={8}>
               <Col span={12}>
@@ -152,11 +160,19 @@ const CVForm = () => {
                   rules={[
                     {
                       required: true,
-                      message: "First name is required",
+                      message: "Required field",
+                    },
+                    {
+                      min: 2,
+                      message: "Minimum 2 characters",
+                    },
+                    {
+                      max: 20,
+                      message: "maximum 24 characters",
                     },
                   ]}
                 >
-                  <Input placeholder="First name" />
+                  <Input placeholder="First name" allowClear />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -168,31 +184,26 @@ const CVForm = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Last name is required",
+                      message: "Required field",
+                    },
+                    {
+                      min: 2,
+                      message: "Minimum 2 characters",
+                    },
+                    {
+                      max: 20,
+                      message: "maximum 24 characters",
                     },
                   ]}
                 >
-                  <Input placeholder="Last name" />
+                  <Input placeholder="Last name" allowClear />
                 </Form.Item>
               </Col>
             </Row>
+            {/* image */}
+            <FormImage />
             {/* phone number */}
-            <Col>
-              <Form.Item
-                className={style.formItem}
-                labelCol={{ style: { padding: "0 0 2px" } }}
-                label={"Phone number"}
-                name={"phone"}
-                rules={[
-                  {
-                    required: true,
-                    message: "Phone number is required",
-                  },
-                ]}
-              >
-                <Input type="number" placeholder="Phone" />
-              </Form.Item>
-            </Col>
+            <FormPhone />
             {/* email address */}
             <Col>
               <Form.Item
@@ -205,9 +216,13 @@ const CVForm = () => {
                     required: true,
                     message: "Email address is required",
                   },
+                  {
+                    type: "email",
+                    message: "Please enter a valid email address",
+                  },
                 ]}
               >
-                <Input type="email" placeholder="Email address" />
+                <Input type="email" placeholder="Email address" allowClear />
               </Form.Item>
             </Col>
             {/* address */}
@@ -217,17 +232,16 @@ const CVForm = () => {
                 labelCol={{ style: { padding: "0 0 2px" } }}
                 label={"Address"}
                 name={"address"}
+                rules={[
+                  {
+                    max: 100,
+                    message: "Maximum 100 characters",
+                  },
+                ]}
               >
-                <Input placeholder="Address" />
+                <Input placeholder="Address" allowClear />
               </Form.Item>
             </Col>
-            {/* social links */}
-            <FormSocials />
-            {/* education */}
-            <FormEducation />
-            {/* languages */}
-            <FormLanguages />
-            <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>About me</p>
             {/* profession */}
             <Col span={24}>
               <Form.Item
@@ -238,11 +252,15 @@ const CVForm = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Profession is required",
+                    message: "Required field",
+                  },
+                  {
+                    max: 50,
+                    message: "Maximum 50 characters",
                   },
                 ]}
               >
-                <Input placeholder="Profession" />
+                <Input placeholder="Profession" allowClear />
               </Form.Item>
             </Col>
             {/* about me */}
@@ -259,13 +277,19 @@ const CVForm = () => {
                   },
                 ]}
               >
-                <Input.TextArea placeholder="About me" />
+                <Input.TextArea placeholder="About me" allowClear />
               </Form.Item>
             </Col>
             {/* skills */}
             <FormSkills />
             {/* experience */}
             <FormExperience />
+            {/* education */}
+            <FormEducation />
+            {/* languages */}
+            <FormLanguages />
+            {/* social links */}
+            <FormSocials />
             <Button htmlType="submit">submit</Button>
           </Form>
         </div>

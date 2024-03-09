@@ -14,7 +14,6 @@ import ContactPDF from "./components/ContactPDF";
 import EducationPDF from "./components/EducationPDF";
 import LanguagesPDF from "./components/LanguagesPDF";
 import SkillsPDF from "./components/SkillsPDF";
-import { v4 as uuidv4 } from "uuid";
 import ExperiencePDF from "./components/ExperiencePDF";
 
 const NormalCV = () => {
@@ -51,10 +50,7 @@ const NormalCV = () => {
           {/* sider */}
           <View style={PDFStyles.sider}>
             <View style={PDFStyles.imageContainer}>
-              <Image
-                style={PDFStyles.image}
-                source={{ uri: "https://picsum.photos/200/300" }}
-              />
+              <Image style={PDFStyles.image} source={{ uri: data.image }} />
             </View>
             {/* contact section */}
             <ContactPDF data={data} />

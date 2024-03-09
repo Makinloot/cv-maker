@@ -109,6 +109,7 @@ const ExperienceComponent = ({
                   }));
                 }
               }}
+              allowClear
             />
           </Form.Item>
         </Col>
@@ -124,6 +125,7 @@ const ExperienceComponent = ({
               picker="month"
               format="MM.YYYY"
               disabled={experienceValue === "" ? true : false}
+              allowClear
             />
           </Form.Item>
         </Col>
@@ -137,13 +139,18 @@ const ExperienceComponent = ({
           rules={[
             {
               required: experienceValue === "" ? false : true,
-              message: "Please enter position",
+              message: "Required field",
+            },
+            {
+              max: 50,
+              message: "Maximum 50 characters",
             },
           ]}
         >
           <Input
             placeholder="Position"
             disabled={experienceValue === "" ? true : false}
+            allowClear
           />
         </Form.Item>
       </Col>
@@ -156,13 +163,18 @@ const ExperienceComponent = ({
           rules={[
             {
               required: experienceValue === "" ? false : true,
-              message: "Please enter company",
+              message: "Required field",
+            },
+            {
+              max: 50,
+              message: "Maximum 50 characters",
             },
           ]}
         >
           <Input
             placeholder="Company"
             disabled={experienceValue === "" ? true : false}
+            allowClear
           />
         </Form.Item>
       </Col>
@@ -175,13 +187,14 @@ const ExperienceComponent = ({
           rules={[
             {
               required: experienceValue === "" ? false : true,
-              message: "Please enter about job",
+              message: "Required field",
             },
           ]}
         >
           <Input.TextArea
             placeholder="About job"
             disabled={experienceValue === "" ? true : false}
+            allowClear
           />
         </Form.Item>
       </Col>

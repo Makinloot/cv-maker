@@ -28,15 +28,11 @@ const PDFStyles = StyleSheet.create({
     flex: 1,
   },
   imageContainer: {
-    padding: "6px 16px 16px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    margin: "0 auto",
   },
   image: {
     width: 150,
-    height: 150,
-    borderRadius: "100000",
+    maxheight: 150,
   },
   // main items styles
   title: {

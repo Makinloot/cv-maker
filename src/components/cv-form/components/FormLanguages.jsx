@@ -103,6 +103,7 @@ const LanguageComponent = ({
                 }));
               }
             }}
+            allowClear
           />
         </Form.Item>
       </Col>
@@ -115,13 +116,14 @@ const LanguageComponent = ({
           rules={[
             {
               required: languageValues !== "" ? true : false,
-              message: "Level is required",
+              message: "Required field",
             },
           ]}
         >
           <Select
             placeholder="Level"
             disabled={languageValues === "" ? true : false}
+            allowClear
           >
             <Select.Option value="a1">A1</Select.Option>
             <Select.Option value="a2">A2</Select.Option>

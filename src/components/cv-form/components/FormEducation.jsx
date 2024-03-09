@@ -36,6 +36,7 @@ const FormEducation = () => {
                   }));
                 }
               }}
+              allowClear
             />
           </Form.Item>
         </Col>
@@ -50,6 +51,7 @@ const FormEducation = () => {
               className="w100"
               picker="year"
               disabled={educationValue.education === "" ? true : false}
+              allowClear
             />
           </Form.Item>
         </Col>
@@ -64,11 +66,15 @@ const FormEducation = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please enter a college",
+                    message: "Required field",
+                  },
+                  {
+                    max: 50,
+                    message: "Maximum 50 characters",
                   },
                 ]}
               >
-                <Input placeholder="College" />
+                <Input placeholder="College" allowClear />
               </Form.Item>
             </Col>
             <Col span={24}>
@@ -80,11 +86,15 @@ const FormEducation = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please enter a degree",
+                    message: "Required field",
+                  },
+                  {
+                    max: 50,
+                    message: "Maximum 50 characters",
                   },
                 ]}
               >
-                <Input placeholder="Degree" />
+                <Input placeholder="Degree" allowClear />
               </Form.Item>
             </Col>
           </>
@@ -115,6 +125,7 @@ const FormEducation = () => {
                     }));
                   }
                 }}
+                allowClear
               />
             </Form.Item>
           </Col>
@@ -129,6 +140,7 @@ const FormEducation = () => {
                 className="w100"
                 picker="year"
                 disabled={educationValue.education2 === "" ? true : false}
+                allowClear
               />
             </Form.Item>
           </Col>
@@ -143,7 +155,11 @@ const FormEducation = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please enter a college",
+                      message: "Required field",
+                    },
+                    {
+                      max: 50,
+                      message: "Maximum 50 characters",
                     },
                   ]}
                 >
@@ -159,11 +175,15 @@ const FormEducation = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please enter a degree",
+                      message: "Required field",
+                    },
+                    {
+                      max: 50,
+                      message: "Maximum 50 characters",
                     },
                   ]}
                 >
-                  <Input placeholder="Degree" />
+                  <Input placeholder="Degree" allowClear />
                 </Form.Item>
               </Col>
             </>

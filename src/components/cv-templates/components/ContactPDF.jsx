@@ -11,7 +11,10 @@ const ContactPDF = ({ data }) => {
         <View style={PDFStyles.siderDetailsStroke} />
         <View style={PDFStyles.siderDetailsTextContainer}>
           <Text style={PDFStyles.siderDetailsTitleSmall}>Phone</Text>
-          <Text style={PDFStyles.siderDetailsText}>{data.phone}</Text>
+          <View style={{ flexDirection: "row", gap: 2 }}>
+            <Text style={PDFStyles.siderDetailsText}>{data.prefix}</Text>
+            <Text style={PDFStyles.siderDetailsText}>{data.phone}</Text>
+          </View>
         </View>
         <View style={PDFStyles.siderDetailsTextContainer}>
           <Text style={PDFStyles.siderDetailsTitleSmall}>Email</Text>
