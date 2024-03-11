@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row } from "antd";
+import { Button, Col, Form, Input, Row, message } from "antd";
 import style from "./CVForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/CVContext";
@@ -121,7 +121,7 @@ const CVForm = () => {
   // submit error
   const onFinishFailed = (values) => {
     console.log(values);
-    console.log("failed to submit");
+    message.error(`Please fill every field correctly`);
   };
 
   // about me textarea validation
@@ -140,7 +140,7 @@ const CVForm = () => {
   return (
     <div className="Form">
       <div className="container">
-        <div className="form-wrapper">
+        <div className={style.formContainer}>
           <Form
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
@@ -290,7 +290,9 @@ const CVForm = () => {
             <FormLanguages />
             {/* social links */}
             <FormSocials />
-            <Button htmlType="submit">submit</Button>
+            <Button htmlType="submit" style={{ marginTop: 20 }}>
+              submit
+            </Button>
           </Form>
         </div>
       </div>
