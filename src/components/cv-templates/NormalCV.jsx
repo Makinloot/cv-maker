@@ -1,11 +1,4 @@
-import {
-  PDFViewer,
-  Document,
-  Page,
-  Text,
-  View,
-  Image,
-} from "@react-pdf/renderer";
+import { PDFViewer, Document, Page, Text, View } from "@react-pdf/renderer";
 import PDFStyles from "./PDFStyles";
 import { useAppContext } from "../../context/CVContext";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +24,7 @@ const NormalCV = () => {
   return (
     <PDFViewer style={PDFStyles.viewerContainer}>
       <Document>
-        <Page style={{ flexDirection: "row", paddingTop: 10 }} wrap>
+        <Page style={{ flexDirection: "row" }} wrap>
           {/* background */}
           <View
             style={{
@@ -83,7 +76,7 @@ const NormalCV = () => {
             {/* contact section */}
             <ContactPDF data={data} />
             {/* education section */}
-            {data.education[0]?.educationStart && <EducationPDF data={data} />}
+            {/* {data.education[0]?.educationStart && <EducationPDF data={data} />} */}
             {/* skills section */}
             {data.skills?.length > 0 && data.skills[0] && (
               <>
@@ -111,7 +104,7 @@ const NormalCV = () => {
               style={{
                 height: 2,
                 width: "93%",
-                backgroundColor: "black",
+                backgroundColor: "#80808080",
                 margin: "10px auto",
               }}
             />
@@ -119,6 +112,8 @@ const NormalCV = () => {
             {data.experience?.length > 0 && data.experience[0]?.startDate && (
               <ExperiencePDF data={data} />
             )}
+            {/* education section */}
+            {data.education[0]?.educationStart && <EducationPDF data={data} />}
           </View>
         </Page>
       </Document>

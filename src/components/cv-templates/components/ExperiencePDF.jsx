@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 const ExperiencePDF = ({ data }) => {
   return (
     <View style={PDFStyles.experienceContainer}>
-      <Text style={PDFStyles.title}>education</Text>
+      <Text style={PDFStyles.title}>work experience</Text>
       {data.experience.map((item) => (
         <View style={{ padding: "0px 0px" }} key={uuidv4()}>
           <View style={PDFStyles.experienceItemContainer}>

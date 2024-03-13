@@ -42,6 +42,7 @@ const FormSkills = () => {
               value={selectedValues}
               onChange={handleSelectChange}
               allowClear
+              size="large"
             >
               {renderOptions()}
             </Select>

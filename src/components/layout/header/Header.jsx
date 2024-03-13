@@ -10,16 +10,18 @@ const Header = () => {
   return (
     <Layout.Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
       <div className="container">
-        <div
-          className="logo"
-          style={{
-            float: "left",
-            color: "white",
-            fontSize: "1.5rem",
-          }}
-        >
-          Your Logo
-        </div>
+        <a href="/">
+          <div
+            className="logo"
+            style={{
+              float: "left",
+              color: "white",
+              fontSize: "1.5rem",
+            }}
+          >
+            Your Logo
+          </div>
+        </a>
         <Menu
           theme="dark"
           mode="horizontal"

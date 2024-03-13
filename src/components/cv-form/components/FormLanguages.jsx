@@ -44,31 +44,35 @@ const FormLanguages = () => {
           languageValues={languageValues.language4}
         />
       )}
-      <div className="flexBetween">
-        <Button
-          className="w100"
-          onClick={() => setLanguages(languages + 1)}
-          disabled={
-            setLanguageValues.language === ""
-              ? true
-              : languages > 2
-              ? true
-              : false
-          }
-          type="primary"
-        >
-          Add language
-        </Button>
-        <Button
-          className="w100"
-          onClick={() => setLanguages(languages - 1)}
-          disabled={languages < 1 ? true : false}
-          type="primary"
-          danger
-        >
-          Remove language
-        </Button>
-      </div>
+      <Row gutter={8} justify={"end"}>
+        <Col>
+          <Button
+            className="w100"
+            onClick={() => setLanguages(languages + 1)}
+            disabled={
+              setLanguageValues.language === ""
+                ? true
+                : languages > 2
+                ? true
+                : false
+            }
+            type="primary"
+          >
+            Add language
+          </Button>
+        </Col>
+        <Col>
+          <Button
+            className="w100"
+            onClick={() => setLanguages(languages - 1)}
+            disabled={languages < 1 ? true : false}
+            type="primary"
+            danger
+          >
+            Remove language
+          </Button>
+        </Col>
+      </Row>
     </>
   );
 };
@@ -81,7 +85,7 @@ const LanguageComponent = ({
 }) => {
   return (
     <Row gutter={8}>
-      <Col span={18}>
+      <Col span={19}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
@@ -104,10 +108,11 @@ const LanguageComponent = ({
               }
             }}
             allowClear
+            size="large"
           />
         </Form.Item>
       </Col>
-      <Col span={6}>
+      <Col span={5}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
@@ -124,6 +129,7 @@ const LanguageComponent = ({
             placeholder="Level"
             disabled={languageValues === "" ? true : false}
             allowClear
+            size="large"
           >
             <Select.Option value="a1">A1</Select.Option>
             <Select.Option value="a2">A2</Select.Option>

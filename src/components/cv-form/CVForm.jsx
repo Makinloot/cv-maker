@@ -73,7 +73,7 @@ const CVForm = () => {
             level: values.languageLevel4 || null,
           },
         ],
-        profession: values.profession,
+        // profession: values.profession,
         aboutMe: values.aboutMe,
         skills: values.skills,
         experience: [
@@ -130,8 +130,6 @@ const CVForm = () => {
       return Promise.reject(new Error("Required field"));
     } else if (value.length > 510) {
       return Promise.reject(new Error("Maximum character limit exceeded"));
-    } else if (value.length < 200) {
-      return Promise.reject(new Error("Minimum 200 characters"));
     } else {
       return Promise.resolve();
     }
@@ -172,7 +170,7 @@ const CVForm = () => {
                     },
                   ]}
                 >
-                  <Input placeholder="First name" allowClear />
+                  <Input placeholder="First name" allowClear size="large" />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -196,7 +194,7 @@ const CVForm = () => {
                     },
                   ]}
                 >
-                  <Input placeholder="Last name" allowClear />
+                  <Input placeholder="Last name" allowClear size="large" />
                 </Form.Item>
               </Col>
             </Row>
@@ -222,7 +220,12 @@ const CVForm = () => {
                   },
                 ]}
               >
-                <Input type="email" placeholder="Email address" allowClear />
+                <Input
+                  type="email"
+                  placeholder="Email address"
+                  allowClear
+                  size="large"
+                />
               </Form.Item>
             </Col>
             {/* address */}
@@ -239,11 +242,11 @@ const CVForm = () => {
                   },
                 ]}
               >
-                <Input placeholder="Address" allowClear />
+                <Input placeholder="Address" allowClear size="large" />
               </Form.Item>
             </Col>
             {/* profession */}
-            <Col span={24}>
+            {/* <Col span={24}>
               <Form.Item
                 className={style.formItem}
                 labelCol={{ style: { padding: "0 0 2px" } }}
@@ -262,7 +265,7 @@ const CVForm = () => {
               >
                 <Input placeholder="Profession" allowClear />
               </Form.Item>
-            </Col>
+            </Col> */}
             {/* about me */}
             <Col span={24}>
               <Form.Item
@@ -277,7 +280,11 @@ const CVForm = () => {
                   },
                 ]}
               >
-                <Input.TextArea placeholder="About me" allowClear />
+                <Input.TextArea
+                  placeholder="About me"
+                  allowClear
+                  size="large"
+                />
               </Form.Item>
             </Col>
             {/* skills */}

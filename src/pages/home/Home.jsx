@@ -4,6 +4,7 @@ import Meta from "antd/es/card/Meta";
 import testImage from "/test-image.jpg";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="Home">
@@ -14,10 +15,12 @@ const Home = () => {
             Increase your chances of finding a job and create your CV with one
             of our professionally designed CV templates.
           </p>
-          <div style={{ display: 'flex', justifyContent: 'center'}}>
-            <Button className={style.homeButton} size="large" type="primary">
-              Create your CV
-            </Button>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Link to={"/form"}>
+              <Button className={style.homeButton} size="large" type="primary">
+                Create your CV
+              </Button>
+            </Link>
           </div>
           <div className={style.templateWrapper}>
             <Card

@@ -12,7 +12,9 @@ const ContactPDF = ({ data }) => {
           <Text style={PDFStyles.siderDetailsTitleSmall}>Phone</Text>
           <View style={{ flexDirection: "row", gap: 2 }}>
             <Text style={PDFStyles.siderDetailsText}>{data.prefix}</Text>
-            <Text style={PDFStyles.siderDetailsText}>{data.phone}</Text>
+            <Text style={PDFStyles.siderDetailsText}>
+              {data.phone && data.phone.match(/\d{1,3}/g).join("-")}
+            </Text>
           </View>
         </View>
         <View style={PDFStyles.siderDetailsTextContainer}>

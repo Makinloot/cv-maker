@@ -9,10 +9,12 @@ function App() {
   return (
     <>
       {/* <Header /> */}
-      <div style={{ padding: "70px 0 6px" }}>
+      {/* <div style={{ padding: "70px 0 6px" }}> */}
+      <div>
         <Router>
           <Routes>
-            <Route path="/" element={<CVForm />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/form" element={<CVForm />} />
             <Route path="/cv" element={<NormalCV />} />
           </Routes>
         </Router>

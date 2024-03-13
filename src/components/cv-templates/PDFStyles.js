@@ -48,7 +48,7 @@ const PDFStyles = StyleSheet.create({
     display: "flex",
     // gap: 5,
     // height: 206,
-    padding: "100px 20px 0px 14px",
+    padding: "105px 20px 0px 14px",
     width: '100%'
     // borderBottom: "2px solid black",
   },
@@ -77,7 +77,6 @@ const PDFStyles = StyleSheet.create({
   },
   // experience styles
   experienceContainer: {
-    marginTop: 10,
     padding: "0 14px",
   },
   experienceItemContainer: {

@@ -2,8 +2,10 @@ import { Col, Form, Input, Row, Select } from "antd";
 import style from "../CVForm.module.css";
 import prefixJson from "../../../assets/phonePrefix.json";
 import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 
 const FormPhone = () => {
+  const [isDisabled, setIsDisabled] = useState(true);
   return (
     <Row gutter={8}>
       <Col span={7}>
@@ -19,7 +21,17 @@ const FormPhone = () => {
             },
           ]}
         >
-          <Select showSearch placeholder="Select prefix" allowClear>
+          <Select
+            showSearch
+            placeholder="Select prefix"
+            allowClear
+            size="large"
+            onChange={(e) => {
+              if (e === undefined) {
+                setIsDisabled(true);
+              } else setIsDisabled(false);
+            }}
+          >
             {prefixJson.map((item) => (
               <Select.Option key={uuidv4()} value={item.dial_code}>
                 <div style={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -39,7 +51,7 @@ const FormPhone = () => {
           name={"phone"}
           rules={[
             {
-              required: true,
+              required: isDisabled ? false : true,
               message: "Required field",
             },
             {
@@ -52,6 +64,8 @@ const FormPhone = () => {
             type="number"
             placeholder="Phone"
             className={style.numberInput}
+            size="large"
+            disabled={isDisabled}
           />
         </Form.Item>
       </Col>

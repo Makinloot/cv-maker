@@ -44,31 +44,35 @@ const FormExperience = () => {
           setExperienceValue={setExperienceValue}
         />
       )}
-      <div className="flexBetween">
-        <Button
-          className="w100"
-          onClick={() => setExperience(experience + 1)}
-          disabled={
-            experienceValue.position === ""
-              ? true
-              : experience > 1
-              ? true
-              : false
-          }
-          type="primary"
-        >
-          Add experience
-        </Button>
-        <Button
-          className="w100"
-          onClick={() => setExperience(experience - 1)}
-          disabled={experience < 1 ? true : false}
-          type="primary"
-          danger
-        >
-          Remove experience
-        </Button>
-      </div>
+      <Row gutter={8} justify={"end"}>
+        <Col>
+          <Button
+            className="w100"
+            onClick={() => setExperience(experience + 1)}
+            disabled={
+              experienceValue.position === ""
+                ? true
+                : experience > 1
+                ? true
+                : false
+            }
+            type="primary"
+          >
+            Add experience
+          </Button>
+        </Col>
+        <Col>
+          <Button
+            className="w100"
+            onClick={() => setExperience(experience - 1)}
+            disabled={experience < 1 ? true : false}
+            type="primary"
+            danger
+          >
+            Remove experience
+          </Button>
+        </Col>
+      </Row>
     </>
   );
 };
@@ -110,6 +114,7 @@ const ExperienceComponent = ({
                 }
               }}
               allowClear
+              size="large"
             />
           </Form.Item>
         </Col>
@@ -126,6 +131,7 @@ const ExperienceComponent = ({
               format="MM.YYYY"
               disabled={experienceValue === "" ? true : false}
               allowClear
+              size="large"
             />
           </Form.Item>
         </Col>
@@ -151,6 +157,7 @@ const ExperienceComponent = ({
             placeholder="Position"
             disabled={experienceValue === "" ? true : false}
             allowClear
+            size="large"
           />
         </Form.Item>
       </Col>
@@ -175,6 +182,7 @@ const ExperienceComponent = ({
             placeholder="Company"
             disabled={experienceValue === "" ? true : false}
             allowClear
+            size="large"
           />
         </Form.Item>
       </Col>
@@ -195,6 +203,7 @@ const ExperienceComponent = ({
             placeholder="About job"
             disabled={experienceValue === "" ? true : false}
             allowClear
+            size="large"
           />
         </Form.Item>
       </Col>

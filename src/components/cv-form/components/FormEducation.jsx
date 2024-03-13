@@ -6,216 +6,162 @@ import style from "../CVForm.module.css";
 const FormEducation = () => {
   const [education, setEducation] = useState(0);
   const [educationValue, setEducationValue] = useState({
-    education: "",
-    education2: "",
+    educationStart: "",
+    educationStart2: "",
   });
   return (
     <>
       <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>Education</p>
-      <Row gutter={8}>
-        <Col span={12}>
-          <Form.Item
-            className={style.formItem}
-            labelCol={{ style: { padding: "0 0 2px" } }}
-            label={"Start date"}
-            name={"educationStart"}
-          >
-            <DatePicker
-              className="w100"
-              picker="year"
-              onChange={(e) => {
-                if (e === null) {
-                  setEducationValue((prevValue) => ({
-                    ...prevValue,
-                    education: "",
-                  }));
-                } else {
-                  setEducationValue((prevValue) => ({
-                    ...prevValue,
-                    education: e.year(),
-                  }));
-                }
-              }}
-              allowClear
-            />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item
-            className={style.formItem}
-            labelCol={{ style: { padding: "0 0 2px" } }}
-            label={"End date"}
-            name={"educationEnd"}
-          >
-            <DatePicker
-              className="w100"
-              picker="year"
-              disabled={educationValue.education === "" ? true : false}
-              allowClear
-            />
-          </Form.Item>
-        </Col>
-        {educationValue.education !== "" && (
-          <>
-            <Col span={24}>
-              <Form.Item
-                className={style.formItem}
-                labelCol={{ style: { padding: "0 0 2px" } }}
-                label={"College"}
-                name={"college"}
-                rules={[
-                  {
-                    required: true,
-                    message: "Required field",
-                  },
-                  {
-                    max: 50,
-                    message: "Maximum 50 characters",
-                  },
-                ]}
-              >
-                <Input placeholder="College" allowClear />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item
-                className={style.formItem}
-                labelCol={{ style: { padding: "0 0 2px" } }}
-                label={"Degree"}
-                name={"degree"}
-                rules={[
-                  {
-                    required: true,
-                    message: "Required field",
-                  },
-                  {
-                    max: 50,
-                    message: "Maximum 50 characters",
-                  },
-                ]}
-              >
-                <Input placeholder="Degree" allowClear />
-              </Form.Item>
-            </Col>
-          </>
-        )}
-      </Row>
+      <EducationComponent
+        startName={"educationStart"}
+        endName={"educationEnd"}
+        collegeName={"college"}
+        degreeName={"degree"}
+        setEducationValue={setEducationValue}
+        educationValue={educationValue.educationStart}
+      />
       {education > 0 && (
-        <Row gutter={8}>
-          <Col span={12}>
-            <Form.Item
-              className={style.formItem}
-              labelCol={{ style: { padding: "0 0 2px" } }}
-              label={"Start date"}
-              name={"educationStart2"}
-            >
-              <DatePicker
-                className="w100"
-                picker="year"
-                onChange={(e) => {
-                  if (e === null) {
-                    setEducationValue((prevValue) => ({
-                      ...prevValue,
-                      education2: "",
-                    }));
-                  } else {
-                    setEducationValue((prevValue) => ({
-                      ...prevValue,
-                      education2: e.year(),
-                    }));
-                  }
-                }}
-                allowClear
-              />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              className={style.formItem}
-              labelCol={{ style: { padding: "0 0 2px" } }}
-              label={"End date"}
-              name={"educationEnd2"}
-            >
-              <DatePicker
-                className="w100"
-                picker="year"
-                disabled={educationValue.education2 === "" ? true : false}
-                allowClear
-              />
-            </Form.Item>
-          </Col>
-          {educationValue.education2 !== "" && (
-            <>
-              <Col span={24}>
-                <Form.Item
-                  className={style.formItem}
-                  labelCol={{ style: { padding: "0 0 2px" } }}
-                  label={"College"}
-                  name={"college2"}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Required field",
-                    },
-                    {
-                      max: 50,
-                      message: "Maximum 50 characters",
-                    },
-                  ]}
-                >
-                  <Input placeholder="College" />
-                </Form.Item>
-              </Col>
-              <Col span={24}>
-                <Form.Item
-                  className={style.formItem}
-                  labelCol={{ style: { padding: "0 0 2px" } }}
-                  label={"Degree"}
-                  name={"degree2"}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Required field",
-                    },
-                    {
-                      max: 50,
-                      message: "Maximum 50 characters",
-                    },
-                  ]}
-                >
-                  <Input placeholder="Degree" allowClear />
-                </Form.Item>
-              </Col>
-            </>
-          )}
-        </Row>
+        <EducationComponent
+          startName={"educationStart2"}
+          endName={"educationEnd2"}
+          collegeName={"college2"}
+          degreeName={"degree2"}
+          setEducationValue={setEducationValue}
+          educationValue={educationValue.educationStart2}
+        />
       )}
-      <div className="flexBetween">
-        <Button
-          className="w100"
-          onClick={() => setEducation(education + 1)}
-          disabled={
-            educationValue.education === ""
-              ? true
-              : education > 0
-              ? true
-              : false
-          }
-          type="primary"
-        >
-          Add education
-        </Button>
-        <Button
-          className="w100"
-          onClick={() => setEducation(education - 1)}
-          disabled={education < 1 ? true : false}
-          type="primary"
-          danger
-        >
-          Remove education
-        </Button>
-      </div>
+      <Row gutter={8} justify={"end"}>
+        <Col>
+          <Button
+            className="w100"
+            onClick={() => setEducation(education + 1)}
+            disabled={
+              educationValue.educationStart === ""
+                ? true
+                : education > 0
+                ? true
+                : false
+            }
+            type="primary"
+          >
+            Add education
+          </Button>
+        </Col>
+        <Col>
+          <Button
+            className="w100"
+            onClick={() => setEducation(education - 1)}
+            disabled={education < 1 ? true : false}
+            type="primary"
+            danger
+          >
+            Remove education
+          </Button>
+        </Col>
+      </Row>
     </>
+  );
+};
+
+const EducationComponent = ({
+  startName,
+  endName,
+  collegeName,
+  degreeName,
+  setEducationValue,
+  educationValue,
+}) => {
+  return (
+    <Row gutter={8}>
+      <Col span={12}>
+        <Form.Item
+          className={style.formItem}
+          labelCol={{ style: { padding: "0 0 2px" } }}
+          label={"Start date"}
+          name={startName}
+        >
+          <DatePicker
+            className="w100"
+            picker="year"
+            onChange={(e) => {
+              if (e === null) {
+                setEducationValue((prevValue) => ({
+                  ...prevValue,
+                  [startName]: "",
+                }));
+              } else {
+                setEducationValue((prevValue) => ({
+                  ...prevValue,
+                  [startName]: e.year(),
+                }));
+              }
+            }}
+            allowClear
+            size="large"
+          />
+        </Form.Item>
+      </Col>
+      <Col span={12}>
+        <Form.Item
+          className={style.formItem}
+          labelCol={{ style: { padding: "0 0 2px" } }}
+          label={"End date"}
+          name={endName}
+        >
+          <DatePicker
+            className="w100"
+            picker="year"
+            disabled={educationValue === "" ? true : false}
+            allowClear
+            size="large"
+          />
+        </Form.Item>
+      </Col>
+      {educationValue !== "" && (
+        <>
+          <Col span={24}>
+            <Form.Item
+              className={style.formItem}
+              labelCol={{ style: { padding: "0 0 2px" } }}
+              label={"College"}
+              name={collegeName}
+              rules={[
+                {
+                  required: true,
+                  message: "Required field",
+                },
+                {
+                  max: 50,
+                  message: "Maximum 50 characters",
+                },
+              ]}
+            >
+              <Input placeholder="College" allowClear size="large" />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item
+              className={style.formItem}
+              labelCol={{ style: { padding: "0 0 2px" } }}
+              label={"Degree"}
+              name={degreeName}
+              rules={[
+                {
+                  required: true,
+                  message: "Required field",
+                },
+                {
+                  max: 50,
+                  message: "Maximum 50 characters",
+                },
+              ]}
+            >
+              <Input placeholder="Degree" allowClear size="large" />
+            </Form.Item>
+          </Col>
+        </>
+      )}
+    </Row>
   );
 };
 
