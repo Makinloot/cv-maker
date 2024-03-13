@@ -6,8 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 const SkillsPDF = ({ data }) => {
   return (
     <View style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}>
-      <Text style={PDFStyles.title}>Expertise</Text>
-      <View style={PDFStyles.siderDetailsStroke} />
       <View
         style={{
           flexDirection: "row",

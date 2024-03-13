@@ -6,8 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 const EducationPDF = ({ data }) => {
   return (
     <View style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}>
-      <Text style={PDFStyles.title}>Education</Text>
-      <View style={PDFStyles.siderDetailsStroke} />
+      <Text style={[PDFStyles.title, { marginBottom: 10 }]}>personal</Text>
       {data.education?.map(
         (item) =>
           item.educationStart && (

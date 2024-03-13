@@ -21,8 +21,10 @@ const PDFStyles = StyleSheet.create({
     width: "100vw",
   },
   sider: {
-    flex: 0.5,
-    backgroundColor: colors.darkBlue,
+    flex: 0.4045,
+    padding: "110px 20.5px 0 17.5px" ,
+    color: 'white',
+    // backgroundColor: colors.darkBlue,
   },
   main: {
     flex: 1,
@@ -39,29 +41,23 @@ const PDFStyles = StyleSheet.create({
     fontFamily: "roboto-bold",
     // fontFamily: "georgianBold",
     letterSpacing: 1.15,
-    fontSize: 24,
-    // textTransform: "capitalize",
+    fontSize: 16,
+    textTransform: "uppercase",
   },
   welcomeContainer: {
     display: "flex",
-    gap: 5,
-    height: 206,
-    padding: "10px 20px 20px",
-    borderBottom: "2px solid black",
+    // gap: 5,
+    // height: 206,
+    padding: "100px 20px 0px 14px",
+    width: '100%'
+    // borderBottom: "2px solid black",
   },
   welcomeTitlePrimary: {
     fontFamily: "roboto-bold",
     // fontFamily: "georgianBold",
     letterSpacing: 1.15,
     fontSize: 24,
-    textTransform: "capitalize",
-  },
-  welcomeTitleSecondary: {
-    // fontFamily: "georgianBold",
-    fontFamily: "roboto-bold",
-    letterSpacing: 1.15,
-    fontSize: 24,
-    textTransform: "capitalize",
+    textTransform: "uppercase",
   },
   welcomeSubTitle: {
     fontFamily: "roboto",
@@ -77,12 +73,12 @@ const PDFStyles = StyleSheet.create({
     fontSize: 10,
     letterSpacing: 1.15,
     color: colors.gray,
-    textIndent: 10,
+    // textIndent: 10,
   },
   // experience styles
   experienceContainer: {
     marginTop: 10,
-    padding: "0 20px",
+    padding: "0 14px",
   },
   experienceItemContainer: {
     margin: "5px 0",
@@ -92,7 +88,7 @@ const PDFStyles = StyleSheet.create({
   // end of main items styles
   // sider styles
   siderDetailsContainer: {
-    marginLeft: 25,
+    // marginLeft: 25,
     color: colors.white,
   },
   siderDetailsStroke: {
@@ -116,7 +112,7 @@ const PDFStyles = StyleSheet.create({
   siderDetailsTitleSmall: {
     fontFamily: "roboto-bold",
     // fontFamily: "georgianBold",
-    fontSize: 12,
+    fontSize: 11,
     textTransform: "capitalize",
   },
   siderDetailsText: {

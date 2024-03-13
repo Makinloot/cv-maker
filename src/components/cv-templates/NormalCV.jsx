@@ -47,45 +47,74 @@ const NormalCV = () => {
             <View style={{ flex: 0.5, backgroundColor: "#2e2e63" }} />
             <View style={{ flex: 1 }} />
           </View>
+          {/* full name */}
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "absolute",
+              width: "100%",
+              padding: "18px 0",
+            }}
+          >
+            <View
+              style={{
+                backgroundColor: "white",
+                width: "94%",
+                height: 80,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
+                border: "2px",
+              }}
+            >
+              <Text style={PDFStyles.welcomeTitlePrimary}>
+                {`${data.firstName} ${data.lastName}`}
+              </Text>
+            </View>
+          </View>
           {/* sider */}
           <View style={PDFStyles.sider}>
-            <View style={PDFStyles.imageContainer}>
-              <Image style={PDFStyles.image} source={{ uri: data.image }} />
-            </View>
+            <Text style={[PDFStyles.title, { marginBottom: 10 }]}>
+              personal
+            </Text>
             {/* contact section */}
             <ContactPDF data={data} />
             {/* education section */}
             {data.education[0]?.educationStart && <EducationPDF data={data} />}
-            {/* languages section */}
-            {data.languages[0]?.language && <LanguagesPDF data={data} />}
             {/* skills section */}
             {data.skills?.length > 0 && data.skills[0] && (
-              <SkillsPDF data={data} />
+              <>
+                <Text style={[PDFStyles.title, { marginTop: 10 }]}>skills</Text>
+                <SkillsPDF data={data} />
+              </>
+            )}
+            {/* languages section */}
+            {data.languages[0]?.language && (
+              <>
+                <Text style={[PDFStyles.title, { marginTop: 10 }]}>
+                  languages
+                </Text>
+                <LanguagesPDF data={data} />
+              </>
             )}
           </View>
           {/* main */}
           <View style={PDFStyles.main}>
             {/* welcome section */}
             <View style={PDFStyles.welcomeContainer}>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: 10,
-                  flexWrap: "wrap",
-                }}
-              >
-                <Text style={PDFStyles.welcomeTitlePrimary}>
-                  {data.firstName}
-                </Text>
-                <Text style={PDFStyles.welcomeTitleSecondary}>
-                  {data.lastName}
-                </Text>
-              </View>
-              <Text style={PDFStyles.welcomeSubTitle}>{data.profession}</Text>
               <Text style={PDFStyles.welcomeText}>{data.aboutMe}</Text>
             </View>
-            {/* end of welcome section */}
+            <View
+              style={{
+                height: 2,
+                width: "93%",
+                backgroundColor: "black",
+                margin: "10px auto",
+              }}
+            />
             {/* experience section */}
             {data.experience?.length > 0 && data.experience[0]?.startDate && (
               <ExperiencePDF data={data} />

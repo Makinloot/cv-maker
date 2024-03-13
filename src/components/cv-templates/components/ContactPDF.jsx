@@ -7,8 +7,7 @@ const ContactPDF = ({ data }) => {
   return (
     <View style={PDFStyles.siderDetailsContainer}>
       <View>
-        <Text style={PDFStyles.title}>Contact</Text>
-        <View style={PDFStyles.siderDetailsStroke} />
+        {/* <View style={PDFStyles.siderDetailsStroke} /> */}
         <View style={PDFStyles.siderDetailsTextContainer}>
           <Text style={PDFStyles.siderDetailsTitleSmall}>Phone</Text>
           <View style={{ flexDirection: "row", gap: 2 }}>
@@ -20,13 +19,13 @@ const ContactPDF = ({ data }) => {
           <Text style={PDFStyles.siderDetailsTitleSmall}>Email</Text>
           <Text style={PDFStyles.siderDetailsText}>{data.email}</Text>
         </View>
-        {data.address && (
+        {data?.address && (
           <View style={PDFStyles.siderDetailsTextContainer}>
             <Text style={PDFStyles.siderDetailsTitleSmall}>Address</Text>
-            <Text style={PDFStyles.siderDetailsText}>{data.address}</Text>
+            <Text style={PDFStyles.siderDetailsText}>{data?.address}</Text>
           </View>
         )}
-        {data.socials?.map(
+        {data?.socials?.map(
           (social) =>
             social.socialName && (
               <View

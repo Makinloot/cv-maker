@@ -6,8 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 const LanguagesPDF = ({ data }) => {
   return (
     <View style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}>
-      <Text style={PDFStyles.title}>Languages</Text>
-      <View style={PDFStyles.siderDetailsStroke} />
       {data.languages.map(
         (language) =>
           language.language && (

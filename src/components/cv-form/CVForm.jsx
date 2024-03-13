@@ -128,10 +128,10 @@ const CVForm = () => {
   const validateAboutMe = (_, value) => {
     if (!value) {
       return Promise.reject(new Error("Required field"));
-    } else if (value.length > 840) {
+    } else if (value.length > 510) {
       return Promise.reject(new Error("Maximum character limit exceeded"));
-    } else if (value.length < 500) {
-      return Promise.reject(new Error("Minimum 500 characters"));
+    } else if (value.length < 200) {
+      return Promise.reject(new Error("Minimum 200 characters"));
     } else {
       return Promise.resolve();
     }
@@ -201,7 +201,7 @@ const CVForm = () => {
               </Col>
             </Row>
             {/* image */}
-            <FormImage />
+            {/* <FormImage /> */}
             {/* phone number */}
             <FormPhone />
             {/* email address */}

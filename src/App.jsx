@@ -8,16 +8,16 @@ import Home from "./pages/home/Home";
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div style={{ padding: "70px 0 6px" }}>
         <Router>
           <Routes>
-            <Route path="/" element={<Home />} />
-            {/* <Route path="/cv" element={<NormalCV />} /> */}
+            <Route path="/" element={<CVForm />} />
+            <Route path="/cv" element={<NormalCV />} />
           </Routes>
         </Router>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
