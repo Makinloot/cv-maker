@@ -9,22 +9,69 @@ const ContactPDF = ({ data }) => {
       <View>
         {/* <View style={PDFStyles.siderDetailsStroke} /> */}
         <View style={PDFStyles.siderDetailsTextContainer}>
-          <Text style={PDFStyles.siderDetailsTitleSmall}>Phone</Text>
-          <View style={{ flexDirection: "row", gap: 2 }}>
-            <Text style={PDFStyles.siderDetailsText}>{data.prefix}</Text>
-            <Text style={PDFStyles.siderDetailsText}>
-              {data.phone && data.phone.match(/\d{1,3}/g).join("-")}
-            </Text>
+          {data.phone ||
+            (data.prefix && (
+              <>
+                <Text style={PDFStyles.siderDetailsTitleSmall}>Phone</Text>
+                <View style={{ flexDirection: "row", gap: 2 }}>
+                  <Text style={PDFStyles.siderDetailsText}>{data.prefix}</Text>
+                  <Text style={PDFStyles.siderDetailsText}>
+                    {data.phone && data.phone.match(/\d{1,3}/g).join("-")}
+                  </Text>
+                </View>
+              </>
+            ))}
+        </View>
+        {data.email && (
+          <View style={PDFStyles.siderDetailsTextContainer}>
+            <Text style={PDFStyles.siderDetailsTitleSmall}>Email</Text>
+            <Text style={PDFStyles.siderDetailsText}>{data.email}</Text>
           </View>
-        </View>
-        <View style={PDFStyles.siderDetailsTextContainer}>
-          <Text style={PDFStyles.siderDetailsTitleSmall}>Email</Text>
-          <Text style={PDFStyles.siderDetailsText}>{data.email}</Text>
-        </View>
+        )}
         {data?.address && (
           <View style={PDFStyles.siderDetailsTextContainer}>
             <Text style={PDFStyles.siderDetailsTitleSmall}>Address</Text>
-            <Text style={PDFStyles.siderDetailsText}>{data?.address}</Text>
+            <Text style={PDFStyles.siderDetailsText}>{`${data?.address}${
+              data?.zip && `, ${data.zip}`
+            }${data.city && `, ${data.city}`}`}</Text>
+          </View>
+        )}
+        {data.dateOfBirth && (
+          <View style={PDFStyles.siderDetailsTextContainer}>
+            <Text style={PDFStyles.siderDetailsTitleSmall}>Date of birth</Text>
+            <Text style={[PDFStyles.siderDetailsText]}>{data.dateOfBirth}</Text>
+          </View>
+        )}
+        {data.placeOfBirth && (
+          <View style={PDFStyles.siderDetailsTextContainer}>
+            <Text style={PDFStyles.siderDetailsTitleSmall}>Place of birth</Text>
+            <Text
+              style={[
+                PDFStyles.siderDetailsText,
+                { textTransform: "capitalize" },
+              ]}
+            >
+              {data.placeOfBirth}
+            </Text>
+          </View>
+        )}
+        {data.gender && (
+          <View style={PDFStyles.siderDetailsTextContainer}>
+            <Text style={PDFStyles.siderDetailsTitleSmall}>Gender</Text>
+            <Text style={[PDFStyles.siderDetailsText]}>{data.gender}</Text>
+          </View>
+        )}
+        {data.nationality && (
+          <View style={PDFStyles.siderDetailsTextContainer}>
+            <Text style={PDFStyles.siderDetailsTitleSmall}>Nationality</Text>
+            <Text
+              style={[
+                PDFStyles.siderDetailsText,
+                { textTransform: "capitalize" },
+              ]}
+            >
+              {data.nationality}
+            </Text>
           </View>
         )}
         {data?.socials?.map(

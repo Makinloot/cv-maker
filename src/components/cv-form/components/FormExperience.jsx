@@ -12,7 +12,6 @@ const FormExperience = () => {
   });
   return (
     <>
-      <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>Experience</p>
       <ExperienceComponent
         startDateName={"experienceStart"}
         endDateName={"experienceEnd"}
@@ -142,16 +141,6 @@ const ExperienceComponent = ({
           labelCol={{ style: { padding: "0 0 2px" } }}
           label={"Position"}
           name={positionName}
-          rules={[
-            {
-              required: experienceValue === "" ? false : true,
-              message: "Required field",
-            },
-            {
-              max: 50,
-              message: "Maximum 50 characters",
-            },
-          ]}
         >
           <Input
             placeholder="Position"
@@ -167,16 +156,6 @@ const ExperienceComponent = ({
           labelCol={{ style: { padding: "0 0 2px" } }}
           label={"Company"}
           name={companyName}
-          rules={[
-            {
-              required: experienceValue === "" ? false : true,
-              message: "Required field",
-            },
-            {
-              max: 50,
-              message: "Maximum 50 characters",
-            },
-          ]}
         >
           <Input
             placeholder="Company"
@@ -192,12 +171,6 @@ const ExperienceComponent = ({
           labelCol={{ style: { padding: "0 0 2px" } }}
           label={"About job"}
           name={aboutJobName}
-          rules={[
-            {
-              required: experienceValue === "" ? false : true,
-              message: "Required field",
-            },
-          ]}
         >
           <Input.TextArea
             placeholder="About job"

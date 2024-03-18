@@ -50,7 +50,7 @@ const FormLanguages = () => {
             className="w100"
             onClick={() => setLanguages(languages + 1)}
             disabled={
-              setLanguageValues.language === ""
+              languageValues.language === ""
                 ? true
                 : languages > 2
                 ? true
@@ -118,12 +118,6 @@ const LanguageComponent = ({
           labelCol={{ style: { padding: "0 0 2px" } }}
           label={"Level"}
           name={levelName}
-          rules={[
-            {
-              required: languageValues !== "" ? true : false,
-              message: "Required field",
-            },
-          ]}
         >
           <Select
             placeholder="Level"

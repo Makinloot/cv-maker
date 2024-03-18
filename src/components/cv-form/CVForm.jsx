@@ -1,18 +1,17 @@
-import { Button, Col, Form, Input, Row, message } from "antd";
-import style from "./CVForm.module.css";
+import { Button, Card, Form, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/CVContext";
-import FormLanguages from "./components/FormLanguages";
-import FormEducation from "./components/FormEducation";
-import FormSocials from "./components/FormSocials";
-import FormSkills from "./components/FormSkills";
-import FormExperience from "./components/FormExperience";
-import FormImage from "./components/FormImage";
-import FormPhone from "./components/FormPhone";
+import { useState } from "react";
+import Personal from "./components/Personal";
+import Experience from "./components/Experience";
+import Education from "./components/Education";
+import style from "./CVForm.module.css";
 
 const CVForm = () => {
+  const { additionalInformation } = useAppContext();
   const navigate = useNavigate();
   const { setData } = useAppContext();
+  const [formIndex, setFormIndex] = useState(0);
 
   // submit form
   const onFinish = async (values) => {
@@ -25,20 +24,30 @@ const CVForm = () => {
         phone: values.phone,
         email: values.email,
         address: values.address,
-        socials: [
-          {
-            socialName: values.socialName,
-            socialLink: values.socialLink,
-          },
-          {
-            socialName: values.socialName2,
-            socialLink: values.socialLink2,
-          },
-          {
-            socialName: values.socialName3,
-            socialLink: values.socialLink3,
-          },
-        ],
+        zip: values.zip,
+        city: values.city,
+        dateOfBirth: additionalInformation
+          ? values.dateOfBirth && values.dateOfBirth.format("DD.MM.YYYY")
+          : "",
+        placeOfBirth: additionalInformation ? values.placeOfBirth : "",
+        nationality: additionalInformation ? values.nationality : "",
+        gender: additionalInformation ? values.gender : "",
+        socials: additionalInformation
+          ? [
+              {
+                socialName: values.socialName,
+                socialLink: values.socialLink,
+              },
+              {
+                socialName: values.socialName2,
+                socialLink: values.socialLink2,
+              },
+              {
+                socialName: values.socialName3,
+                socialLink: values.socialLink3,
+              },
+            ]
+          : [],
         education: [
           {
             educationStart:
@@ -61,19 +70,18 @@ const CVForm = () => {
             level: values.languageLevel,
           },
           {
-            language: values.language2 || null,
-            level: values.languageLevel2 || null,
+            language: values.language2,
+            level: values.languageLevel2,
           },
           {
             language: values.language3,
             level: values.languageLevel3,
           },
           {
-            language: values.language4 || null,
-            level: values.languageLevel4 || null,
+            language: values.language4,
+            level: values.languageLevel4,
           },
         ],
-        // profession: values.profession,
         aboutMe: values.aboutMe,
         skills: values.skills,
         experience: [
@@ -124,17 +132,6 @@ const CVForm = () => {
     message.error(`Please fill every field correctly`);
   };
 
-  // about me textarea validation
-  const validateAboutMe = (_, value) => {
-    if (!value) {
-      return Promise.reject(new Error("Required field"));
-    } else if (value.length > 510) {
-      return Promise.reject(new Error("Maximum character limit exceeded"));
-    } else {
-      return Promise.resolve();
-    }
-  };
-
   return (
     <div className="Form">
       <div className="container">
@@ -146,160 +143,34 @@ const CVForm = () => {
             layout="vertical"
             className={style.formWrapper}
           >
-            <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>About me</p>
-            {/* name */}
-            <Row gutter={8}>
-              <Col span={12}>
-                <Form.Item
-                  className={style.formItem}
-                  labelCol={{ style: { padding: "0 0 2px" } }}
-                  label={"First name"}
-                  name={"firstName"}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Required field",
-                    },
-                    {
-                      min: 2,
-                      message: "Minimum 2 characters",
-                    },
-                    {
-                      max: 20,
-                      message: "maximum 24 characters",
-                    },
-                  ]}
-                >
-                  <Input placeholder="First name" allowClear size="large" />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item
-                  className={style.formItem}
-                  labelCol={{ style: { padding: "0 0 2px" } }}
-                  label={"Last name"}
-                  name={"lastName"}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Required field",
-                    },
-                    {
-                      min: 2,
-                      message: "Minimum 2 characters",
-                    },
-                    {
-                      max: 20,
-                      message: "maximum 24 characters",
-                    },
-                  ]}
-                >
-                  <Input placeholder="Last name" allowClear size="large" />
-                </Form.Item>
-              </Col>
-            </Row>
-            {/* image */}
-            {/* <FormImage /> */}
-            {/* phone number */}
-            <FormPhone />
-            {/* email address */}
-            <Col>
-              <Form.Item
-                className={style.formItem}
-                labelCol={{ style: { padding: "0 0 2px" } }}
-                label={"Email address"}
-                name={"email"}
-                rules={[
-                  {
-                    required: true,
-                    message: "Email address is required",
-                  },
-                  {
-                    type: "email",
-                    message: "Please enter a valid email address",
-                  },
-                ]}
-              >
-                <Input
-                  type="email"
-                  placeholder="Email address"
-                  allowClear
-                  size="large"
-                />
-              </Form.Item>
-            </Col>
-            {/* address */}
-            <Col>
-              <Form.Item
-                className={style.formItem}
-                labelCol={{ style: { padding: "0 0 2px" } }}
-                label={"Address"}
-                name={"address"}
-                rules={[
-                  {
-                    max: 100,
-                    message: "Maximum 100 characters",
-                  },
-                ]}
-              >
-                <Input placeholder="Address" allowClear size="large" />
-              </Form.Item>
-            </Col>
-            {/* profession */}
-            {/* <Col span={24}>
-              <Form.Item
-                className={style.formItem}
-                labelCol={{ style: { padding: "0 0 2px" } }}
-                label={"Profession"}
-                name={"profession"}
-                rules={[
-                  {
-                    required: true,
-                    message: "Required field",
-                  },
-                  {
-                    max: 50,
-                    message: "Maximum 50 characters",
-                  },
-                ]}
-              >
-                <Input placeholder="Profession" allowClear />
-              </Form.Item>
-            </Col> */}
-            {/* about me */}
-            <Col span={24}>
-              <Form.Item
-                className={style.formItem}
-                labelCol={{ style: { padding: "0 0 2px" } }}
-                label={"About me"}
-                name={"aboutMe"}
-                rules={[
-                  {
-                    required: true,
-                    validator: validateAboutMe,
-                  },
-                ]}
-              >
-                <Input.TextArea
-                  placeholder="About me"
-                  allowClear
-                  size="large"
-                />
-              </Form.Item>
-            </Col>
-            {/* skills */}
-            <FormSkills />
-            {/* experience */}
-            <FormExperience />
-            {/* education */}
-            <FormEducation />
-            {/* languages */}
-            <FormLanguages />
-            {/* social links */}
-            <FormSocials />
-            <Button htmlType="submit" style={{ marginTop: 20 }}>
-              submit
-            </Button>
+            <Card
+              className={style.card}
+              title={
+                formIndex === 0
+                  ? "Personal"
+                  : formIndex === 1
+                  ? "Experience"
+                  : formIndex === 2 && "Education"
+              }
+            >
+              {/* personal information */}
+              <Personal
+                setIndex={setFormIndex}
+                hide={formIndex === 0 ? false : true}
+              />
+              {/* experience */}
+              <Experience
+                setIndex={setFormIndex}
+                hide={formIndex === 1 ? false : true}
+              />
+              {/* education */}
+              <Education
+                setIndex={setFormIndex}
+                hide={formIndex === 2 ? false : true}
+              />
+              {/* testt */}
+              {/* <Button htmlType="submit">asdads</Button> */}
+            </Card>
           </Form>
         </div>
       </div>

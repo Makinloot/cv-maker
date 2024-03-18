@@ -125,16 +125,6 @@ const EducationComponent = ({
               labelCol={{ style: { padding: "0 0 2px" } }}
               label={"College"}
               name={collegeName}
-              rules={[
-                {
-                  required: true,
-                  message: "Required field",
-                },
-                {
-                  max: 50,
-                  message: "Maximum 50 characters",
-                },
-              ]}
             >
               <Input placeholder="College" allowClear size="large" />
             </Form.Item>
@@ -145,16 +135,6 @@ const EducationComponent = ({
               labelCol={{ style: { padding: "0 0 2px" } }}
               label={"Degree"}
               name={degreeName}
-              rules={[
-                {
-                  required: true,
-                  message: "Required field",
-                },
-                {
-                  max: 50,
-                  message: "Maximum 50 characters",
-                },
-              ]}
             >
               <Input placeholder="Degree" allowClear size="large" />
             </Form.Item>

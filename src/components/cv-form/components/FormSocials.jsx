@@ -12,7 +12,6 @@ const FormSocials = () => {
   });
   return (
     <>
-      <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>Social media</p>
       <SocialsComponent
         name={"socialName"}
         urlName={"socialLink"}
@@ -74,11 +73,10 @@ const SocialsComponent = ({
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Social name"}
+          label={"Website name"}
           name={name}
         >
           <Input
-            placeholder="Social name"
             style={{ width: "100%" }}
             onChange={(e) =>
               setSocialLinkValue((prevValue) => ({
@@ -95,18 +93,10 @@ const SocialsComponent = ({
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Social URL"}
+          label={"Website URL"}
           name={urlName}
-          rules={[
-            {
-              required: socialLinkValue !== "" ? true : false,
-              type: "url",
-              message: "Required field",
-            },
-          ]}
         >
           <Input
-            placeholder="URL"
             style={{ width: "100%" }}
             disabled={socialLinkValue === "" ? true : false}
             allowClear

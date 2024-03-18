@@ -14,16 +14,9 @@ const FormPhone = () => {
           labelCol={{ style: { padding: "0 0 2px" } }}
           label={"Prefix"}
           name={"prefix"}
-          rules={[
-            {
-              required: true,
-              message: "Required field",
-            },
-          ]}
         >
           <Select
             showSearch
-            placeholder="Select prefix"
             allowClear
             size="large"
             onChange={(e) => {
@@ -51,10 +44,6 @@ const FormPhone = () => {
           name={"phone"}
           rules={[
             {
-              required: isDisabled ? false : true,
-              message: "Required field",
-            },
-            {
               pattern: /^[0-9]*$/,
               message: "Please enter a valid phone number (numbers only).",
             },
@@ -62,7 +51,6 @@ const FormPhone = () => {
         >
           <Input
             type="number"
-            placeholder="Phone"
             className={style.numberInput}
             size="large"
             disabled={isDisabled}
