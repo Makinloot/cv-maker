@@ -17,7 +17,7 @@ import { MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import FormSocials from "./FormSocials";
 import { useAppContext } from "../../../context/CVContext";
-
+import FormImage from "./FormImage";
 const Personal = ({ setIndex, hide }) => {
   const { setAdditionalInformation } = useAppContext();
   const [additionalOpen, setAdditionalOpen] = useState(false);
@@ -30,71 +30,76 @@ const Personal = ({ setIndex, hide }) => {
     <Col hidden={hide}>
       {/* name */}
       <Row gutter={8}>
-        <Col span={12}>
-          <Form.Item
-            className={style.formItem}
-            labelCol={{ style: { padding: "0 0 2px" } }}
-            label={"First name"}
-            name={"firstName"}
-            rules={[
-              {
-                required: true,
-                message: "Required field",
-              },
-              {
-                min: 2,
-                message: "Minimum 2 characters",
-              },
-              {
-                max: 20,
-                message: "maximum 24 characters",
-              },
-            ]}
-          >
-            <Input
-              allowClear
-              size="large"
-              onChange={(e) =>
-                setNameValues((prevValues) => ({
-                  ...prevValues,
-                  firstName: e.target.value,
-                }))
-              }
-            />
-          </Form.Item>
+        <Col span={5} style={{ position: "relative" }}>
+          <FormImage />
         </Col>
-        <Col span={12}>
-          <Form.Item
-            className={style.formItem}
-            labelCol={{ style: { padding: "0 0 2px" } }}
-            label={"Last name"}
-            name={"lastName"}
-            rules={[
-              {
-                required: true,
-                message: "Required field",
-              },
-              {
-                min: 2,
-                message: "Minimum 2 characters",
-              },
-              {
-                max: 20,
-                message: "maximum 24 characters",
-              },
-            ]}
-          >
-            <Input
-              allowClear
-              size="large"
-              onChange={(e) =>
-                setNameValues((prevValues) => ({
-                  ...prevValues,
-                  lastName: e.target.value,
-                }))
-              }
-            />
-          </Form.Item>
+        <Col span={19}>
+          <Col span={24}>
+            <Form.Item
+              className={style.formItem}
+              labelCol={{ style: { padding: "0 0 2px" } }}
+              label={"First name"}
+              name={"firstName"}
+              rules={[
+                {
+                  required: true,
+                  message: "Required field",
+                },
+                {
+                  min: 2,
+                  message: "Minimum 2 characters",
+                },
+                {
+                  max: 20,
+                  message: "maximum 24 characters",
+                },
+              ]}
+            >
+              <Input
+                allowClear
+                size="large"
+                onChange={(e) =>
+                  setNameValues((prevValues) => ({
+                    ...prevValues,
+                    firstName: e.target.value,
+                  }))
+                }
+              />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item
+              className={style.formItem}
+              labelCol={{ style: { padding: "0 0 2px" } }}
+              label={"Last name"}
+              name={"lastName"}
+              rules={[
+                {
+                  required: true,
+                  message: "Required field",
+                },
+                {
+                  min: 2,
+                  message: "Minimum 2 characters",
+                },
+                {
+                  max: 20,
+                  message: "maximum 24 characters",
+                },
+              ]}
+            >
+              <Input
+                allowClear
+                size="large"
+                onChange={(e) =>
+                  setNameValues((prevValues) => ({
+                    ...prevValues,
+                    lastName: e.target.value,
+                  }))
+                }
+              />
+            </Form.Item>
+          </Col>
         </Col>
       </Row>
       {/* about me */}

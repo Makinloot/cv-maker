@@ -1,17 +1,16 @@
-import { Button, Form, Upload, message } from "antd";
+import { Form, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import { useState } from "react";
-
+import ImgCrop from "antd-img-crop";
+import { useAppContext } from "../../../context/CVContext";
 const FormImage = () => {
-  const [imageUploaded, setImageUploaded] = useState(false); // New state variable
-
+  const { setCroppedImg } = useAppContext();
   const beforeUpload = (file) => {
     const isImage =
       file.type.startsWith("image/") &&
       /\.(jpg|jpeg|png|gif)$/i.test(file.name);
 
     if (!isImage) {
-      message.error("You can only upload image files (jpg, jpeg, png, gif)!");
+      message.error("You can only upload image files (jpg, jpeg, png)!");
     }
 
     return isImage ? true : Upload.LIST_IGNORE;
@@ -20,20 +19,37 @@ const FormImage = () => {
   const handleChange = (info) => {
     if (info.file.status === "done") {
       message.success(`${info.file.name} file uploaded successfully`);
-      setImageUploaded(true);
+
+      // Create a new FileReader
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        compressImage(event.target.result);
+      };
+      reader.onerror = (error) => {
+        console.error("FileReader error:", error);
+      };
+
+      // Read the uploaded image as data URL
+      reader.readAsDataURL(info.file.originFileObj);
     } else if (info.file.status === "error") {
       message.error(`${info.file.name} file upload failed.`);
-    } else if (info.file.status === "removed") {
-      // Check if there are any remaining files
-      const remainingFiles = info.fileList.filter(
-        (file) => file.status !== "removed"
-      );
-
-      if (remainingFiles.length === 0) {
-        // No remaining files, reset imageUploaded to false
-        setImageUploaded(false);
-      }
     }
+  };
+
+  const compressImage = (base64String) => {
+    const img = new Image();
+    img.src = base64String;
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const MAX_WIDTH = 300; // Adjust this according to your needs
+      const scaleFactor = MAX_WIDTH / img.width;
+      canvas.width = img.width * scaleFactor;
+      canvas.height = img.height * scaleFactor;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      const compressedBase64 = canvas.toDataURL("image/jpeg"); // Change format accordingly
+      setCroppedImg(compressedBase64);
+    };
   };
 
   const customRequest = ({ file, onSuccess, onError }) => {
@@ -54,23 +70,35 @@ const FormImage = () => {
       name="image"
       valuePropName="fileList"
       getValueFromEvent={(e) => e && e.fileList}
-      rules={[
-        {
-          required: true,
-          message: "Required field",
-        },
-      ]}
+      style={{
+        width: "100%",
+        height: "95%",
+        overflow: "hidden",
+        position: "absolute",
+      }}
     >
-      <Upload
-        listType="picture"
-        beforeUpload={beforeUpload}
-        onChange={handleChange}
-        customRequest={customRequest}
-      >
-        <Button icon={<UploadOutlined />} disabled={imageUploaded}>
-          Upload Image
-        </Button>
-      </Upload>
+      <ImgCrop cropShape="round">
+        <Upload
+          listType="picture-card"
+          beforeUpload={beforeUpload}
+          onChange={handleChange}
+          customRequest={customRequest}
+          showUploadList={{ showPreviewIcon: false }}
+        >
+          <div
+            style={{
+              border: "1px solid #ccc",
+              width: 24,
+              height: 24,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <UploadOutlined />
+          </div>
+        </Upload>
+      </ImgCrop>
     </Form.Item>
   );
 };

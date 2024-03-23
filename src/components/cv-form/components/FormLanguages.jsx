@@ -125,13 +125,13 @@ const LanguageComponent = ({
             allowClear
             size="large"
           >
-            <Select.Option value="a1">A1</Select.Option>
-            <Select.Option value="a2">A2</Select.Option>
-            <Select.Option value="b1">B1</Select.Option>
-            <Select.Option value="b2">B2</Select.Option>
-            <Select.Option value="c1">C1</Select.Option>
-            <Select.Option value="c2">C2</Select.Option>
             <Select.Option value="native">Native</Select.Option>
+            <Select.Option value="c2">C2</Select.Option>
+            <Select.Option value="c1">C1</Select.Option>
+            <Select.Option value="b2">B2</Select.Option>
+            <Select.Option value="b1">B1</Select.Option>
+            <Select.Option value="a2">A2</Select.Option>
+            <Select.Option value="a1">A1</Select.Option>
           </Select>
         </Form.Item>
       </Col>

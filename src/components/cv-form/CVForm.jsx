@@ -8,7 +8,7 @@ import Education from "./components/Education";
 import style from "./CVForm.module.css";
 
 const CVForm = () => {
-  const { additionalInformation } = useAppContext();
+  const { additionalInformation, croppedImg } = useAppContext();
   const navigate = useNavigate();
   const { setData } = useAppContext();
   const [formIndex, setFormIndex] = useState(0);
@@ -116,11 +116,12 @@ const CVForm = () => {
             aboutJob: values.aboutJob3,
           },
         ],
-        image: values.image && values.image[0].thumbUrl,
+        image: croppedImg,
       };
       await setData(cvData);
       console.log("data", cvData);
-      navigate("/cv");
+      // TODO: make this dynamic
+      navigate("/cv/auckland");
     } catch (error) {
       console.log(error, "error setting values");
     }
@@ -168,8 +169,7 @@ const CVForm = () => {
                 setIndex={setFormIndex}
                 hide={formIndex === 2 ? false : true}
               />
-              {/* testt */}
-              {/* <Button htmlType="submit">asdads</Button> */}
+              <Button htmlType="submit">test</Button>
             </Card>
           </Form>
         </div>

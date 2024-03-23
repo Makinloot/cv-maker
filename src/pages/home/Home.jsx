@@ -1,10 +1,12 @@
-import { Button, Card, Col, Row } from "antd";
+import { Button, Card, Row } from "antd";
 import style from "./Home.module.css";
 import Meta from "antd/es/card/Meta";
 import testImage from "/test-image.jpg";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import { Link } from "react-router-dom";
+import auckland from "/auckland.png";
+import edinburgh from "/edinburgh.png";
 const Home = () => {
   return (
     <div className="Home">
@@ -28,22 +30,28 @@ const Home = () => {
               style={{ width: 240 }}
               cover={
                 <Zoom>
-                  <img className={style.cardImage} alt="Card" src={testImage} />
+                  <img className={style.cardImage} alt="Card" src={auckland} />
                 </Zoom>
               }
             >
-              <Meta title="Minimalistic" />
+              <Row justify={"space-between"} align={"middle"}>
+                <Meta title="Auckland" />
+                <Button type="primary">Create</Button>
+              </Row>
             </Card>
             <Card
               hoverable
               style={{ width: 240 }}
               cover={
                 <Zoom>
-                  <img className={style.cardImage} alt="Card" src={testImage} />
+                  <img className={style.cardImage} alt="Card" src={edinburgh} />
                 </Zoom>
               }
             >
-              <Meta title="Minimalistic" />
+              <Row justify={"space-between"} align={"middle"}>
+                <Meta title="Edinburgh" />
+                <Button type="primary">Create</Button>
+              </Row>
             </Card>
             <Card
               hoverable

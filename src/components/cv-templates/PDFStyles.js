@@ -1,13 +1,9 @@
 import { StyleSheet, Font } from "@react-pdf/renderer";
-import robotoRegular from "../../assets/fonts/Roboto-Regular.ttf";
-import robotoBold from "../../assets/fonts/Roboto-Bold.ttf";
-import ninoMtavruli from "../../assets/fonts/BPGNinoMtavruli-Bold.ttf";
-import glaho from "../../assets/fonts/BPGGlaho.ttf";
+import interBold from "../../assets/fonts/Inter-SemiBold.ttf";
+import interRegular from "../../assets/fonts/Inter-Regular.ttf";
 
-Font.register({ family: "roboto", src: robotoRegular });
-Font.register({ family: "roboto-bold", src: robotoBold });
-Font.register({ family: "georgianBold", src: ninoMtavruli });
-Font.register({ family: "georgianRegular", src: glaho });
+Font.register({ family: "inter-regular", src: interRegular });
+Font.register({ family: "inter-bold", src: interBold });
 
 export const colors = {
   gray: "#575757",
@@ -17,14 +13,13 @@ export const colors = {
 
 const PDFStyles = StyleSheet.create({
   viewerContainer: {
-    height: "100vh",
-    width: "100vw",
+    height: "calc(100vh - 129px)",
+    width: "100%",
   },
   sider: {
     flex: 0.4045,
-    padding: "110px 20.5px 0 17.5px" ,
-    color: 'white',
-    // backgroundColor: colors.darkBlue,
+    padding: "110px 20.5px 0 17.5px",
+    // color: "white",
   },
   main: {
     flex: 1,
@@ -38,42 +33,33 @@ const PDFStyles = StyleSheet.create({
   },
   // main items styles
   title: {
-    fontFamily: "roboto-bold",
-    // fontFamily: "georgianBold",
+    fontFamily: "inter-bold",
     letterSpacing: 1.15,
     fontSize: 16,
     textTransform: "uppercase",
   },
   welcomeContainer: {
     display: "flex",
-    // gap: 5,
-    // height: 206,
     padding: "105px 20px 0px 14px",
-    width: '100%'
-    // borderBottom: "2px solid black",
+    width: "100%",
   },
   welcomeTitlePrimary: {
-    fontFamily: "roboto-bold",
-    // fontFamily: "georgianBold",
+    fontFamily: "inter-bold",
     letterSpacing: 1.15,
     fontSize: 24,
     textTransform: "uppercase",
   },
   welcomeSubTitle: {
-    fontFamily: "roboto",
-    // fontFamily: "georgianRegular",
+    fontFamily: "inter-regular",
     textTransform: "capitalize",
     fontSize: 14,
     letterSpacing: 1.15,
   },
   welcomeText: {
-    fontFamily: "roboto",
-    // fontFamily: "georgianRegular",
-    // marginTop: 5,
+    fontFamily: "inter-regular",
     fontSize: 10,
     letterSpacing: 1.15,
     color: colors.gray,
-    // textIndent: 10,
   },
   // experience styles
   experienceContainer: {
@@ -87,7 +73,6 @@ const PDFStyles = StyleSheet.create({
   // end of main items styles
   // sider styles
   siderDetailsContainer: {
-    // marginLeft: 25,
     color: colors.white,
   },
   siderDetailsStroke: {
@@ -109,24 +94,27 @@ const PDFStyles = StyleSheet.create({
     paddingRight: 10,
   },
   siderDetailsTitleSmall: {
-    fontFamily: "roboto-bold",
-    // fontFamily: "georgianBold",
+    fontFamily: "inter-bold",
     fontSize: 11,
     textTransform: "capitalize",
   },
   siderDetailsText: {
-    fontFamily: "roboto",
-    // fontFamily: "georgianRegular",
+    fontFamily: "inter-regular",
     fontSize: 10,
     margin: "2px 0",
   },
   siderDetailsTextExpertise: {
-    fontFamily: "roboto-bold",
+    fontFamily: "inter-bold",
     fontSize: 10,
     marginLeft: 15,
     textTransform: "capitalize",
   },
   // end of sider styles
+  flexRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 2,
+  },
 });
 
 export default PDFStyles;

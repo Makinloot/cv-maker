@@ -1,15 +1,15 @@
 import { PDFViewer, Document, Page, Text, View } from "@react-pdf/renderer";
-import PDFStyles from "./PDFStyles";
+import PDFStyles from "../../components/cv-templates/PDFStyles";
 import { useAppContext } from "../../context/CVContext";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import ContactPDF from "./components/ContactPDF";
-import EducationPDF from "./components/EducationPDF";
-import LanguagesPDF from "./components/LanguagesPDF";
-import SkillsPDF from "./components/SkillsPDF";
-import ExperiencePDF from "./components/ExperiencePDF";
+import ContactPDF from "../../components/cv-templates/components/ContactPDF";
+import EducationPDF from "../../components/cv-templates/components/EducationPDF";
+import LanguagesPDF from "../../components/cv-templates/components/LanguagesPDF";
+import SkillsPDF from "../../components/cv-templates/components/SkillsPDF";
+import ExperiencePDF from "../../components/cv-templates/components/ExperiencePDF";
 
-const NormalCV = () => {
+const AucklandCV = () => {
   const { data } = useAppContext();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -21,6 +21,7 @@ const NormalCV = () => {
   }, [data, navigate]);
 
   if (loading) return <div>loading...</div>;
+
   return (
     <PDFViewer style={PDFStyles.viewerContainer}>
       <Document>
@@ -75,8 +76,6 @@ const NormalCV = () => {
             </Text>
             {/* contact section */}
             <ContactPDF data={data} />
-            {/* education section */}
-            {/* {data.education[0]?.educationStart && <EducationPDF data={data} />} */}
             {/* skills section */}
             {data.skills?.length > 0 && data.skills[0] && (
               <>
@@ -98,7 +97,7 @@ const NormalCV = () => {
           <View style={PDFStyles.main}>
             {/* welcome section */}
             <View style={PDFStyles.welcomeContainer}>
-              <Text style={PDFStyles.welcomeText}>{data.aboutMe}</Text>
+              {/* <Text style={PDFStyles.welcomeText}>{data.aboutMe}</Text> */}
             </View>
             <View
               style={{
@@ -121,4 +120,4 @@ const NormalCV = () => {
   );
 };
 
-export default NormalCV;
+export default AucklandCV;
