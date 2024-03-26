@@ -13,12 +13,11 @@ import { useEffect, useState } from "react";
 import ContactPDF from "../../components/cv-templates/components/ContactPDF";
 import EducationPDF from "../../components/cv-templates/components/EducationPDF";
 import LanguagesPDF from "../../components/cv-templates/components/LanguagesPDF";
-// import SkillsPDF from "../../components/cv-templates/components/SkillsPDF";
 import ExperiencePDF from "../../components/cv-templates/components/ExperiencePDF";
 import { v4 as uuidv4 } from "uuid";
 
 const EdinburghCV = () => {
-  const { data } = useAppContext();
+  const { data, templateColor } = useAppContext();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -45,14 +44,19 @@ const EdinburghCV = () => {
             }}
             fixed
           >
-            <View style={{ flex: 0.433, backgroundColor: "#ccc" }} />
+            <View
+              style={{
+                flex: 0.433,
+                backgroundColor: templateColor || "#434A54",
+              }}
+            />
             <View style={{ flex: 1 }} />
           </View>
           {/* sider */}
           <View
             style={[
               PDFStyles.sider,
-              { padding: 0, overflow: "hidden", flex: 0.433 },
+              { padding: 0, overflow: "hidden", flex: 0.433, color: "white" },
             ]}
           >
             {/* first name & image */}
@@ -66,10 +70,18 @@ const EdinburghCV = () => {
             >
               {/* name & img background */}
               {/* name */}
-              <View>
-                <Text
-                  style={PDFStyles.title}
-                >{`${data.firstName} ${data.lastName}`}</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "0 20px",
+                  flexWrap: "wrap",
+                  columnGap: 5,
+                }}
+              >
+                <Text style={PDFStyles.title}>{data.firstName}</Text>
+                <Text style={PDFStyles.title}>{data.lastName}</Text>
               </View>
               {/* image */}
               {data.image && (

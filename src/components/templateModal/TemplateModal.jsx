@@ -1,0 +1,70 @@
+/* eslint-disable react/prop-types */
+import { Button, Image, Modal } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../context/CVContext";
+import style from "./TemplateModal.module.css";
+
+const TemplateModal = ({
+  image,
+  setShow,
+  show,
+  navigationPath,
+  primaryImage,
+}) => {
+  const { setFormRedirect, setTemplateColor, templateColor } = useAppContext();
+  const navigate = useNavigate();
+
+  return (
+    <Modal
+      open={show}
+      onCancel={() => {
+        setShow(false);
+        setTemplateColor("");
+      }}
+      onOk={() => {
+        setFormRedirect(navigationPath);
+        navigate("/form");
+      }}
+      title="Template Auckland"
+      style={{ position: "relative" }}
+    >
+      <Image
+        preview={false}
+        src={
+          templateColor === "#3F6591"
+            ? image.blue
+            : templateColor === "#434A54"
+            ? image.dark
+            : templateColor === "#36BC9B"
+            ? image.green
+            : primaryImage
+        }
+      />
+      <div className={style.colorContainer}>
+        <Button
+          className={style.colorButton}
+          style={{
+            background: "#3F6591",
+          }}
+          onClick={() => setTemplateColor("#3F6591")}
+        />
+        <Button
+          className={style.colorButton}
+          style={{
+            background: "#434A54",
+          }}
+          onClick={() => setTemplateColor("#434A54")}
+        />
+        <Button
+          className={style.colorButton}
+          style={{
+            background: "#36BC9B",
+          }}
+          onClick={() => setTemplateColor("#36BC9B")}
+        />
+      </div>
+    </Modal>
+  );
+};
+
+export default TemplateModal;

@@ -9,10 +9,7 @@ const LanguagesPDF = ({ data }) => {
       {data.languages.map(
         (language) =>
           language.language && (
-            <View
-              style={{ flexDirection: "row", color: "black" }}
-              key={uuidv4()}
-            >
+            <View style={{ flexDirection: "row" }} key={uuidv4()}>
               <View
                 style={[PDFStyles.siderDetailsTextContainer, { flex: 0.5 }]}
               >

@@ -10,7 +10,7 @@ import SkillsPDF from "../../components/cv-templates/components/SkillsPDF";
 import ExperiencePDF from "../../components/cv-templates/components/ExperiencePDF";
 
 const AucklandCV = () => {
-  const { data } = useAppContext();
+  const { data, templateColor } = useAppContext();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -24,7 +24,7 @@ const AucklandCV = () => {
 
   return (
     <PDFViewer style={PDFStyles.viewerContainer}>
-      <Document>
+      <Document title={`${data.firstName} ${data.lastName}`}>
         <Page style={{ flexDirection: "row" }} wrap>
           {/* background */}
           <View
@@ -38,7 +38,9 @@ const AucklandCV = () => {
             }}
             fixed
           >
-            <View style={{ flex: 0.5, backgroundColor: "#2e2e63" }} />
+            <View
+              style={{ flex: 0.5, backgroundColor: templateColor || "#3F6591" }}
+            />
             <View style={{ flex: 1 }} />
           </View>
           {/* full name */}
@@ -70,7 +72,7 @@ const AucklandCV = () => {
             </View>
           </View>
           {/* sider */}
-          <View style={PDFStyles.sider}>
+          <View style={[PDFStyles.sider, { color: "white" }]}>
             <Text style={[PDFStyles.title, { marginBottom: 10 }]}>
               personal
             </Text>

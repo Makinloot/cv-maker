@@ -11,6 +11,9 @@ const ContextProvider = ({ children }) => {
   const [data, setData] = useState(null);
   const [additionalInformation, setAdditionalInformation] = useState(false);
   const [croppedImg, setCroppedImg] = useState("");
+  const [formRedirect, setFormRedirect] = useState("");
+  const [templateColor, setTemplateColor] = useState("");
+
   const values = {
     setData,
     data,
@@ -18,6 +21,10 @@ const ContextProvider = ({ children }) => {
     additionalInformation,
     setCroppedImg,
     croppedImg,
+    setFormRedirect,
+    formRedirect,
+    setTemplateColor,
+    templateColor,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

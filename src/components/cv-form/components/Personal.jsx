@@ -19,7 +19,7 @@ import FormSocials from "./FormSocials";
 import { useAppContext } from "../../../context/CVContext";
 import FormImage from "./FormImage";
 const Personal = ({ setIndex, hide }) => {
-  const { setAdditionalInformation } = useAppContext();
+  const { setAdditionalInformation, formRedirect } = useAppContext();
   const [additionalOpen, setAdditionalOpen] = useState(false);
   const [nameValues, setNameValues] = useState({
     firstName: "",
@@ -30,10 +30,12 @@ const Personal = ({ setIndex, hide }) => {
     <Col hidden={hide}>
       {/* name */}
       <Row gutter={8}>
-        <Col span={5} style={{ position: "relative" }}>
-          <FormImage />
-        </Col>
-        <Col span={19}>
+        {formRedirect === "auckland" ? null : (
+          <Col span={5} style={{ position: "relative" }}>
+            <FormImage />
+          </Col>
+        )}
+        <Col span={formRedirect === "auckland" ? 24 : 19}>
           <Col span={24}>
             <Form.Item
               className={style.formItem}

@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const ContactPDF = ({ data }) => {
   return (
-    <View style={[PDFStyles.siderDetailsContainer, { color: "black" }]}>
+    <View style={[PDFStyles.siderDetailsContainer]}>
       <View style={PDFStyles.siderDetailsTextContainer}>
         {(data.phone || data.prefix) && (
           <>
@@ -87,7 +87,7 @@ const ContactPDF = ({ data }) => {
                 >
                   <Link
                     src={social.socialLink}
-                    style={{ color: "blue" }}
+                    style={{ color: "white" }}
                     onClick={(e) => {
                       e.preventDefault();
                       window.open(social.socialLink, "_blank");

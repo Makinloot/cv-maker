@@ -48,6 +48,7 @@ const PDFStyles = StyleSheet.create({
     letterSpacing: 1.15,
     fontSize: 24,
     textTransform: "uppercase",
+    color: "black",
   },
   welcomeSubTitle: {
     fontFamily: "inter-regular",

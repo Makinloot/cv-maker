@@ -1,4 +1,4 @@
-import { Button, Card, Form, message } from "antd";
+import { Card, Form, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/CVContext";
 import { useState } from "react";
@@ -8,7 +8,7 @@ import Education from "./components/Education";
 import style from "./CVForm.module.css";
 
 const CVForm = () => {
-  const { additionalInformation, croppedImg } = useAppContext();
+  const { additionalInformation, croppedImg, formRedirect } = useAppContext();
   const navigate = useNavigate();
   const { setData } = useAppContext();
   const [formIndex, setFormIndex] = useState(0);
@@ -120,8 +120,7 @@ const CVForm = () => {
       };
       await setData(cvData);
       console.log("data", cvData);
-      // TODO: make this dynamic
-      navigate("/cv/auckland");
+      navigate(`/cv/${formRedirect}`);
     } catch (error) {
       console.log(error, "error setting values");
     }
@@ -169,7 +168,6 @@ const CVForm = () => {
                 setIndex={setFormIndex}
                 hide={formIndex === 2 ? false : true}
               />
-              <Button htmlType="submit">test</Button>
             </Card>
           </Form>
         </div>

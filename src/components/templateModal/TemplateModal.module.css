@@ -1,0 +1,17 @@
+.colorContainer {
+  position: absolute;
+  right: -50px;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.colorButton {
+  width: 34px;
+  height: 34px;
+  border-radius: 100%;
+}

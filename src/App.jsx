@@ -16,9 +16,23 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/form" element={<CVForm />} />
-            {/* <Route path="/cv/auckland" element={<AucklandCV />} /> */}
             <Route
               path="/cv/auckland"
+              element={
+                <div
+                  className="container"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    paddingTop: 64,
+                  }}
+                >
+                  <AucklandCV />
+                </div>
+              }
+            />
+            <Route
+              path="/cv/edinburgh"
               element={
                 <div
                   className="container"
