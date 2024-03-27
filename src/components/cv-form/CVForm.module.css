@@ -1,11 +1,8 @@
-.formContainer {
-}
-
 .formWrapper {
   padding: 8px;
   width: 100%;
-  min-height: 100vh;
-  margin: 0 auto;
+  /* min-height: 100vh; */
+  margin: 40px auto 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,9 +15,6 @@
 
 .formItem {
   margin-bottom: 8px;
-}
-
-.collapse {
 }
 
 .numberInput::-webkit-inner-spin-button,

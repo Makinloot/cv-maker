@@ -13,6 +13,10 @@ const ContextProvider = ({ children }) => {
   const [croppedImg, setCroppedImg] = useState("");
   const [formRedirect, setFormRedirect] = useState("");
   const [templateColor, setTemplateColor] = useState("");
+  const [collapsed, setCollapsed] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("theme") === "dark" ? true : false || false
+  );
 
   const values = {
     setData,
@@ -25,6 +29,10 @@ const ContextProvider = ({ children }) => {
     formRedirect,
     setTemplateColor,
     templateColor,
+    setCollapsed,
+    collapsed,
+    setDarkMode,
+    darkMode,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

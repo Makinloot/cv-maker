@@ -13,8 +13,9 @@ export const colors = {
 
 const PDFStyles = StyleSheet.create({
   viewerContainer: {
-    height: "calc(100vh - 129px)",
+    height: "100vh",
     width: "100%",
+    maxWidth: 700,
   },
   sider: {
     flex: 0.4045,

@@ -11,14 +11,6 @@ const FormSkills = () => {
     setSelectedValues(selected);
   };
   const renderOptions = () => {
-    if (selectedValues.length === 0) {
-      return (
-        <Option key="noData" disabled>
-          Write your skills
-        </Option>
-      );
-    }
-
     return selectedValues.map((value) => (
       <Option key={value} value={value}>
         {value}

@@ -1,71 +1,39 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CVForm from "./components/cv-form/CVForm";
-import AucklandCV from "./pages/auckland/AucklandCV";
+import { Layout, theme, ConfigProvider } from "antd";
+import { motion } from "framer-motion";
 import Header from "./components/layout/header/Header";
-import Footer from "./components/layout/footer/Footer";
-import Home from "./pages/home/Home";
-import EdinburghCV from "./pages/edinburgh/EdinburghCV";
-import OtagoCV from "./pages/otago/OtagoCV";
+import { useAppContext } from "./context/CVContext";
+import Main from "./components/layout/main/Main";
+import Aside from "./components/layout/aside/Aside";
 
 function App() {
+  const { collapsed, darkMode } = useAppContext();
+
   return (
     <>
-      <Header />
-      {/* <div style={{ padding: "70px 0 6px" }}> */}
-      <div>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/form" element={<CVForm />} />
-            <Route
-              path="/cv/auckland"
-              element={
-                <div
-                  className="container"
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    paddingTop: 64,
-                  }}
-                >
-                  <AucklandCV />
-                </div>
+      <ConfigProvider
+        theme={
+          darkMode
+            ? {
+                algorithm: theme.darkAlgorithm,
               }
-            />
-            <Route
-              path="/cv/edinburgh"
-              element={
-                <div
-                  className="container"
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    paddingTop: 64,
-                  }}
-                >
-                  <EdinburghCV />
-                </div>
-              }
-            />
-            <Route
-              path="/cv/otago"
-              element={
-                <div
-                  className="container"
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    paddingTop: 64,
-                  }}
-                >
-                  <OtagoCV />
-                </div>
-              }
-            />
-          </Routes>
-        </Router>
-      </div>
-      <Footer />
+            : {}
+        }
+      >
+        <Layout>
+          <Aside />
+          <Layout>
+            <motion.div
+              initial={{ marginLeft: collapsed ? 80 : 200 }}
+              animate={{ marginLeft: collapsed ? 80 : 200 }}
+            >
+              {/* HEADER */}
+              <Header />
+              {/* MAIN */}
+              <Main />
+            </motion.div>
+          </Layout>
+        </Layout>
+      </ConfigProvider>
     </>
   );
 }

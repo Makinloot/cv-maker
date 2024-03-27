@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button, Card, Image, Row } from "antd";
 import Meta from "antd/es/card/Meta";
-import testImage from "/test-image.jpg";
 import aucklandBlue from "/auckland-blue.png";
 import aucklandDark from "/auckland-dark.png";
 import aucklandGreen from "/auckland-green.png";
@@ -66,42 +65,56 @@ const Home = () => {
               navigationPath={"otago"}
               title={"Otago"}
             />
-            <Card
-              hoverable
-              style={{ width: 240 }}
-              cover={<Image src={aucklandBlue} style={{ padding: 2 }} />}
+            <div
+              style={{
+                display: "flex",
+                gap: 50,
+                justifyContent: "center",
+                alignItems: "center",
+                flexWrap: "wrap",
+                width: "100%",
+              }}
             >
-              <Row justify={"space-between"} align={"middle"}>
-                <Meta title="Auckland" />
-                <Button type="primary" onClick={() => setAucklandModal(true)}>
-                  Create
-                </Button>
-              </Row>
-            </Card>
-            <Card
-              hoverable
-              style={{ width: 240 }}
-              cover={<Image src={edinburghDark} style={{ padding: 2 }} />}
-            >
-              <Row justify={"space-between"} align={"middle"}>
-                <Meta title="Edinburgh" />
-                <Button type="primary" onClick={() => setEdinburghModal(true)}>
-                  Create
-                </Button>
-              </Row>
-            </Card>
-            <Card
-              hoverable
-              style={{ width: 240 }}
-              cover={<Image src={otagoBlue} style={{ padding: 2 }} />}
-            >
-              <Row justify={"space-between"} align={"middle"}>
-                <Meta title="Otago" />
-                <Button type="primary" onClick={() => setOtagoModal(true)}>
-                  Create
-                </Button>
-              </Row>
-            </Card>
+              <Card
+                hoverable
+                style={{ width: 240 }}
+                cover={<Image src={aucklandBlue} style={{ padding: 2 }} />}
+              >
+                <Row justify={"space-between"} align={"middle"}>
+                  <Meta title="Auckland" />
+                  <Button type="primary" onClick={() => setAucklandModal(true)}>
+                    Create
+                  </Button>
+                </Row>
+              </Card>
+              <Card
+                hoverable
+                style={{ width: 240 }}
+                cover={<Image src={edinburghDark} style={{ padding: 2 }} />}
+              >
+                <Row justify={"space-between"} align={"middle"}>
+                  <Meta title="Edinburgh" />
+                  <Button
+                    type="primary"
+                    onClick={() => setEdinburghModal(true)}
+                  >
+                    Create
+                  </Button>
+                </Row>
+              </Card>
+              <Card
+                hoverable
+                style={{ width: 240 }}
+                cover={<Image src={otagoGreen} style={{ padding: 2 }} />}
+              >
+                <Row justify={"space-between"} align={"middle"}>
+                  <Meta title="Otago" />
+                  <Button type="primary" onClick={() => setOtagoModal(true)}>
+                    Create
+                  </Button>
+                </Row>
+              </Card>
+            </div>
           </div>
         </div>
       </div>

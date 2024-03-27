@@ -206,7 +206,7 @@ const OtagoCV = () => {
             data.placeOfBirth ||
             data.gender ||
             data.nationality ||
-            data.socials[0].name) && (
+            data.socials[0]?.name) && (
             <View
               style={{
                 height: 2,
