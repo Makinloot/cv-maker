@@ -99,7 +99,7 @@ const AucklandCV = () => {
           <View style={PDFStyles.main}>
             {/* welcome section */}
             <View style={PDFStyles.welcomeContainer}>
-              {/* <Text style={PDFStyles.welcomeText}>{data.aboutMe}</Text> */}
+              <Text style={PDFStyles.welcomeText}>{data.aboutMe}</Text>
             </View>
             <View
               style={{

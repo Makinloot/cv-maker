@@ -30,7 +30,7 @@ const EdinburghCV = () => {
   if (loading) return <div>loading...</div>;
   return (
     <PDFViewer style={PDFStyles.viewerContainer}>
-      <Document>
+      <Document title={`${data.firstName} ${data.lastName}`}>
         <Page style={{ flexDirection: "row" }} wrap>
           {/* background */}
           <View

@@ -10,6 +10,7 @@ const TemplateModal = ({
   show,
   navigationPath,
   primaryImage,
+  title,
 }) => {
   const { setFormRedirect, setTemplateColor, templateColor } = useAppContext();
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const TemplateModal = ({
         setFormRedirect(navigationPath);
         navigate("/form");
       }}
-      title="Template Auckland"
+      title={`Template ${title}`}
       style={{ position: "relative" }}
     >
       <Image

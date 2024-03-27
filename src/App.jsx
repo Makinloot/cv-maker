@@ -5,6 +5,7 @@ import Header from "./components/layout/header/Header";
 import Footer from "./components/layout/footer/Footer";
 import Home from "./pages/home/Home";
 import EdinburghCV from "./pages/edinburgh/EdinburghCV";
+import OtagoCV from "./pages/otago/OtagoCV";
 
 function App() {
   return (
@@ -43,6 +44,21 @@ function App() {
                   }}
                 >
                   <EdinburghCV />
+                </div>
+              }
+            />
+            <Route
+              path="/cv/otago"
+              element={
+                <div
+                  className="container"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    paddingTop: 64,
+                  }}
+                >
+                  <OtagoCV />
                 </div>
               }
             />

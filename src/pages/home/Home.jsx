@@ -1,5 +1,5 @@
+import { useState } from "react";
 import { Button, Card, Image, Row } from "antd";
-import style from "./Home.module.css";
 import Meta from "antd/es/card/Meta";
 import testImage from "/test-image.jpg";
 import aucklandBlue from "/auckland-blue.png";
@@ -8,11 +8,15 @@ import aucklandGreen from "/auckland-green.png";
 import edinburghDark from "/edinburgh-dark.png";
 import edinburghBlue from "/edinburgh-blue.png";
 import edinburghGreen from "/edinburgh-green.png";
-import { useState } from "react";
+import otagoBlue from "/otago-blue.png";
+import otagoDark from "/otago-dark.png";
+import otagoGreen from "/otago-green.png";
 import TemplateModal from "../../components/templateModal/TemplateModal";
+import style from "./Home.module.css";
 const Home = () => {
   const [aucklandModal, setAucklandModal] = useState(false);
   const [edinburghModal, setEdinburghModal] = useState(false);
+  const [otagoModal, setOtagoModal] = useState(false);
   return (
     <div className="Home">
       <div className="container">
@@ -23,6 +27,7 @@ const Home = () => {
             of our professionally designed CV templates.
           </p>
           <div className={style.templateWrapper}>
+            {/* auckland */}
             <TemplateModal
               primaryImage={aucklandBlue}
               image={{
@@ -33,7 +38,9 @@ const Home = () => {
               setShow={setAucklandModal}
               show={aucklandModal}
               navigationPath={"auckland"}
+              title={"Auckland"}
             />
+            {/* edinburgh */}
             <TemplateModal
               primaryImage={edinburghDark}
               image={{
@@ -44,11 +51,25 @@ const Home = () => {
               setShow={setEdinburghModal}
               show={edinburghModal}
               navigationPath={"edinburgh"}
+              title={"Edinburgh"}
+            />
+            {/* otago */}
+            <TemplateModal
+              primaryImage={otagoGreen}
+              image={{
+                blue: otagoBlue,
+                dark: otagoDark,
+                green: otagoGreen,
+              }}
+              setShow={setOtagoModal}
+              show={otagoModal}
+              navigationPath={"otago"}
+              title={"Otago"}
             />
             <Card
               hoverable
               style={{ width: 240 }}
-              cover={<Image src={aucklandBlue} />}
+              cover={<Image src={aucklandBlue} style={{ padding: 2 }} />}
             >
               <Row justify={"space-between"} align={"middle"}>
                 <Meta title="Auckland" />
@@ -60,7 +81,7 @@ const Home = () => {
             <Card
               hoverable
               style={{ width: 240 }}
-              cover={<Image src={edinburghDark} />}
+              cover={<Image src={edinburghDark} style={{ padding: 2 }} />}
             >
               <Row justify={"space-between"} align={"middle"}>
                 <Meta title="Edinburgh" />
@@ -72,9 +93,14 @@ const Home = () => {
             <Card
               hoverable
               style={{ width: 240 }}
-              cover={<Image src={testImage} />}
+              cover={<Image src={otagoBlue} style={{ padding: 2 }} />}
             >
-              <Meta title="Minimalistic" />
+              <Row justify={"space-between"} align={"middle"}>
+                <Meta title="Otago" />
+                <Button type="primary" onClick={() => setOtagoModal(true)}>
+                  Create
+                </Button>
+              </Row>
             </Card>
           </div>
         </div>

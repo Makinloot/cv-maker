@@ -30,12 +30,21 @@ const Personal = ({ setIndex, hide }) => {
     <Col hidden={hide}>
       {/* name */}
       <Row gutter={8}>
-        {formRedirect === "auckland" ? null : (
+        {formRedirect === "auckland" ? null : formRedirect ===
+          "otago" ? null : (
           <Col span={5} style={{ position: "relative" }}>
             <FormImage />
           </Col>
         )}
-        <Col span={formRedirect === "auckland" ? 24 : 19}>
+        <Col
+          span={
+            formRedirect === "auckland"
+              ? 24
+              : formRedirect === "otago"
+              ? 24
+              : 19
+          }
+        >
           <Col span={24}>
             <Form.Item
               className={style.formItem}
