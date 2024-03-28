@@ -1,120 +1,40 @@
-import { useState } from "react";
-import { Button, Card, Image, Row } from "antd";
-import Meta from "antd/es/card/Meta";
-import aucklandBlue from "/auckland-blue.png";
-import aucklandDark from "/auckland-dark.png";
-import aucklandGreen from "/auckland-green.png";
-import edinburghDark from "/edinburgh-dark.png";
-import edinburghBlue from "/edinburgh-blue.png";
-import edinburghGreen from "/edinburgh-green.png";
-import otagoBlue from "/otago-blue.png";
-import otagoDark from "/otago-dark.png";
-import otagoGreen from "/otago-green.png";
-import TemplateModal from "../../components/templateModal/TemplateModal";
+import { Button } from "antd";
+import Lottie from "lottie-react";
+import getStartedAnimation from '../../assets/animations/start.json'
 import style from "./Home.module.css";
+import { Link } from "react-router-dom";
+
 const Home = () => {
-  const [aucklandModal, setAucklandModal] = useState(false);
-  const [edinburghModal, setEdinburghModal] = useState(false);
-  const [otagoModal, setOtagoModal] = useState(false);
+
   return (
     <div className="Home">
       <div className="container">
         <div className={style.homeWrapper}>
-          <h1 className={style.title}>CV Maker</h1>
-          <p className={style.welcomeText}>
-            Increase your chances of finding a job and create your CV with one
-            of our professionally designed CV templates.
-          </p>
-          <div className={style.templateWrapper}>
-            {/* auckland */}
-            <TemplateModal
-              primaryImage={aucklandBlue}
-              image={{
-                blue: aucklandBlue,
-                dark: aucklandDark,
-                green: aucklandGreen,
-              }}
-              setShow={setAucklandModal}
-              show={aucklandModal}
-              navigationPath={"auckland"}
-              title={"Auckland"}
-            />
-            {/* edinburgh */}
-            <TemplateModal
-              primaryImage={edinburghDark}
-              image={{
-                blue: edinburghBlue,
-                dark: edinburghDark,
-                green: edinburghGreen,
-              }}
-              setShow={setEdinburghModal}
-              show={edinburghModal}
-              navigationPath={"edinburgh"}
-              title={"Edinburgh"}
-            />
-            {/* otago */}
-            <TemplateModal
-              primaryImage={otagoGreen}
-              image={{
-                blue: otagoBlue,
-                dark: otagoDark,
-                green: otagoGreen,
-              }}
-              setShow={setOtagoModal}
-              show={otagoModal}
-              navigationPath={"otago"}
-              title={"Otago"}
-            />
-            <div
-              style={{
-                display: "flex",
-                gap: 50,
-                justifyContent: "center",
-                alignItems: "center",
-                flexWrap: "wrap",
-                width: "100%",
-              }}
-            >
-              <Card
-                hoverable
-                style={{ width: 240 }}
-                cover={<Image src={aucklandBlue} style={{ padding: 2 }} />}
-              >
-                <Row justify={"space-between"} align={"middle"}>
-                  <Meta title="Auckland" />
-                  <Button type="primary" onClick={() => setAucklandModal(true)}>
-                    Create
-                  </Button>
-                </Row>
-              </Card>
-              <Card
-                hoverable
-                style={{ width: 240 }}
-                cover={<Image src={edinburghDark} style={{ padding: 2 }} />}
-              >
-                <Row justify={"space-between"} align={"middle"}>
-                  <Meta title="Edinburgh" />
-                  <Button
-                    type="primary"
-                    onClick={() => setEdinburghModal(true)}
-                  >
-                    Create
-                  </Button>
-                </Row>
-              </Card>
-              <Card
-                hoverable
-                style={{ width: 240 }}
-                cover={<Image src={otagoGreen} style={{ padding: 2 }} />}
-              >
-                <Row justify={"space-between"} align={"middle"}>
-                  <Meta title="Otago" />
-                  <Button type="primary" onClick={() => setOtagoModal(true)}>
-                    Create
-                  </Button>
-                </Row>
-              </Card>
+          <h1 className={style.title}>Create Your Professional CV in Minutes</h1>
+          <h3 className={style.subTitle}>Craft a Winning Resume Effortlessly with Our Easy-to-Use CV Builder</h3>
+          <div className={style.welcomeAnimationContainer}>
+            <Lottie className={style.welcomeAnimation} animationData={getStartedAnimation} />
+            <div className="flexCenter">
+              <Link to={'/templates'}>
+                <Button className={style.getStartedBtn} type="primary">
+                  Get started
+                </Button>
+              </Link>
             </div>
+          </div>
+          <div>
+            <h3 className={style.title} style={{ margin: '80px 0 40px' }}>How to use</h3>
+            <ul className="flexCenter" style={{ flexDirection: 'column' }}>
+              <li style={{ fontSize: '1.2rem', margin: '5px 0', width: 235 }}>
+                <span>Choose a Template & Color</span>
+              </li>
+              <li style={{ fontSize: '1.2rem', margin: '5px 0', width: 235 }}>
+                <span>Add Your Information</span>
+              </li>
+              <li style={{ fontSize: '1.2rem', margin: '5px 0', width: 235 }}>
+                <span>Download and Use</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

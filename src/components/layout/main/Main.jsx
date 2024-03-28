@@ -6,6 +6,7 @@ import Home from "../../../pages/home/Home";
 import CVForm from "../../cv-form/CVForm";
 import OtagoCV from "../../../pages/otago/OtagoCV";
 import { theme } from "antd";
+import Templates from "../../../pages/templates/Templates";
 
 const Main = () => {
   const {
@@ -24,6 +25,7 @@ const Main = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/form" element={<CVForm />} />
+        <Route path="/templates" element={<Templates />} />
         <Route
           path="/cv/auckland"
           element={

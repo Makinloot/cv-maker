@@ -4,6 +4,33 @@
 
 .title {
   text-align: center;
+  font-size: 2rem;
+}
+
+.subTitle {
+  text-align: center;
+  margin: 10px auto 40px;
+   max-width: 340px;
+}
+
+.welcomeAnimationContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  max-width: 100%;
+  margin: 40px auto;
+}
+
+.welcomeAnimation {
+  width: 400px;
+  max-width: 100%;
+}
+
+.getStartedBtn {
+  width: 200px;
+  height: 80px;
 }
 
 .welcomeText {

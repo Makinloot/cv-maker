@@ -28,6 +28,12 @@ body {
   gap: 8px;
 }
 
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .flexBetween {
   display: flex;
   align-items: center;

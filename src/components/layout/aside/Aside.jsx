@@ -1,11 +1,11 @@
 import { Menu, theme } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { useAppContext } from "../../../context/CVContext";
-import { HomeFilled } from "@ant-design/icons";
+import { HomeFilled, SnippetsFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 const Aside = () => {
-  const { collapsed } = useAppContext();
+  const { collapsed, asideKey, setAsideKey } = useAppContext();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -28,6 +28,9 @@ const Aside = () => {
       <Menu mode="inline" defaultSelectedKeys={["1"]}>
         <Menu.Item key="1" icon={<HomeFilled />}>
           <Link to={"/"}>Home</Link>
+        </Menu.Item>
+        <Menu.Item key="2" icon={<SnippetsFilled />}>
+          <Link to={"/templates"}>Templates</Link>
         </Menu.Item>
       </Menu>
     </Sider>
