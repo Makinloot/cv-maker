@@ -17,6 +17,7 @@ const ContextProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark" ? true : false || false
   );
+  const [language, setLanguage] = useState(localStorage.getItem("language") === "ge" ? "ge" : "en")
 
   const values = {
     setData,
@@ -33,6 +34,8 @@ const ContextProvider = ({ children }) => {
     collapsed,
     setDarkMode,
     darkMode,
+    setLanguage,
+    language
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

@@ -1,22 +1,26 @@
-import { Button, Layout, Switch, theme } from "antd";
+import { Button, Dropdown, Layout, Select, Space, Switch, theme } from "antd";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   MoonOutlined,
   SunOutlined,
+  DownOutlined
 } from "@ant-design/icons";
 import { useAppContext } from "../../../context/CVContext";
 import { useEffect } from "react";
+import geFlag from '/ge-flag.png';
+import ukFlag from '/uk-flag.png';
+import style from './Header.module.css'
 
 const Header = () => {
-  const { collapsed, setCollapsed, darkMode, setDarkMode } = useAppContext();
+  const { collapsed, setCollapsed, darkMode, setDarkMode, language, setLanguage } = useAppContext();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
   // Function to handle sidebar collapse
   const handleCollapse = () => {
-    if(collapsed) {
+    if (collapsed) {
       setCollapsed(false)
       localStorage.setItem("collapsed", "")
     } else {
@@ -30,6 +34,34 @@ const Header = () => {
     setDarkMode(checked);
     localStorage.setItem("theme", checked ? "dark" : "light");
   };
+
+  // handle language
+  const handleLanguage = () => {
+    if(language === 'ge') {
+      localStorage.setItem("language", "en")
+      setLanguage("en")
+    } else {
+      localStorage.setItem("language", "ge")
+      setLanguage("ge")
+    }
+  }
+
+  // language dropdown items
+  const items = [
+    {
+      label: (
+        <img onClick={handleLanguage} className={style.languageIcon} src={ukFlag} />
+      ),
+      key: '0',
+    },
+    {
+      label: (
+        <img onClick={handleLanguage} className={style.languageIcon} src={geFlag} />
+      ),
+      key: '1',
+    },
+  
+  ];
 
   return (
     <Layout.Header
@@ -51,7 +83,17 @@ const Header = () => {
           height: 64,
         }}
       />
-      <div style={{ paddingRight: 20 }}>
+      <div className={style.headerBtnContainer}>
+        <Dropdown
+          menu={{
+            items,
+          }}
+          trigger={['click']}
+          className={style.languageBtnContainer}
+          placement="bottom"
+        >
+          <img className={style.languageIcon} style={{ marginTop: 0 }} src={language === 'ge' ? geFlag : ukFlag} />
+        </Dropdown>
         <Switch
           checkedChildren={<MoonOutlined />}
           unCheckedChildren={<SunOutlined />}
