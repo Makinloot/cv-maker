@@ -4,12 +4,13 @@ const Footer = () => {
   return (
     <Layout.Footer
       style={{
-        textAlign: "center",
-        backgroundColor: "#001529",
-        color: "white",
+        textAlign: 'center',
       }}
     >
-      <p>Your Company Name &copy; {new Date().getFullYear()}</p>
+      CV Maker ©{new Date().getFullYear()} Created by {" "}
+      <a href="https://github.com/Makinloot" target="_blank" title="github">
+        Tornike Epitashvili
+      </a>
     </Layout.Footer>
   );
 };

@@ -15,7 +15,7 @@ const Main = () => {
   return (
     <Content
       style={{
-        margin: "24px 16px",
+        margin: "24px 16px 0",
         padding: 24,
         minHeight: "100vh",
         borderRadius: borderRadiusLG,

@@ -5,6 +5,7 @@ import { useAppContext } from "./context/CVContext";
 import Main from "./components/layout/main/Main";
 import Aside from "./components/layout/aside/Aside";
 import { useLocation } from "react-router-dom";
+import Footer from "./components/layout/footer/Footer";
 
 function App() {
   const { collapsed, darkMode } = useAppContext();
@@ -35,6 +36,7 @@ function App() {
             </motion.div>
           </Layout>
         </Layout>
+          <Footer />
       </ConfigProvider>
     </>
   );
