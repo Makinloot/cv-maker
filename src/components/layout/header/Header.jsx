@@ -6,6 +6,7 @@ import {
   SunOutlined,
 } from "@ant-design/icons";
 import { useAppContext } from "../../../context/CVContext";
+import { useEffect } from "react";
 
 const Header = () => {
   const { collapsed, setCollapsed, darkMode, setDarkMode } = useAppContext();
@@ -13,13 +14,21 @@ const Header = () => {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  const handleSwitch = (checked) => {
-    setDarkMode(!darkMode);
-    if (checked) {
-      localStorage.setItem("theme", "dark");
+  // Function to handle sidebar collapse
+  const handleCollapse = () => {
+    if(collapsed) {
+      setCollapsed(false)
+      localStorage.setItem("collapsed", "")
     } else {
-      localStorage.setItem("theme", "light");
+      setCollapsed(true)
+      localStorage.setItem("collapsed", "collapsed")
     }
+  };
+
+  // Function to handle theme switch
+  const handleSwitch = (checked) => {
+    setDarkMode(checked);
+    localStorage.setItem("theme", checked ? "dark" : "light");
   };
 
   return (
@@ -35,7 +44,7 @@ const Header = () => {
       <Button
         type="text"
         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        onClick={() => setCollapsed(!collapsed)}
+        onClick={handleCollapse}
         style={{
           fontSize: "16px",
           width: 64,
@@ -46,7 +55,7 @@ const Header = () => {
         <Switch
           checkedChildren={<MoonOutlined />}
           unCheckedChildren={<SunOutlined />}
-          defaultChecked={darkMode ? true : false}
+          defaultChecked={darkMode}
           onChange={handleSwitch}
         />
       </div>

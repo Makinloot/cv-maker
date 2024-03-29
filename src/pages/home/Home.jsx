@@ -2,7 +2,6 @@ import { Button } from "antd";
 import Lottie from "lottie-react";
 import getStartedAnimation from '../../assets/animations/start.json'
 import style from "./Home.module.css";
-import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -15,11 +14,11 @@ const Home = () => {
           <div className={style.welcomeAnimationContainer}>
             <Lottie className={style.welcomeAnimation} animationData={getStartedAnimation} />
             <div className="flexCenter">
-              <Link to={'/templates'}>
+              <a href={'/templates'}>
                 <Button className={style.getStartedBtn} type="primary">
                   Get started
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
           <div>

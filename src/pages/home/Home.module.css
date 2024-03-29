@@ -31,6 +31,8 @@
 .getStartedBtn {
   width: 200px;
   height: 80px;
+  font-size: 1.2rem;
+  font-family: 'inter-bold';
 }
 
 .welcomeText {

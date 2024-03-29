@@ -4,9 +4,11 @@ import Header from "./components/layout/header/Header";
 import { useAppContext } from "./context/CVContext";
 import Main from "./components/layout/main/Main";
 import Aside from "./components/layout/aside/Aside";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const { collapsed, darkMode } = useAppContext();
+  const location = useLocation()
 
   return (
     <>
