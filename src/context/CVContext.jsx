@@ -19,6 +19,11 @@ const ContextProvider = ({ children }) => {
   );
   const [language, setLanguage] = useState(localStorage.getItem("language") === "ge" ? "ge" : "en")
 
+    // return class for elements according to language state
+    const languageClass = (language) => {
+      return language === 'ge' ? "georgian" : ""
+    }
+
   const values = {
     setData,
     data,
@@ -35,7 +40,8 @@ const ContextProvider = ({ children }) => {
     setDarkMode,
     darkMode,
     setLanguage,
-    language
+    language,
+    languageClass
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

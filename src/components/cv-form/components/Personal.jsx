@@ -18,6 +18,7 @@ import { useState } from "react";
 import FormSocials from "./FormSocials";
 import { useAppContext } from "../../../context/CVContext";
 import FormImage from "./FormImage";
+import { useTranslation } from "react-i18next";
 const Personal = ({ setIndex, hide }) => {
   const { setAdditionalInformation, formRedirect } = useAppContext();
   const [additionalOpen, setAdditionalOpen] = useState(false);
@@ -25,6 +26,7 @@ const Personal = ({ setIndex, hide }) => {
     firstName: "",
     lastName: "",
   });
+  const { t } = useTranslation()
 
   return (
     <Col hidden={hide}>
@@ -49,20 +51,20 @@ const Personal = ({ setIndex, hide }) => {
             <Form.Item
               className={style.formItem}
               labelCol={{ style: { padding: "0 0 2px" } }}
-              label={"First name"}
+              label={`${t("form.firstName")}`}
               name={"firstName"}
               rules={[
                 {
                   required: true,
-                  message: "Required field",
+                  message: t("form.firstNameErrorRequired"),
                 },
                 {
                   min: 2,
-                  message: "Minimum 2 characters",
+                  message: t("form.firstNameErrorMinimum"),
                 },
                 {
                   max: 20,
-                  message: "maximum 24 characters",
+                  message: t("form.firstNameErrorMaximum"),
                 },
               ]}
             >
@@ -82,20 +84,20 @@ const Personal = ({ setIndex, hide }) => {
             <Form.Item
               className={style.formItem}
               labelCol={{ style: { padding: "0 0 2px" } }}
-              label={"Last name"}
+              label={`${t("form.lastName")}`}
               name={"lastName"}
               rules={[
                 {
                   required: true,
-                  message: "Required field",
+                  message: t("form.lastNameErrorRequired"),
                 },
                 {
                   min: 2,
-                  message: "Minimum 2 characters",
+                  message: t("form.lastNameErrorMinimum"),
                 },
                 {
                   max: 20,
-                  message: "maximum 24 characters",
+                  message: t("form.lastNameErrorMaximum"),
                 },
               ]}
             >
@@ -118,7 +120,7 @@ const Personal = ({ setIndex, hide }) => {
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"About me"}
+          label={`${t("form.aboutMe")}`}
           name={"aboutMe"}
         >
           <Input.TextArea allowClear size="large" />
@@ -131,12 +133,12 @@ const Personal = ({ setIndex, hide }) => {
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Email address"}
+          label={`${t("form.emailAddress")}`}
           name={"email"}
           rules={[
             {
               type: "email",
-              message: "Please enter a valid email address",
+              message: t("form.emailAddressError"),
             },
           ]}
         >
@@ -162,24 +164,24 @@ const Personal = ({ setIndex, hide }) => {
         }
         className={style.collapse}
       >
-        <Collapse.Panel header="Additional Information" key="additional">
+        <Collapse.Panel header={`${t("form.additionalInformation")}`} key="additional">
           <Col style={{ margin: "20px 0 10px" }} hidden={!additionalOpen}>
             <Row gutter={8}>
               <Col span={12}>
                 <Form.Item
                   className={style.formItem}
                   labelCol={{ style: { padding: "0 0 2px" } }}
-                  label={"Date of birth"}
+                  label={`${t("form.dateOfBirth")}`}
                   name={"dateOfBirth"}
                 >
-                  <DatePicker size="large" style={{ width: "100%" }} />
+                  <DatePicker size="large" style={{ width: "100%" }} placeholder="" />
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item
                   className={style.formItem}
                   labelCol={{ style: { padding: "0 0 2px" } }}
-                  label={"Place of birth"}
+                  label={`${t("form.placeOfBirth")}`}
                   name={"placeOfBirth"}
                 >
                   <Input size="large" />
@@ -191,7 +193,7 @@ const Personal = ({ setIndex, hide }) => {
                 <Form.Item
                   className={style.formItem}
                   labelCol={{ style: { padding: "0 0 2px" } }}
-                  label={"Nationality"}
+                  label={`${t("form.nationality")}`}
                   name={"nationality"}
                 >
                   <Input size="large" style={{ width: "100%" }} />
@@ -201,13 +203,13 @@ const Personal = ({ setIndex, hide }) => {
                 <Form.Item
                   className={style.formItem}
                   labelCol={{ style: { padding: "0 0 2px" } }}
-                  label={"Gender"}
+                  label={`${t("form.gender")}`}
                   name={"gender"}
                 >
                   <Select size="large">
-                    <Select.Option value="Male">Male</Select.Option>
-                    <Select.Option value="Female">Female</Select.Option>
-                    <Select.Option value="Other">Other</Select.Option>
+                    <Select.Option value="Male">{`${t("form.genderMale")}`}</Select.Option>
+                    <Select.Option value="Female">{`${t("form.genderMale")}`}</Select.Option>
+                    <Select.Option value="Other">{`${t("form.genderOther")}`}</Select.Option>
                   </Select>
                 </Form.Item>
               </Col>
@@ -241,7 +243,7 @@ const Personal = ({ setIndex, hide }) => {
               style={{ margin: "20px 0 0", width: 100 }}
               onClick={() => setIndex(1)}
             >
-              Next
+              {t("form.experienceNext")}
             </Button>
           </span>
         </Tooltip>

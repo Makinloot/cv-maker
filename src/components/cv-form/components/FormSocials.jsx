@@ -2,6 +2,7 @@
 import { Button, Col, Form, Input, Row } from "antd";
 import style from "../CVForm.module.css";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const FormSocials = () => {
   const [socialLinks, setSocialLinks] = useState(0);
@@ -10,6 +11,8 @@ const FormSocials = () => {
     socialName2: "",
     socialName3: "",
   });
+  const { t } = useTranslation()
+
   return (
     <>
       <SocialsComponent
@@ -42,7 +45,7 @@ const FormSocials = () => {
             disabled={socialLinks > 1 ? true : false}
             type="primary"
           >
-            Add more social
+            {t("form.addSocial")}
           </Button>
         </Col>
         <Col>
@@ -53,7 +56,7 @@ const FormSocials = () => {
             type="primary"
             danger
           >
-            Remove social
+            {t("form.removeSocial")}
           </Button>
         </Col>
       </Row>
@@ -67,13 +70,14 @@ const SocialsComponent = ({
   setSocialLinkValue,
   socialLinkValue,
 }) => {
+  const { t } = useTranslation()
   return (
     <Row gutter={8}>
       <Col span={12}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Website name"}
+          label={`${t("form.websiteName")}`}
           name={name}
         >
           <Input
@@ -93,7 +97,7 @@ const SocialsComponent = ({
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Website URL"}
+          label={`${t("form.websiteUrl")}`}
           name={urlName}
         >
           <Input

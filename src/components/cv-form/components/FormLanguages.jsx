@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button, Col, Form, Input, Row, Select } from "antd";
 import style from "../CVForm.module.css";
+import { useTranslation } from "react-i18next";
 
 const FormLanguages = () => {
   const [languages, setLanguages] = useState(0);
@@ -11,9 +12,10 @@ const FormLanguages = () => {
     language3: "",
     language4: "",
   });
+  const { t } = useTranslation()
   return (
     <>
-      <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>Languages</p>
+      <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>{t("form.languagesTitle")}</p>
       <LanguageComponent
         name={"language"}
         levelName={"languageLevel"}
@@ -58,7 +60,7 @@ const FormLanguages = () => {
             }
             type="primary"
           >
-            Add language
+            {t("form.addLanguage")}
           </Button>
         </Col>
         <Col>
@@ -69,7 +71,7 @@ const FormLanguages = () => {
             type="primary"
             danger
           >
-            Remove language
+            {t("form.removeLanguage")}
           </Button>
         </Col>
       </Row>
@@ -83,17 +85,18 @@ const LanguageComponent = ({
   setLanguageValues,
   languageValues,
 }) => {
+  const { t } = useTranslation()
   return (
     <Row gutter={8}>
       <Col span={19}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Language"}
+          label={t("form.language")}
           name={name}
         >
           <Input
-            placeholder="Language"
+            
             onChange={(e) => {
               if (e.target.value === null) {
                 setLanguageValues((prevValue) => ({
@@ -116,11 +119,10 @@ const LanguageComponent = ({
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Level"}
+          label={t("form.languageLevel")}
           name={levelName}
         >
           <Select
-            placeholder="Level"
             disabled={languageValues === "" ? true : false}
             allowClear
             size="large"

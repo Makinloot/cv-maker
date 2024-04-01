@@ -36,8 +36,8 @@ const Header = () => {
   };
 
   // handle language
-  const handleLanguage = () => {
-    if(language === 'ge') {
+  const handleLanguage = (lng) => {
+    if(lng === 'en') {
       localStorage.setItem("language", "en")
       setLanguage("en")
     } else {
@@ -50,15 +50,17 @@ const Header = () => {
   const items = [
     {
       label: (
-        <img onClick={handleLanguage} className={style.languageIcon} src={ukFlag} />
+        <img className={style.languageIcon} src={ukFlag} />
       ),
       key: '0',
+      onClick: () => handleLanguage('en')
     },
     {
       label: (
-        <img onClick={handleLanguage} className={style.languageIcon} src={geFlag} />
+        <img  className={style.languageIcon} src={geFlag} />
       ),
       key: '1',
+      onClick: () => handleLanguage('ge')
     },
   
   ];

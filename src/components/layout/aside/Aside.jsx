@@ -3,6 +3,7 @@ import Sider from "antd/es/layout/Sider";
 import { useAppContext } from "../../../context/CVContext";
 import { HomeFilled, SnippetsFilled } from "@ant-design/icons";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Aside = () => {
   const { collapsed, asideKey } = useAppContext();
@@ -10,6 +11,7 @@ const Aside = () => {
     token: { colorBgContainer },
   } = theme.useToken();
   const { pathname } = useLocation();
+  const { t } = useTranslation()
 
   return (
     <Sider
@@ -29,10 +31,10 @@ const Aside = () => {
     >
       <Menu mode="inline" defaultSelectedKeys={[pathname]}>
         <Menu.Item key="/" icon={<HomeFilled />}>
-          <Link to={"/"}>Home</Link>
+          <Link to={"/"}>{t("aside.home")}</Link>
         </Menu.Item>
         <Menu.Item key="/templates" icon={<SnippetsFilled />}>
-          <Link to={"/templates"}>Templates</Link>
+          <Link to={"/templates"}>{t("aside.templates")}</Link>
         </Menu.Item>
       </Menu>
     </Sider>

@@ -10,8 +10,31 @@
 /* #434A54 dark grey */
 /* #36BC9B green */
 
-body {
-  font-family: "inter-regular";
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "inter-regular" !important;
+}
+
+h1.georgian,
+h2.georgian,
+h3.georgian,
+h4.georgian,
+h5.georgian,
+h6.georgian {
+  font-family: "geo-times" !important;
+  letter-spacing: 1.15px;
+}
+
+.App {
+  font-family: "inter-regular" !important;
+}
+
+.App.georgian {
+  font-family: "geo-times" !important;
 }
 
 .container {
@@ -45,4 +68,14 @@ body {
 .w100 {
   width: 100%;
   max-width: 100%;
+}
+
+
+/* home classes */
+.instructionSpan {
+  font-family: "inter-regular" !important;
+}
+
+.instructionSpan.georgian {
+  font-family: "geo-times" !important;
 }

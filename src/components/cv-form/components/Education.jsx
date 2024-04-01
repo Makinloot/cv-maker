@@ -2,8 +2,10 @@
 import { Button, Col, Row } from "antd";
 import FormEducation from "./FormEducation";
 import FormLanguages from "./FormLanguages";
+import { useTranslation } from "react-i18next";
 
 const Education = ({ setIndex, hide }) => {
+  const { t } = useTranslation()
   return (
     <Col hidden={hide}>
       <FormLanguages />
@@ -14,14 +16,14 @@ const Education = ({ setIndex, hide }) => {
           style={{ margin: "20px 0 0", width: 100 }}
           onClick={() => setIndex(1)}
         >
-          Previous
+          {t("form.experiencePrevious")}
         </Button>
         <Button
           htmlType="submit"
           type="primary"
           style={{ margin: "20px 0 0", width: 100 }}
         >
-          Submit
+          {t("form.submit")}
         </Button>
       </Row>
     </Col>

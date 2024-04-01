@@ -2,8 +2,10 @@
 import { Button, Col, Row, Tooltip } from "antd";
 import FormExperience from "./FormExperience";
 import FormSkills from "./FormSkills";
+import { useTranslation } from "react-i18next";
 
 const Experience = ({ setIndex, hide }) => {
+  const { t } = useTranslation()
   return (
     <Col hidden={hide}>
       <FormSkills />
@@ -14,7 +16,7 @@ const Experience = ({ setIndex, hide }) => {
           style={{ margin: "20px 0 0", width: 100 }}
           onClick={() => setIndex(0)}
         >
-          Previous
+          {t("form.experiencePrevious")}
         </Button>
         <Tooltip>
           <Button
@@ -22,7 +24,7 @@ const Experience = ({ setIndex, hide }) => {
             style={{ margin: "20px 0 0", width: 100 }}
             onClick={() => setIndex(2)}
           >
-            Next
+            {t("form.experienceNext")}
           </Button>
         </Tooltip>
       </Row>

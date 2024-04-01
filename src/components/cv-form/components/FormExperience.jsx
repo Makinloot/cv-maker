@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button, Col, DatePicker, Form, Input, Row } from "antd";
 import style from "../CVForm.module.css";
+import { useTranslation } from "react-i18next";
 
 const FormExperience = () => {
   const [experience, setExperience] = useState(0);
@@ -10,6 +11,7 @@ const FormExperience = () => {
     position2: "",
     position3: "",
   });
+  const { t } = useTranslation()
   return (
     <>
       <ExperienceComponent
@@ -57,7 +59,7 @@ const FormExperience = () => {
             }
             type="primary"
           >
-            Add experience
+           {t("form.addExperience")}
           </Button>
         </Col>
         <Col>
@@ -68,7 +70,7 @@ const FormExperience = () => {
             type="primary"
             danger
           >
-            Remove experience
+            {t("form.removeExperience")}
           </Button>
         </Col>
       </Row>
@@ -85,6 +87,7 @@ const ExperienceComponent = ({
   setExperienceValue,
   experienceValue,
 }) => {
+  const { t } = useTranslation()
   return (
     <>
       <Row gutter={8}>
@@ -92,7 +95,7 @@ const ExperienceComponent = ({
           <Form.Item
             className={style.formItem}
             labelCol={{ style: { padding: "0 0 2px" } }}
-            label={"Start date"}
+            label={`${t("form.startDate")}`}
             name={startDateName}
           >
             <DatePicker
@@ -112,6 +115,7 @@ const ExperienceComponent = ({
                   }));
                 }
               }}
+              placeholder=""
               allowClear
               size="large"
             />
@@ -121,7 +125,7 @@ const ExperienceComponent = ({
           <Form.Item
             className={style.formItem}
             labelCol={{ style: { padding: "0 0 2px" } }}
-            label={"End date"}
+            label={`${t("form.endDate")}`}
             name={endDateName}
           >
             <DatePicker
@@ -131,6 +135,7 @@ const ExperienceComponent = ({
               disabled={experienceValue === "" ? true : false}
               allowClear
               size="large"
+              placeholder=""
             />
           </Form.Item>
         </Col>
@@ -139,11 +144,10 @@ const ExperienceComponent = ({
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Position"}
+          label={`${t("form.position")}`}
           name={positionName}
         >
           <Input
-            placeholder="Position"
             disabled={experienceValue === "" ? true : false}
             allowClear
             size="large"
@@ -154,11 +158,10 @@ const ExperienceComponent = ({
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Company"}
+          label={`${t("form.company")}`}
           name={companyName}
         >
           <Input
-            placeholder="Company"
             disabled={experienceValue === "" ? true : false}
             allowClear
             size="large"
@@ -169,11 +172,10 @@ const ExperienceComponent = ({
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"About job"}
+          label={`${t("form.aboutJob")}`}
           name={aboutJobName}
         >
           <Input.TextArea
-            placeholder="About job"
             disabled={experienceValue === "" ? true : false}
             allowClear
             size="large"

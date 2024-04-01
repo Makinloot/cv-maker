@@ -3,16 +3,18 @@ import style from "../CVForm.module.css";
 import prefixJson from "../../../assets/phonePrefix.json";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const FormPhone = () => {
   const [isDisabled, setIsDisabled] = useState(true);
+  const { t } = useTranslation()
   return (
     <Row gutter={8}>
       <Col span={7}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Prefix"}
+          label={`${t("form.prefix")}`}
           name={"prefix"}
         >
           <Select
@@ -40,7 +42,7 @@ const FormPhone = () => {
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Phone number"}
+          label={`${t("form.phoneNumber")}`}
           name={"phone"}
           rules={[
             {

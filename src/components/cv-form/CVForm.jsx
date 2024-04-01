@@ -6,12 +6,14 @@ import Personal from "./components/Personal";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import style from "./CVForm.module.css";
+import { useTranslation } from "react-i18next";
 
 const CVForm = () => {
   const { additionalInformation, croppedImg, formRedirect } = useAppContext();
   const navigate = useNavigate();
   const { setData } = useAppContext();
   const [formIndex, setFormIndex] = useState(0);
+  const { t } = useTranslation()
 
   // submit form
   const onFinish = async (values) => {
@@ -129,7 +131,7 @@ const CVForm = () => {
   // submit error
   const onFinishFailed = (values) => {
     console.log(values);
-    message.error(`Please fill every field correctly`);
+    message.error(t("form.formSubmitError"));
   };
 
   return (
@@ -147,10 +149,10 @@ const CVForm = () => {
               className={style.card}
               title={
                 formIndex === 0
-                  ? "Personal"
+                  ? t("form.cardTitlePersonal")
                   : formIndex === 1
-                  ? "Experience"
-                  : formIndex === 2 && "Education"
+                  ? t("form.cardTitleExperience")
+                  : formIndex === 2 && t("form.cardTitleEducation")
               }
             >
               {/* personal information */}

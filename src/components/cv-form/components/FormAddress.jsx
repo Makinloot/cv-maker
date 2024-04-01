@@ -1,14 +1,16 @@
 import { Col, Form, Input, Row } from "antd";
 import style from "../CVForm.module.css";
+import { useTranslation } from "react-i18next";
 
 const FormAddress = () => {
+  const { t } = useTranslation()
   return (
     <>
       <Col>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Address"}
+          label={`${t("form.address")}`}
           name={"address"}
         >
           <Input allowClear size="large" />
@@ -19,7 +21,7 @@ const FormAddress = () => {
           <Form.Item
             className={style.formItem}
             labelCol={{ style: { padding: "0 0 2px" } }}
-            label={"Zip code"}
+            label={`${t("form.zipCode")}`}
             name={"zip"}
           >
             <Input allowClear size="large" />
@@ -29,7 +31,7 @@ const FormAddress = () => {
           <Form.Item
             className={style.formItem}
             labelCol={{ style: { padding: "0 0 2px" } }}
-            label={"City/Town"}
+            label={`${t("form.cityTown")}`}
             name={"city"}
           >
             <Input allowClear size="large" />

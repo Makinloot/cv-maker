@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button, Col, DatePicker, Form, Input, Row } from "antd";
 import style from "../CVForm.module.css";
+import { useTranslation } from "react-i18next";
 
 const FormEducation = () => {
   const [education, setEducation] = useState(0);
@@ -9,9 +10,10 @@ const FormEducation = () => {
     educationStart: "",
     educationStart2: "",
   });
+  const { t } = useTranslation()
   return (
     <>
-      <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>Education</p>
+      <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>{t("form.educationTitle")}</p>
       <EducationComponent
         startName={"educationStart"}
         endName={"educationEnd"}
@@ -44,7 +46,7 @@ const FormEducation = () => {
             }
             type="primary"
           >
-            Add education
+            {t("form.addEducation")}
           </Button>
         </Col>
         <Col>
@@ -55,7 +57,7 @@ const FormEducation = () => {
             type="primary"
             danger
           >
-            Remove education
+            {t("form.removeEducation")}
           </Button>
         </Col>
       </Row>
@@ -71,13 +73,14 @@ const EducationComponent = ({
   setEducationValue,
   educationValue,
 }) => {
+  const { t } = useTranslation()
   return (
     <Row gutter={8}>
       <Col span={12}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"Start date"}
+          label={t("form.educationStartDate")}
           name={startName}
         >
           <DatePicker
@@ -98,6 +101,7 @@ const EducationComponent = ({
             }}
             allowClear
             size="large"
+            placeholder=""
           />
         </Form.Item>
       </Col>
@@ -105,7 +109,7 @@ const EducationComponent = ({
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={"End date"}
+          label={t("form.educationEndDate")}
           name={endName}
         >
           <DatePicker
@@ -114,6 +118,7 @@ const EducationComponent = ({
             disabled={educationValue === "" ? true : false}
             allowClear
             size="large"
+            placeholder=""
           />
         </Form.Item>
       </Col>
@@ -123,20 +128,20 @@ const EducationComponent = ({
             <Form.Item
               className={style.formItem}
               labelCol={{ style: { padding: "0 0 2px" } }}
-              label={"College"}
+              label={t("form.college")}
               name={collegeName}
             >
-              <Input placeholder="College" allowClear size="large" />
+              <Input allowClear size="large" />
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item
               className={style.formItem}
               labelCol={{ style: { padding: "0 0 2px" } }}
-              label={"Degree"}
+              label={t("form.degree")}
               name={degreeName}
             >
-              <Input placeholder="Degree" allowClear size="large" />
+              <Input allowClear size="large" />
             </Form.Item>
           </Col>
         </>

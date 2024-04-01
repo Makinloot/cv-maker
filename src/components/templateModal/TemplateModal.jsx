@@ -3,6 +3,7 @@ import { Button, Image, Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/CVContext";
 import style from "./TemplateModal.module.css";
+import { useTranslation } from "react-i18next";
 
 const TemplateModal = ({
   image,
@@ -14,6 +15,7 @@ const TemplateModal = ({
 }) => {
   const { setFormRedirect, setTemplateColor, templateColor } = useAppContext();
   const navigate = useNavigate();
+  const { t } = useTranslation()
 
   return (
     <Modal
@@ -26,8 +28,10 @@ const TemplateModal = ({
         setFormRedirect(navigationPath);
         navigate("/form");
       }}
-      title={`Template ${title}`}
+      title={`${t("templates.modalTitle")} ${title}`}
       style={{ position: "relative" }}
+      okText={t("templates.modalBtnOk")}
+      cancelText={t("templates.modalBtnCancel")}
     >
       <Image
         preview={false}

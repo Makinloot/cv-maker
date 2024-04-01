@@ -2,7 +2,9 @@ import { Form, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import ImgCrop from "antd-img-crop";
 import { useAppContext } from "../../../context/CVContext";
+import { useTranslation } from "react-i18next";
 const FormImage = () => {
+  const { t } = useTranslation()
   const { setCroppedImg } = useAppContext();
   const beforeUpload = (file) => {
     const isImage =
@@ -10,7 +12,7 @@ const FormImage = () => {
       /\.(jpg|jpeg|png|gif)$/i.test(file.name);
 
     if (!isImage) {
-      message.error("You can only upload image files (jpg, jpeg, png)!");
+      message.error(t('form.imageError'));
     }
 
     return isImage ? true : Upload.LIST_IGNORE;
@@ -18,7 +20,7 @@ const FormImage = () => {
 
   const handleChange = (info) => {
     if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded successfully`);
+      message.success(`${info.file.name} ${t("form.imageSuccess")}`);
 
       // Create a new FileReader
       const reader = new FileReader();
@@ -32,7 +34,7 @@ const FormImage = () => {
       // Read the uploaded image as data URL
       reader.readAsDataURL(info.file.originFileObj);
     } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
+      message.error(`${info.file.name} ${t("form.imageFailed")}`);
     }
   };
 
@@ -66,7 +68,7 @@ const FormImage = () => {
 
   return (
     <Form.Item
-      label="Image"
+      label={`${t("form.image")}`}
       name="image"
       valuePropName="fileList"
       getValueFromEvent={(e) => e && e.fileList}

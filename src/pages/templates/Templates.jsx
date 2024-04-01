@@ -12,16 +12,18 @@ import otagoDark from "/otago-dark.png";
 import otagoGreen from "/otago-green.png";
 import TemplateModal from "../../components/templateModal/TemplateModal";
 import style from './Templates.module.css'
+import { useTranslation } from "react-i18next";
+
 const Templates = () => {
     const [aucklandModal, setAucklandModal] = useState(false);
     const [edinburghModal, setEdinburghModal] = useState(false);
     const [otagoModal, setOtagoModal] = useState(false);
+    const { t } = useTranslation()
     return (
-        <div style={{  }}>
+        <div style={{}}>
             <h1 className={style.title}>CV Maker</h1>
             <p className={style.welcomeText}>
-                Increase your chances of finding a job and create your CV with one
-                of our professionally designed CV templates.
+                {t("templates.text")}
             </p>
             <div className={style.templateWrapper}>
                 <TemplateModal
@@ -78,7 +80,7 @@ const Templates = () => {
                         <Row justify={"space-between"} align={"middle"}>
                             <Meta title="Auckland" />
                             <Button type="primary" onClick={() => setAucklandModal(true)}>
-                                Create
+                                {t("templates.createBtn")}
                             </Button>
                         </Row>
                     </Card>
@@ -93,7 +95,7 @@ const Templates = () => {
                                 type="primary"
                                 onClick={() => setEdinburghModal(true)}
                             >
-                                Create
+                                {t("templates.createBtn")}
                             </Button>
                         </Row>
                     </Card>
@@ -105,7 +107,7 @@ const Templates = () => {
                         <Row justify={"space-between"} align={"middle"}>
                             <Meta title="Otago" />
                             <Button type="primary" onClick={() => setOtagoModal(true)}>
-                                Create
+                                {t("templates.createBtn")}
                             </Button>
                         </Row>
                     </Card>
