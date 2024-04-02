@@ -1,4 +1,4 @@
-import { PDFViewer, Document, Page, Text, View } from "@react-pdf/renderer";
+import { PDFViewer, Document, Page, Text, View, Font } from "@react-pdf/renderer";
 import PDFStyles from "../../components/cv-templates/PDFStyles";
 import { useAppContext } from "../../context/CVContext";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +9,9 @@ import LanguagesPDF from "../../components/cv-templates/components/LanguagesPDF"
 import SkillsPDF from "../../components/cv-templates/components/SkillsPDF";
 import ExperiencePDF from "../../components/cv-templates/components/ExperiencePDF";
 
+
 const AucklandCV = () => {
-  const { data, templateColor } = useAppContext();
+  const { data, templateColor, resumeLanguage, resumeFontFamily } = useAppContext();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -66,32 +67,32 @@ const AucklandCV = () => {
                 border: "2px",
               }}
             >
-              <Text style={PDFStyles.welcomeTitlePrimary}>
+              <Text style={[PDFStyles.welcomeTitlePrimary, resumeFontFamily("bold-bold")]}>
                 {`${data.firstName} ${data.lastName}`}
               </Text>
             </View>
           </View>
           {/* sider */}
           <View style={[PDFStyles.sider, { color: "white" }]}>
-            <Text style={[PDFStyles.title, { marginBottom: 10 }]}>
-              personal
+            <Text style={[PDFStyles.title, resumeFontFamily("regular-bold"), { marginBottom: 10 }]}>
+              {resumeLanguage === "ge" ? "პირადი" : "Personal"}
             </Text>
             {/* contact section */}
-            <ContactPDF data={data} />
+            <ContactPDF data={data} resumeLanguage={resumeLanguage} resumeFontFamily={resumeFontFamily} />
             {/* skills section */}
             {data.skills?.length > 0 && data.skills[0] && (
               <>
-                <Text style={[PDFStyles.title, { marginTop: 10 }]}>skills</Text>
-                <SkillsPDF data={data} />
+                <Text style={[PDFStyles.title, resumeFontFamily("regular-bold"), { marginTop: 10 }]}>{resumeLanguage === "ge" ? "უნარები" : "Skills"}</Text>
+                <SkillsPDF data={data} resumeFontFamily={resumeFontFamily} />
               </>
             )}
             {/* languages section */}
             {data.languages[0]?.language && (
               <>
-                <Text style={[PDFStyles.title, { marginTop: 10 }]}>
-                  languages
+                <Text style={[PDFStyles.title, resumeFontFamily("regular-bold"), { marginTop: 10 }]}>
+                  {resumeLanguage === "ge" ? "ენები" : "Languages"}
                 </Text>
-                <LanguagesPDF data={data} />
+                <LanguagesPDF data={data} resumeFontFamily={resumeFontFamily} />
               </>
             )}
           </View>

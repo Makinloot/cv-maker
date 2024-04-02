@@ -208,7 +208,7 @@ const Personal = ({ setIndex, hide }) => {
                 >
                   <Select size="large">
                     <Select.Option value="Male">{`${t("form.genderMale")}`}</Select.Option>
-                    <Select.Option value="Female">{`${t("form.genderMale")}`}</Select.Option>
+                    <Select.Option value="Female">{`${t("form.genderFemale")}`}</Select.Option>
                     <Select.Option value="Other">{`${t("form.genderOther")}`}</Select.Option>
                   </Select>
                 </Form.Item>

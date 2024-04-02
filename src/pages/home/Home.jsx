@@ -37,6 +37,9 @@ const Home = () => {
               <li style={{ fontSize: '1.2rem', margin: '5px 0', width: language === 'en' ? 250 : 305, }}>
                 <span className={`instructionSpan ${languageClass(language)}`}>{t("home.instructionThird")}</span>
               </li>
+              <li style={{ fontSize: '1.2rem', margin: '5px 0', width: language === 'en' ? 250 : 305, }}>
+                <span className={`instructionSpan ${languageClass(language)}`}>{t("home.instructionFourth")}</span>
+              </li>
             </ul>
           </div>
         </div>

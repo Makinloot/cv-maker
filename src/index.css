@@ -70,6 +70,14 @@ h6.georgian {
   max-width: 100%;
 }
 
+.dark {
+  background-color: #1F1F1F;
+}
+
+.white {
+  background-color: #ffffff;
+}
+
 
 /* home classes */
 .instructionSpan {

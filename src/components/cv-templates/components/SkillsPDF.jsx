@@ -3,7 +3,7 @@ import { Text, View } from "@react-pdf/renderer";
 import PDFStyles from "../PDFStyles";
 import { v4 as uuidv4 } from "uuid";
 
-const SkillsPDF = ({ data }) => {
+const SkillsPDF = ({ data, resumeFontFamily }) => {
   return (
     <View style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}>
       <View
@@ -18,7 +18,7 @@ const SkillsPDF = ({ data }) => {
             style={[PDFStyles.siderDetailsTextContainer, { flexBasis: "50%" }]}
             key={uuidv4()}
           >
-            <Text style={[PDFStyles.siderDetailsTitleSmall]}>{item}</Text>
+            <Text style={[PDFStyles.siderDetailsTitleSmall, resumeFontFamily('bold-bold')]}>{item}</Text>
           </View>
         ))}
       </View>

@@ -62,7 +62,6 @@ const Header = () => {
       key: '1',
       onClick: () => handleLanguage('ge')
     },
-  
   ];
 
   return (

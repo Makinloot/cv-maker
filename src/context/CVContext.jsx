@@ -1,4 +1,14 @@
 import { createContext, useContext, useState } from "react";
+import { Font } from "@react-pdf/renderer";
+import interRegular from "../assets/fonts/Inter-Regular.ttf"
+import interSemiBold from "../assets/fonts/Inter-SemiBold.ttf"
+import notoRegular from "../assets/fonts/NotoSansGeorgian_Condensed-Regular.ttf"
+import notoBold from "../assets/fonts/NotoSansGeorgian_Condensed-Bold.ttf"
+
+Font.register({ family: "inter-regular", src: interRegular })
+Font.register({ family: "inter-bold", src: interSemiBold })
+Font.register({ family: "noto-regular", src: notoRegular })
+Font.register({ family: "noto-bold", src: notoBold })
 
 const Context = createContext(null);
 
@@ -18,11 +28,32 @@ const ContextProvider = ({ children }) => {
     localStorage.getItem("theme") === "dark" ? true : false || false
   );
   const [language, setLanguage] = useState(localStorage.getItem("language") === "ge" ? "ge" : "en")
+  const [resumeLanguage, setResumeLanguage] = useState("en")
 
-    // return class for elements according to language state
-    const languageClass = (language) => {
-      return language === 'ge' ? "georgian" : ""
+  // return class for elements according to language state
+  const languageClass = (language) => {
+    return language === 'ge' ? "georgian" : ""
+  }
+
+
+  /*
+  return font family based on chosen resume language
+  
+  'bold-bold' = noto-bold / inter-bold
+  'regular-bold' = noto-regular / inter-regular
+  'regular-regular' = noto-regular / inter-regular
+*/
+  const resumeFontFamily = (type) => {
+    if (type === 'bold-bold') {
+      return resumeLanguage === "ge" ? { fontFamily: "noto-bold", letterSpacing: 1.1, textTransform: 'lowercase' } : { fontFamily: "inter-bold" }
+    } else if (type === 'regular-bold') {
+      return resumeLanguage === "ge" ? { fontFamily: "noto-regular", letterSpacing: 1.1, textTransform: 'lowercase' } : { fontFamily: "inter-bold" }
+    } else if (type === 'regular-regular') {
+      return resumeLanguage === "ge" ? { fontFamily: "noto-regular", letterSpacing: 1.1, textTransform: 'lowercase' } : { fontFamily: "inter-regular" }
     }
+  }
+
+
 
   const values = {
     setData,
@@ -41,7 +72,10 @@ const ContextProvider = ({ children }) => {
     darkMode,
     setLanguage,
     language,
-    languageClass
+    languageClass,
+    setResumeLanguage,
+    resumeLanguage,
+    resumeFontFamily
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

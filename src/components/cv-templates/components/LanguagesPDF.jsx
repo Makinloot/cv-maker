@@ -3,7 +3,7 @@ import { Text, View } from "@react-pdf/renderer";
 import PDFStyles from "../PDFStyles";
 import { v4 as uuidv4 } from "uuid";
 
-const LanguagesPDF = ({ data }) => {
+const LanguagesPDF = ({ data, resumeFontFamily }) => {
   return (
     <View style={[PDFStyles.siderDetailsContainer, { marginTop: 10 }]}>
       {data.languages.map(
@@ -13,14 +13,14 @@ const LanguagesPDF = ({ data }) => {
               <View
                 style={[PDFStyles.siderDetailsTextContainer, { flex: 0.5 }]}
               >
-                <Text style={[PDFStyles.siderDetailsTitleSmall]}>
+                <Text style={[PDFStyles.siderDetailsTitleSmall, resumeFontFamily('bold-bold')]}>
                   {language.language}
                 </Text>
               </View>
               <View
                 style={[PDFStyles.siderDetailsTextContainer, { flex: 0.5 }]}
               >
-                <Text style={[PDFStyles.siderDetailsTitleSmall]}>
+                <Text style={[PDFStyles.siderDetailsTitleSmall, resumeFontFamily('bold-bold')]}>
                   {language.level}
                 </Text>
               </View>

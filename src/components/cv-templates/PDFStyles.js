@@ -1,9 +1,14 @@
 import { StyleSheet, Font } from "@react-pdf/renderer";
 import interBold from "../../assets/fonts/Inter-SemiBold.ttf";
 import interRegular from "../../assets/fonts/Inter-Regular.ttf";
+import notoSansRegular from '../../assets/fonts/NotoSansGeorgian_Condensed-Regular.ttf'
+import notoSansBold from '../../assets/fonts/NotoSansGeorgian_Condensed-Bold.ttf'
 
 Font.register({ family: "inter-regular", src: interRegular });
 Font.register({ family: "inter-bold", src: interBold });
+Font.register({ family: "noto-regular", src: notoSansRegular })
+Font.register({ family: "noto-bold", src: notoSansBold })
+
 
 export const colors = {
   gray: "#575757",

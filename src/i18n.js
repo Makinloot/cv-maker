@@ -17,9 +17,10 @@ i18next.use(LanguageDetector).use(initReactI18next).init({
                     subWelcome: 'Craft a Winning Resume Effortlessly with Our Easy-to-Use CV Builder',
                     startBtn: 'Get started',
                     instructionTitle: 'How to use',
-                    instructionFirst: "Choose a Template & Color",
-                    instructionSecond: "Add Your Information",
-                    instructionThird: "Download and Use"
+                    instructionFirst: "Choose a Template",
+                    instructionSecond: "Choose Color & Language",
+                    instructionThird: "Add Your Information",
+                    instructionFourth: "Download and Use"
                 },
                 templates: {
                     text: "Increase your chances of finding a job and create your CV with one of our professionally designed CV templates.",
@@ -107,9 +108,10 @@ i18next.use(LanguageDetector).use(initReactI18next).init({
                     subWelcome: 'გამოთალე მომგებიანი რეზიუმე ძალისხმევის გარეშე ჩვენი მარტივი გამოსაყენებელი სივის მშენებელით',
                     startBtn: 'დაიწყეთ',
                     instructionTitle: 'როგორ გამოვიყენოთ',
-                    instructionFirst: "აირჩიეთ შაბლონი & ფერი",
-                    instructionSecond: "დაამატეთ თქვენი ინფორმაცია",
-                    instructionThird: "გადმოწერეთ და გამოიყენეთ"
+                    instructionFirst: "აირჩიეთ შაბლონი",
+                    instructionSecond: "აირჩიეთ ფერი და ენა",
+                    instructionThird: "დაამატეთ თქვენი ინფორმაცია",
+                    instructionFourth: "გადმოწერეთ და გამოიყენეთ"
                 },
                 templates: {
                     text: "გაზარდე შანსები სამსახურის პოვნისა, ჩვენი პროფესიონალური სივის დიზაინით.",
@@ -146,7 +148,7 @@ i18next.use(LanguageDetector).use(initReactI18next).init({
                     additionalInformation: "დამატებითი ინფორმაცია",
                     dateOfBirth: "დაბადების თარიღი",
                     placeOfBirth: "დაბადების ადგილი",
-                    nationality: "წარმომავლობა",
+                    nationality: "ეროვნება",
                     gender: "სქესი",
                     genderMale: "მამრობითი",
                     genderFemale: "მდედრობითი",

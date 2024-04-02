@@ -37,3 +37,23 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Noto Sans Georgian Condensed';
+  src: url('NotoSansGeorgianCondensed-Bold.woff2') format('woff2'),
+      url('NotoSansGeorgianCondensed-Bold.woff') format('woff'),
+      url('NotoSansGeorgianCondensed-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans Georgian Condensed';
+  src: url('NotoSansGeorgianCondensed-Regular.woff2') format('woff2'),
+      url('NotoSansGeorgianCondensed-Regular.woff') format('woff'),
+      url('NotoSansGeorgianCondensed-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
