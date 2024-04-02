@@ -19,7 +19,7 @@ const Home = () => {
             <Lottie className={style.welcomeAnimation} animationData={getStartedAnimation} />
             <div className="flexCenter">
               <a href={'/templates'}>
-                <Button className={`${style.getStartedBtn} test`} type="primary">
+                <Button className={`${style.getStartedBtn}`} type="primary">
                   {t('home.startBtn')}
                 </Button>
               </a>
