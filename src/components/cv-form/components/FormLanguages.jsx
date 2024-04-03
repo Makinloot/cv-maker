@@ -12,10 +12,12 @@ const FormLanguages = () => {
     language3: "",
     language4: "",
   });
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <>
-      <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>{t("form.languagesTitle")}</p>
+      <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>
+        {t("form.languagesTitle")}
+      </p>
       <LanguageComponent
         name={"language"}
         levelName={"languageLevel"}
@@ -85,7 +87,7 @@ const LanguageComponent = ({
   setLanguageValues,
   languageValues,
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <Row gutter={8}>
       <Col span={19}>
@@ -96,7 +98,6 @@ const LanguageComponent = ({
           name={name}
         >
           <Input
-            
             onChange={(e) => {
               if (e.target.value === null) {
                 setLanguageValues((prevValue) => ({
@@ -119,7 +120,7 @@ const LanguageComponent = ({
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
-          label={t("form.languageLevel")}
+          label={t("form.languageLevelTitle")}
           name={levelName}
         >
           <Select
@@ -127,7 +128,9 @@ const LanguageComponent = ({
             allowClear
             size="large"
           >
-            <Select.Option value="native">Native</Select.Option>
+            <Select.Option value="native">
+              {t("form.languageLevelNative")}
+            </Select.Option>
             <Select.Option value="c2">C2</Select.Option>
             <Select.Option value="c1">C1</Select.Option>
             <Select.Option value="b2">B2</Select.Option>

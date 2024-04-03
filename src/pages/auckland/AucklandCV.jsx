@@ -1,4 +1,4 @@
-import { PDFViewer, Document, Page, Text, View, Font } from "@react-pdf/renderer";
+import { PDFViewer, Document, Page, Text, View } from "@react-pdf/renderer";
 import PDFStyles from "../../components/cv-templates/PDFStyles";
 import { useAppContext } from "../../context/CVContext";
 import { useNavigate } from "react-router-dom";
@@ -9,9 +9,9 @@ import LanguagesPDF from "../../components/cv-templates/components/LanguagesPDF"
 import SkillsPDF from "../../components/cv-templates/components/SkillsPDF";
 import ExperiencePDF from "../../components/cv-templates/components/ExperiencePDF";
 
-
 const AucklandCV = () => {
-  const { data, templateColor, resumeLanguage, resumeFontFamily } = useAppContext();
+  const { data, templateColor, resumeLanguage, resumeFontFamily } =
+    useAppContext();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -67,55 +67,109 @@ const AucklandCV = () => {
                 border: "2px",
               }}
             >
-              <Text style={[PDFStyles.welcomeTitlePrimary, resumeFontFamily("bold-bold")]}>
+              <Text
+                style={[
+                  PDFStyles.welcomeTitlePrimary,
+                  resumeFontFamily("bold-bold"),
+                ]}
+              >
                 {`${data.firstName} ${data.lastName}`}
               </Text>
             </View>
           </View>
           {/* sider */}
           <View style={[PDFStyles.sider, { color: "white" }]}>
-            <Text style={[PDFStyles.title, resumeFontFamily("regular-bold"), { marginBottom: 10 }]}>
+            <Text
+              style={[
+                PDFStyles.title,
+                resumeFontFamily("regular-bold"),
+                { marginBottom: 10 },
+              ]}
+            >
               {resumeLanguage === "ge" ? "პირადი" : "Personal"}
             </Text>
             {/* contact section */}
-            <ContactPDF data={data} resumeLanguage={resumeLanguage} resumeFontFamily={resumeFontFamily} />
+            <ContactPDF
+              data={data}
+              resumeLanguage={resumeLanguage}
+              resumeFontFamily={resumeFontFamily}
+            />
             {/* skills section */}
             {data.skills?.length > 0 && data.skills[0] && (
               <>
-                <Text style={[PDFStyles.title, resumeFontFamily("regular-bold"), { marginTop: 10 }]}>{resumeLanguage === "ge" ? "უნარები" : "Skills"}</Text>
+                <Text
+                  style={[
+                    PDFStyles.title,
+                    resumeFontFamily("regular-bold"),
+                    { marginTop: 10 },
+                  ]}
+                >
+                  {resumeLanguage === "ge" ? "უნარები" : "Skills"}
+                </Text>
                 <SkillsPDF data={data} resumeFontFamily={resumeFontFamily} />
               </>
             )}
             {/* languages section */}
             {data.languages[0]?.language && (
               <>
-                <Text style={[PDFStyles.title, resumeFontFamily("regular-bold"), { marginTop: 10 }]}>
+                <Text
+                  style={[
+                    PDFStyles.title,
+                    resumeFontFamily("regular-bold"),
+                    { marginTop: 10 },
+                  ]}
+                >
                   {resumeLanguage === "ge" ? "ენები" : "Languages"}
                 </Text>
-                <LanguagesPDF data={data} resumeFontFamily={resumeFontFamily} />
+                <LanguagesPDF
+                  data={data}
+                  resumeFontFamily={resumeFontFamily}
+                  resumeLanguage={resumeLanguage}
+                />
               </>
             )}
           </View>
           {/* main */}
           <View style={PDFStyles.main}>
             {/* welcome section */}
-            <View style={PDFStyles.welcomeContainer}>
-              <Text style={PDFStyles.welcomeText}>{data.aboutMe}</Text>
-            </View>
-            <View
-              style={{
-                height: 2,
-                width: "93%",
-                backgroundColor: "#80808080",
-                margin: "10px auto",
-              }}
-            />
+            {data.aboutMe && (
+              <>
+                <View style={PDFStyles.welcomeContainer}>
+                  <Text
+                    style={[
+                      PDFStyles.welcomeText,
+                      resumeFontFamily("regular-regular"),
+                    ]}
+                  >
+                    {data.aboutMe}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    height: 2,
+                    width: "93%",
+                    backgroundColor: "#80808080",
+                    margin: "10px auto",
+                  }}
+                />
+              </>
+            )}
             {/* experience section */}
             {data.experience?.length > 0 && data.experience[0]?.startDate && (
-              <ExperiencePDF data={data} />
+              <ExperiencePDF
+                resumeLanguage={resumeLanguage}
+                resumeFontFamily={resumeFontFamily}
+                data={data}
+              />
             )}
             {/* education section */}
-            {data.education[0]?.educationStart && <EducationPDF data={data} />}
+            {data.education[0]?.educationStart && (
+              <EducationPDF
+                resumeFontFamily={resumeFontFamily}
+                resumeLanguage={resumeLanguage}
+                data={data}
+              />
+            )}
           </View>
         </Page>
       </Document>

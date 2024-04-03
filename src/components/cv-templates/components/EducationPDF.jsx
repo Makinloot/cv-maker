@@ -3,7 +3,12 @@ import { Text, View } from "@react-pdf/renderer";
 import PDFStyles from "../PDFStyles";
 import { v4 as uuidv4 } from "uuid";
 
-const EducationPDF = ({ data, noDivider }) => {
+const EducationPDF = ({
+  data,
+  noDivider,
+  resumeLanguage,
+  resumeFontFamily,
+}) => {
   return (
     <>
       {!noDivider && (
@@ -17,7 +22,15 @@ const EducationPDF = ({ data, noDivider }) => {
         />
       )}
       <View style={!noDivider && { padding: "0 14px" }}>
-        <Text style={[PDFStyles.title, { marginBottom: 5 }]}>education</Text>
+        <Text
+          style={[
+            PDFStyles.title,
+            resumeFontFamily("regular-bold"),
+            { marginBottom: 5 },
+          ]}
+        >
+          {resumeLanguage === "ge" ? "განათლება" : "education"}
+        </Text>
         <View style={{ gap: 10 }}>
           {data.education?.map(
             (item) =>
@@ -35,6 +48,7 @@ const EducationPDF = ({ data, noDivider }) => {
                       <Text
                         style={[
                           PDFStyles.siderDetailsTitleSmall,
+                          resumeFontFamily("bold-bold"),
                           { width: 280 },
                         ]}
                       >
@@ -43,6 +57,7 @@ const EducationPDF = ({ data, noDivider }) => {
                       <Text
                         style={[
                           PDFStyles.welcomeText,
+                          resumeFontFamily("regular-regular"),
                           {
                             textTransform: "capitalize",
                             width: 280,
@@ -52,11 +67,24 @@ const EducationPDF = ({ data, noDivider }) => {
                         {item.college}
                       </Text>
                     </View>
-                    <Text style={PDFStyles.siderDetailsText}>
+                    <Text
+                      style={[
+                        PDFStyles.siderDetailsText,
+                        resumeFontFamily("regular-regular"),
+                      ]}
+                    >
                       {item.educationStart}{" "}
-                      {item.educationEnd
-                        ? `- ${item.educationEnd}`
-                        : "- Present"}
+                      {item.educationStart &&
+                        item.educationEnd &&
+                        `- ${item.educationEnd}`}
+                      {item.educationStart &&
+                        !item.educationEnd &&
+                        resumeLanguage === "ge" &&
+                        "- აქტიური"}
+                      {item.educationStart &&
+                        !item.educationEnd &&
+                        resumeLanguage !== "ge" &&
+                        "- Present"}
                     </Text>
                   </View>
                 </View>
