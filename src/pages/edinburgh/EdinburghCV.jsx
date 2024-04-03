@@ -17,7 +17,8 @@ import ExperiencePDF from "../../components/cv-templates/components/ExperiencePD
 import { v4 as uuidv4 } from "uuid";
 
 const EdinburghCV = () => {
-  const { data, templateColor } = useAppContext();
+  const { data, templateColor, resumeLanguage, resumeFontFamily } =
+    useAppContext();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -80,8 +81,12 @@ const EdinburghCV = () => {
                   columnGap: 5,
                 }}
               >
-                <Text style={PDFStyles.title}>{data.firstName}</Text>
-                <Text style={PDFStyles.title}>{data.lastName}</Text>
+                <Text style={[PDFStyles.title, resumeFontFamily("bold-bold")]}>
+                  {data.firstName}
+                </Text>
+                <Text style={[PDFStyles.title, resumeFontFamily("bold-bold")]}>
+                  {data.lastName}
+                </Text>
               </View>
               {/* image */}
               {data.image && (
@@ -101,25 +106,52 @@ const EdinburghCV = () => {
             </View>
             {/* personal details */}
             <View style={{ padding: "20 15.5px 0 17.5px" }}>
-              <Text style={[PDFStyles.title, { marginBottom: 10 }]}>
-                personal
+              <Text
+                style={[
+                  PDFStyles.title,
+                  resumeFontFamily("regular-bold"),
+                  { marginBottom: 10 },
+                ]}
+              >
+                {resumeLanguage === "ge" ? "პირადი" : "personal"}
               </Text>
               {/* contact section */}
-              <ContactPDF data={data} />
+              <ContactPDF
+                data={data}
+                resumeFontFamily={resumeFontFamily}
+                resumeLanguage={resumeLanguage}
+              />
               {/* languages section */}
               {data.languages[0]?.language && (
                 <>
-                  <Text style={[PDFStyles.title, { marginTop: 10 }]}>
-                    languages
+                  <Text
+                    style={[
+                      PDFStyles.title,
+                      resumeFontFamily("regular-bold"),
+                      { marginTop: 10 },
+                    ]}
+                  >
+                    {resumeLanguage === "ge" ? "ენები" : "languages"}
                   </Text>
-                  <LanguagesPDF data={data} />
+                  <LanguagesPDF
+                    data={data}
+                    resumeFontFamily={resumeFontFamily}
+                    resumeLanguage={resumeLanguage}
+                  />
                 </>
               )}
             </View>
           </View>
           <View style={PDFStyles.main}>
             <View style={[PDFStyles.welcomeContainer, { paddingTop: 22 }]}>
-              <Text style={PDFStyles.welcomeText}>{data.aboutMe}</Text>
+              <Text
+                style={[
+                  PDFStyles.welcomeText,
+                  resumeFontFamily("regular-regular"),
+                ]}
+              >
+                {data.aboutMe}
+              </Text>
             </View>
             <View
               style={{
@@ -131,13 +163,32 @@ const EdinburghCV = () => {
             />
             {/* experience section */}
             {data.experience?.length > 0 && data.experience[0]?.startDate && (
-              <ExperiencePDF data={data} />
+              <ExperiencePDF
+                data={data}
+                resumeFontFamily={resumeFontFamily}
+                resumeLanguage={resumeLanguage}
+              />
             )}
             {/* education section */}
-            {data.education[0]?.educationStart && <EducationPDF data={data} />}
+            {data.education[0]?.educationStart && (
+              <EducationPDF
+                resumeFontFamily={resumeFontFamily}
+                resumeLanguage={resumeLanguage}
+                data={data}
+              />
+            )}
+            {/* skills section */}
             {data.skills?.length > 0 && data.skills[0] && (
               <View style={PDFStyles.experienceContainer}>
-                <Text style={[PDFStyles.title, { marginTop: 10 }]}>skills</Text>
+                <Text
+                  style={[
+                    PDFStyles.title,
+                    resumeFontFamily("regular-bold"),
+                    { marginTop: 10 },
+                  ]}
+                >
+                  {resumeLanguage === "ge" ? "უნარები" : "skills"}
+                </Text>
                 <View
                   style={{
                     flexDirection: "row",
@@ -153,8 +204,8 @@ const EdinburghCV = () => {
                           {
                             marginTop: 2,
                             textTransform: "uppercase",
-                            fontFamily: "inter-regular",
                           },
+                          resumeFontFamily("regular-regular"),
                         ]}
                       >
                         {item}

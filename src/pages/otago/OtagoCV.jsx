@@ -20,7 +20,8 @@ import emailIcon from "/icons/email.png";
 import OctagoStyles from "./OctagoCVStyles";
 
 const OtagoCV = () => {
-  const { data, templateColor } = useAppContext();
+  const { data, templateColor, resumeLanguage, resumeFontFamily } =
+    useAppContext();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -40,7 +41,10 @@ const OtagoCV = () => {
             <View style={{ flex: 0.89 }}>
               {/* name */}
               <Text
-                style={PDFStyles.welcomeTitlePrimary}
+                style={[
+                  PDFStyles.welcomeTitlePrimary,
+                  resumeFontFamily("bold-bold"),
+                ]}
               >{`${data.firstName} ${data.lastName}`}</Text>
               {/* details */}
               <View
@@ -54,9 +58,12 @@ const OtagoCV = () => {
                 {data?.address && (
                   <View style={OctagoStyles.flexRow}>
                     <Image src={{ uri: homeIcon }} style={{ width: 12 }} />
-                    <Text style={PDFStyles.siderDetailsText}>{`${
-                      data?.address
-                    }${data?.zip && `, ${data.zip}`}${
+                    <Text
+                      style={[
+                        PDFStyles.siderDetailsText,
+                        resumeFontFamily("regular-regular"),
+                      ]}
+                    >{`${data?.address}${data?.zip && `, ${data.zip}`}${
                       data.city && `, ${data.city}`
                     }`}</Text>
                   </View>
@@ -65,10 +72,20 @@ const OtagoCV = () => {
                   <View style={OctagoStyles.flexRow}>
                     <Image src={{ uri: phoneIcon }} style={{ width: 12 }} />
                     <View style={{ flexDirection: "row", gap: 2 }}>
-                      <Text style={PDFStyles.siderDetailsText}>
+                      <Text
+                        style={[
+                          PDFStyles.siderDetailsText,
+                          resumeFontFamily("regular-regular"),
+                        ]}
+                      >
                         {data.prefix}
                       </Text>
-                      <Text style={PDFStyles.siderDetailsText}>
+                      <Text
+                        style={[
+                          PDFStyles.siderDetailsText,
+                          resumeFontFamily("regular-regular"),
+                        ]}
+                      >
                         {data.phone && data.phone.match(/\d{1,3}/g).join("-")}
                       </Text>
                     </View>
@@ -77,7 +94,14 @@ const OtagoCV = () => {
                 {data.email && (
                   <View style={OctagoStyles.flexRow}>
                     <Image src={{ uri: emailIcon }} style={{ width: 12 }} />
-                    <Text style={PDFStyles.siderDetailsText}>{data.email}</Text>
+                    <Text
+                      style={[
+                        PDFStyles.siderDetailsText,
+                        resumeFontFamily("regular-regular"),
+                      ]}
+                    >
+                      {data.email}
+                    </Text>
                   </View>
                 )}
               </View>
@@ -117,8 +141,13 @@ const OtagoCV = () => {
           >
             {data.dateOfBirth && (
               <View style={PDFStyles.siderDetailsTextContainer}>
-                <Text style={PDFStyles.siderDetailsTitleSmall}>
-                  Date of birth
+                <Text
+                  style={[
+                    PDFStyles.siderDetailsTitleSmall,
+                    resumeFontFamily("regular-bold"),
+                  ]}
+                >
+                  {resumeLanguage === "ge" ? "დაბ. თარიღი" : "Date of birth"}
                 </Text>
                 <Text style={[PDFStyles.siderDetailsText]}>
                   {data.dateOfBirth}
@@ -127,12 +156,18 @@ const OtagoCV = () => {
             )}
             {data.placeOfBirth && (
               <View style={PDFStyles.siderDetailsTextContainer}>
-                <Text style={PDFStyles.siderDetailsTitleSmall}>
-                  Place of birth
+                <Text
+                  style={[
+                    PDFStyles.siderDetailsTitleSmall,
+                    resumeFontFamily("regular-bold"),
+                  ]}
+                >
+                  {resumeLanguage === "ge" ? "დაბ. ადგილი" : "Place of birth"}
                 </Text>
                 <Text
                   style={[
                     PDFStyles.siderDetailsText,
+                    resumeFontFamily("regular-regular"),
                     { textTransform: "capitalize" },
                   ]}
                 >
@@ -142,18 +177,45 @@ const OtagoCV = () => {
             )}
             {data.gender && (
               <View style={PDFStyles.siderDetailsTextContainer}>
-                <Text style={PDFStyles.siderDetailsTitleSmall}>Gender</Text>
-                <Text style={[PDFStyles.siderDetailsText]}>{data.gender}</Text>
-              </View>
-            )}
-            {data.nationality && (
-              <View style={PDFStyles.siderDetailsTextContainer}>
-                <Text style={PDFStyles.siderDetailsTitleSmall}>
-                  Nationality
+                <Text
+                  style={[
+                    PDFStyles.siderDetailsTitleSmall,
+                    resumeFontFamily("regular-bold"),
+                  ]}
+                >
+                  {resumeLanguage === "ge" ? "სქესი" : "Gender"}
                 </Text>
                 <Text
                   style={[
                     PDFStyles.siderDetailsText,
+                    resumeFontFamily("regular-regular"),
+                  ]}
+                >
+                  {resumeLanguage === "ge" &&
+                    data.gender === "Female" &&
+                    "მდედრობითი"}
+                  {resumeLanguage === "ge" &&
+                    data.gender === "Male" &&
+                    "მამრობითი"}
+                  {resumeLanguage === "ge" && data.gender === "Other" && "სხვა"}
+                  {resumeLanguage !== "ge" && data.gender}
+                </Text>
+              </View>
+            )}
+            {data.nationality && (
+              <View style={PDFStyles.siderDetailsTextContainer}>
+                <Text
+                  style={[
+                    PDFStyles.siderDetailsTitleSmall,
+                    resumeFontFamily("regular-bold"),
+                  ]}
+                >
+                  {resumeLanguage === "ge" ? "ეროვნება" : "Nationality"}
+                </Text>
+                <Text
+                  style={[
+                    PDFStyles.siderDetailsText,
+                    resumeFontFamily("regular-regular"),
                     { textTransform: "capitalize" },
                   ]}
                 >
@@ -165,9 +227,13 @@ const OtagoCV = () => {
               <View style={PDFStyles.siderDetailsTextContainer}>
                 {data?.socials[0] && (
                   <Text
-                    style={[PDFStyles.siderDetailsTitleSmall, { margin: 0 }]}
+                    style={[
+                      PDFStyles.siderDetailsTitleSmall,
+                      resumeFontFamily("regular-bold"),
+                      { margin: 0 },
+                    ]}
                   >
-                    Socials
+                    {resumeLanguage === "ge" ? "სოც. ქსელი" : "Socials"}
                   </Text>
                 )}
                 <View style={{ flexDirection: "row" }}>
@@ -189,6 +255,7 @@ const OtagoCV = () => {
                             <Text
                               style={[
                                 PDFStyles.siderDetailsText,
+                                resumeFontFamily("regular-regular"),
                                 { textTransform: "capitalize", margin: 0 },
                               ]}
                             >
@@ -218,7 +285,13 @@ const OtagoCV = () => {
           )}
           {data.aboutMe && (
             <View>
-              <Text style={[PDFStyles.welcomeText, { margin: "5px 0" }]}>
+              <Text
+                style={[
+                  PDFStyles.welcomeText,
+                  resumeFontFamily("regular-regular"),
+                  { margin: "5px 0" },
+                ]}
+              >
                 {data.aboutMe}
               </Text>
               <View
@@ -233,7 +306,12 @@ const OtagoCV = () => {
           )}
           {data.experience?.length > 0 && data.experience[0]?.startDate && (
             <>
-              <ExperiencePDF data={data} noPadding />
+              <ExperiencePDF
+                data={data}
+                noPadding
+                resumeFontFamily={resumeFontFamily}
+                resumeLanguage={resumeLanguage}
+              />
               <View
                 style={{
                   height: 2,
@@ -246,7 +324,12 @@ const OtagoCV = () => {
           )}
           {data.education[0]?.educationStart && (
             <>
-              <EducationPDF data={data} noDivider />
+              <EducationPDF
+                data={data}
+                noDivider
+                resumeFontFamily={resumeFontFamily}
+                resumeLanguage={resumeLanguage}
+              />
               <View
                 style={{
                   height: 2,
@@ -265,7 +348,11 @@ const OtagoCV = () => {
                   { padding: 0, flex: 0.5 },
                 ]}
               >
-                <Text style={[PDFStyles.title]}>skills</Text>
+                <Text
+                  style={[PDFStyles.title, resumeFontFamily("regular-bold")]}
+                >
+                  {resumeLanguage === "ge" ? "უნარები" : "Skills"}
+                </Text>
                 <View
                   style={{
                     flexDirection: "row",
@@ -282,6 +369,7 @@ const OtagoCV = () => {
                             marginTop: 4,
                             textTransform: "uppercase",
                           },
+                          resumeFontFamily("regular-bold"),
                         ]}
                       >
                         {item}
@@ -294,7 +382,11 @@ const OtagoCV = () => {
             {/* languages section */}
             {data.languages[0]?.language && (
               <View style={{ flex: 0.5 }}>
-                <Text style={[PDFStyles.title]}>languages</Text>
+                <Text
+                  style={[PDFStyles.title, resumeFontFamily("regular-bold")]}
+                >
+                  {resumeLanguage === "ge" ? "ენები" : "Languages"}
+                </Text>
                 <View>
                   {data.languages.map(
                     (language) =>
@@ -306,7 +398,12 @@ const OtagoCV = () => {
                               { flex: 0.5 },
                             ]}
                           >
-                            <Text style={[PDFStyles.siderDetailsTitleSmall]}>
+                            <Text
+                              style={[
+                                PDFStyles.siderDetailsTitleSmall,
+                                resumeFontFamily("regular-bold"),
+                              ]}
+                            >
                               {language.language}
                             </Text>
                           </View>
@@ -316,8 +413,32 @@ const OtagoCV = () => {
                               { flex: 0.5 },
                             ]}
                           >
-                            <Text style={[PDFStyles.siderDetailsTitleSmall]}>
-                              {language.level}
+                            <Text
+                              style={[
+                                PDFStyles.siderDetailsTitleSmall,
+                                resumeFontFamily("regular-bold"),
+                              ]}
+                            >
+                              {resumeLanguage === "ge" &&
+                              language.level === "native" ? (
+                                <Text
+                                  style={[
+                                    PDFStyles.siderDetailsTitleSmall,
+                                    resumeFontFamily("regular-bold"),
+                                  ]}
+                                >
+                                  მშობლიური
+                                </Text>
+                              ) : (
+                                <Text
+                                  style={[PDFStyles.siderDetailsTitleSmall]}
+                                >
+                                  {resumeLanguage === "ge" &&
+                                  language.level === "native"
+                                    ? "მშობლიური"
+                                    : language.level}
+                                </Text>
+                              )}
                             </Text>
                           </View>
                         </View>

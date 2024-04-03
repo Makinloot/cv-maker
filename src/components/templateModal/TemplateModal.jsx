@@ -13,6 +13,7 @@ const TemplateModal = ({
   show,
   navigationPath,
   primaryImage,
+  primaryImageGeorgian,
   title,
 }) => {
   const {
@@ -25,6 +26,20 @@ const TemplateModal = ({
   } = useAppContext();
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const handleModalImage = (image) => {
+    if (resumeLanguage === "ge") {
+      if (templateColor === "#3F6591") return image.blueGeorgian;
+      else if (templateColor === "#434A54") return image.darkGeorgian;
+      else if (templateColor === "#36BC9B") return image.greenGeorgian;
+      else return primaryImageGeorgian;
+    } else {
+      if (templateColor === "#3F6591") return image.blue;
+      else if (templateColor === "#434A54") return image.dark;
+      else if (templateColor === "#36BC9B") return image.green;
+      else return primaryImage;
+    }
+  };
 
   return (
     <Modal
@@ -42,18 +57,7 @@ const TemplateModal = ({
       okText={t("templates.modalBtnOk")}
       cancelText={t("templates.modalBtnCancel")}
     >
-      <Image
-        preview={false}
-        src={
-          templateColor === "#3F6591"
-            ? image.blue
-            : templateColor === "#434A54"
-            ? image.dark
-            : templateColor === "#36BC9B"
-            ? image.green
-            : primaryImage
-        }
-      />
+      <Image preview={false} src={handleModalImage(image)} />
       <div className={`${style.colorContainer} ${darkMode ? "dark" : "white"}`}>
         <Button
           className={style.colorButton}
