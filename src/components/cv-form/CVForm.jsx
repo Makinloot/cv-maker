@@ -1,7 +1,7 @@
 import { Card, Form, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/CVContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Personal from "./components/Personal";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
@@ -13,7 +13,11 @@ const CVForm = () => {
   const navigate = useNavigate();
   const { setData } = useAppContext();
   const [formIndex, setFormIndex] = useState(0);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    if (formRedirect === "") navigate("/templates");
+  }, [formRedirect, navigate]);
 
   // submit form
   const onFinish = async (values) => {

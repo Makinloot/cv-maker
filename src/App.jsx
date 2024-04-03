@@ -1,23 +1,23 @@
-import { Layout, theme, ConfigProvider, Button } from "antd";
-import { motion } from "framer-motion";
+import { Layout, theme, ConfigProvider } from "antd";
 import Header from "./components/layout/header/Header";
 import { useAppContext } from "./context/CVContext";
 import Main from "./components/layout/main/Main";
-import Aside from "./components/layout/aside/Aside";
 import Footer from "./components/layout/footer/Footer";
 import { useTranslation } from "react-i18next";
-import {useEffect } from "react";
+import { useEffect } from "react";
 
 function App() {
-  const { collapsed, darkMode, language, languageClass } = useAppContext();
-  const { t, i18n } = useTranslation()
+  const { darkMode, language, languageClass } = useAppContext();
+  // eslint-disable-next-line no-unused-vars
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const lng = navigator.language;
-    i18n.changeLanguage(lng)
+    i18n.changeLanguage(lng);
 
-    changeLanguage(language)
-  }, [language])
+    changeLanguage(language);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language]);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -29,23 +29,19 @@ function App() {
         theme={
           darkMode
             ? {
-              algorithm: theme.darkAlgorithm,
-            }
+                algorithm: theme.darkAlgorithm,
+              }
             : {}
         }
       >
         <Layout>
-          <Aside />
           <Layout>
-            <motion.div
-              initial={{ marginLeft: collapsed ? 80 : 200 }}
-              animate={{ marginLeft: collapsed ? 80 : 200 }}
-            >
+            <div>
               {/* HEADER */}
               <Header />
               {/* MAIN */}
-                <Main />
-            </motion.div>
+              <Main />
+            </div>
           </Layout>
         </Layout>
 

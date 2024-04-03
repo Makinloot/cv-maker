@@ -49,6 +49,7 @@ const TemplateModal = ({
         setTemplateColor("");
       }}
       onOk={() => {
+        localStorage.setItem("formRedirect", navigationPath);
         setFormRedirect(navigationPath);
         navigate("/form");
       }}
@@ -136,9 +137,7 @@ const TemplateModal = ({
           }}
           onClick={() => setResumeLanguage("ge")}
           icon={<img className={style.languageButton} src={geFlag} />}
-        >
-          {/* <img className={style.languageButton} src={geFlag} /> */}
-        </Button>
+        />
       </div>
     </Modal>
   );

@@ -71,13 +71,20 @@ h6.georgian {
 }
 
 .dark {
-  background-color: #1F1F1F;
+  background-color: #1f1f1f;
 }
 
 .white {
   background-color: #ffffff;
 }
 
+.darkColor {
+  color: #1f1f1f;
+}
+
+.whiteColor {
+  color: #ffffff;
+}
 
 /* home classes */
 .instructionSpan {
