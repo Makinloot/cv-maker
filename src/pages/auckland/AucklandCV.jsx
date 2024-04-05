@@ -22,7 +22,7 @@ const AucklandCV = () => {
   }, [data, navigate]);
 
   if (loading) return <div>loading...</div>;
-
+  console.log("SS", JSON.parse(sessionStorage.getItem("cvData")));
   return (
     <PDFViewer style={PDFStyles.viewerContainer}>
       <Document title={`${data.firstName} ${data.lastName}`}>

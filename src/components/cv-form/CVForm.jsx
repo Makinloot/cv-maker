@@ -14,6 +14,8 @@ const CVForm = () => {
   const { setData } = useAppContext();
   const [formIndex, setFormIndex] = useState(0);
   const { t } = useTranslation();
+  const [formInitialValues, setFormInitialValues] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (formRedirect === "") navigate("/templates");
@@ -22,6 +24,7 @@ const CVForm = () => {
   // submit form
   const onFinish = async (values) => {
     console.log("values", values);
+
     try {
       const cvData = {
         firstName: values.firstName,
@@ -124,8 +127,9 @@ const CVForm = () => {
         ],
         image: croppedImg,
       };
+      sessionStorage.setItem("cvData", JSON.stringify(cvData));
       await setData(cvData);
-      console.log("data", cvData);
+      // console.log("data", cvData);
       navigate(`/cv/${formRedirect}`);
     } catch (error) {
       console.log(error, "error setting values");
@@ -138,6 +142,27 @@ const CVForm = () => {
     message.error(t("form.formSubmitError"));
   };
 
+  useEffect(() => {
+    const loadValues = async () => {
+      try {
+        const valuesFromSessionStorage = JSON.parse(
+          sessionStorage.getItem("cvData")
+        );
+        setFormInitialValues(valuesFromSessionStorage);
+        setLoading(false);
+      } catch (error) {
+        message.error("error loading values");
+        console.log("error loading values", error);
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadValues();
+  }, []);
+
+  if (loading) return <div>loading</div>;
+
   return (
     <div className="Form">
       <div className="container">
@@ -148,6 +173,31 @@ const CVForm = () => {
             autoComplete="on"
             layout="vertical"
             className={style.formWrapper}
+            initialValues={{
+              firstName: formInitialValues?.firstName,
+              lastName: formInitialValues?.lastName,
+              prefix: formInitialValues?.prefix,
+              phone: formInitialValues?.phone,
+              email: formInitialValues?.email,
+              address: formInitialValues?.address,
+              zip: formInitialValues?.zip,
+              city: formInitialValues?.city,
+              // dateOfBirth: formInitialValues?.dateOfBirth && null,
+              placeOfBirth: formInitialValues?.placeOfBirth,
+              nationality: formInitialValues?.nationality,
+              gender: formInitialValues?.gender,
+              socialName: formInitialValues?.socials[0].socialName,
+              socialName2: formInitialValues?.socials[1].socialName,
+              socialName3: formInitialValues?.socials[2].socialName,
+              socialLink: formInitialValues?.socials[0].socialLink,
+              socialLink2: formInitialValues?.socials[1].socialLink,
+              socialLink3: formInitialValues?.socials[2].socialLink,
+              education: formInitialValues?.education,
+              languages: formInitialValues?.languages,
+              aboutMe: formInitialValues?.aboutMe,
+              skills: formInitialValues?.skills?.map((item) => item),
+              experience: formInitialValues?.experience,
+            }}
           >
             <Card
               className={style.card}

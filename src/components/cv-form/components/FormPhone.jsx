@@ -2,12 +2,11 @@ import { Col, Form, Input, Row, Select } from "antd";
 import style from "../CVForm.module.css";
 import prefixJson from "../../../assets/phonePrefix.json";
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const FormPhone = () => {
-  const [isDisabled, setIsDisabled] = useState(true);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+
   return (
     <Row gutter={8}>
       <Col span={7}>
@@ -17,16 +16,7 @@ const FormPhone = () => {
           label={`${t("form.prefix")}`}
           name={"prefix"}
         >
-          <Select
-            showSearch
-            allowClear
-            size="large"
-            onChange={(e) => {
-              if (e === undefined) {
-                setIsDisabled(true);
-              } else setIsDisabled(false);
-            }}
-          >
+          <Select showSearch allowClear size="large">
             {prefixJson.map((item) => (
               <Select.Option key={uuidv4()} value={item.dial_code}>
                 <div style={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -51,12 +41,7 @@ const FormPhone = () => {
             },
           ]}
         >
-          <Input
-            type="number"
-            className={style.numberInput}
-            size="large"
-            disabled={isDisabled}
-          />
+          <Input type="number" className={style.numberInput} size="large" />
         </Form.Item>
       </Col>
     </Row>

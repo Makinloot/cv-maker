@@ -4,6 +4,7 @@ import getStartedAnimation from "../../assets/animations/start.json";
 import style from "./Home.module.css";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "../../context/CVContext";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { language, languageClass } = useAppContext();
@@ -28,11 +29,11 @@ const Home = () => {
               animationData={getStartedAnimation}
             />
             <div className="flexCenter">
-              <a href={"/templates"}>
+              <Link to={"/templates"}>
                 <Button className={`${style.getStartedBtn}`} type="primary">
                   {t("home.startBtn")}
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
           <div>

@@ -1,41 +1,32 @@
 /* eslint-disable react/prop-types */
 import { Button, Col, Form, Input, Row } from "antd";
 import style from "../CVForm.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const FormSocials = () => {
+const FormSocials = ({ additionalOpen }) => {
   const [socialLinks, setSocialLinks] = useState(0);
-  const [socialLinkValue, setSocialLinkValue] = useState({
-    socialName: "",
-    socialName2: "",
-    socialName3: "",
-  });
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    const sessionStorageValues = JSON.parse(sessionStorage.getItem("cvData"));
+    if (sessionStorageValues?.socials[1]?.socialName) {
+      setSocialLinks(1);
+    }
+    if (sessionStorageValues?.socials[2]?.socialName) {
+      setSocialLinks(2);
+    }
+    console.log("from socials", sessionStorageValues?.socials);
+  }, [additionalOpen]);
 
   return (
     <>
-      <SocialsComponent
-        name={"socialName"}
-        urlName={"socialLink"}
-        setSocialLinkValue={setSocialLinkValue}
-        socialLinkValue={socialLinkValue.socialName}
-      />
+      <SocialsComponent name={"socialName"} urlName={"socialLink"} />
       {socialLinks > 0 && (
-        <SocialsComponent
-          name={"socialName2"}
-          urlName={"socialLink2"}
-          setSocialLinkValue={setSocialLinkValue}
-          socialLinkValue={socialLinkValue.socialName2}
-        />
+        <SocialsComponent name={"socialName2"} urlName={"socialLink2"} />
       )}
       {socialLinks > 1 && (
-        <SocialsComponent
-          name={"socialName3"}
-          urlName={"socialLink3"}
-          setSocialLinkValue={setSocialLinkValue}
-          socialLinkValue={socialLinkValue.socialName3}
-        />
+        <SocialsComponent name={"socialName3"} urlName={"socialLink3"} />
       )}
       <Row gutter={8} justify={"end"}>
         <Col>
@@ -64,13 +55,8 @@ const FormSocials = () => {
   );
 };
 
-const SocialsComponent = ({
-  name,
-  urlName,
-  setSocialLinkValue,
-  socialLinkValue,
-}) => {
-  const { t } = useTranslation()
+const SocialsComponent = ({ name, urlName }) => {
+  const { t } = useTranslation();
   return (
     <Row gutter={8}>
       <Col span={12}>
@@ -80,17 +66,7 @@ const SocialsComponent = ({
           label={`${t("form.websiteName")}`}
           name={name}
         >
-          <Input
-            style={{ width: "100%" }}
-            onChange={(e) =>
-              setSocialLinkValue((prevValue) => ({
-                ...prevValue,
-                [name]: e.target.value,
-              }))
-            }
-            allowClear
-            size="large"
-          />
+          <Input style={{ width: "100%" }} allowClear size="large" />
         </Form.Item>
       </Col>
       <Col span={12}>
@@ -100,12 +76,7 @@ const SocialsComponent = ({
           label={`${t("form.websiteUrl")}`}
           name={urlName}
         >
-          <Input
-            style={{ width: "100%" }}
-            disabled={socialLinkValue === "" ? true : false}
-            allowClear
-            size="large"
-          />
+          <Input style={{ width: "100%" }} allowClear size="large" />
         </Form.Item>
       </Col>
     </Row>

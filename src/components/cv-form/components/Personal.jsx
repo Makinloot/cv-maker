@@ -14,7 +14,7 @@ import FormPhone from "./FormPhone";
 import FormAddress from "./FormAddress";
 import style from "../CVForm.module.css";
 import { MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormSocials from "./FormSocials";
 import { useAppContext } from "../../../context/CVContext";
 import FormImage from "./FormImage";
@@ -23,10 +23,27 @@ const Personal = ({ setIndex, hide }) => {
   const { setAdditionalInformation, formRedirect } = useAppContext();
   const [additionalOpen, setAdditionalOpen] = useState(false);
   const [nameValues, setNameValues] = useState({
-    firstName: "",
-    lastName: "",
+    firstName: JSON.parse(sessionStorage.getItem("cvData"))?.firstName || "",
+    lastName: JSON.parse(sessionStorage.getItem("cvData"))?.lastName || "",
   });
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    const sessionStorageValues = JSON.parse(sessionStorage.getItem("cvData"));
+    if (
+      sessionStorageValues?.dateOfBirth ||
+      sessionStorageValues?.placeOfBirth ||
+      sessionStorageValues?.nationality ||
+      sessionStorageValues?.gender ||
+      sessionStorageValues?.socials[0].socialName ||
+      sessionStorageValues?.socials[1].socialName ||
+      sessionStorageValues?.socials[2].socialName
+    ) {
+      setAdditionalOpen(true);
+      setAdditionalInformation(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Col hidden={hide}>
@@ -158,13 +175,16 @@ const Personal = ({ setIndex, hide }) => {
             setAdditionalInformation(true);
           }
         }}
-        bordered={false}
+        bordered={true}
         expandIcon={({ isActive }) =>
           isActive ? <MinusCircleOutlined /> : <PlusCircleOutlined />
         }
         className={style.collapse}
       >
-        <Collapse.Panel header={`${t("form.additionalInformation")}`} key="additional">
+        <Collapse.Panel
+          header={`${t("form.additionalInformation")}`}
+          key="additional"
+        >
           <Col style={{ margin: "20px 0 10px" }} hidden={!additionalOpen}>
             <Row gutter={8}>
               <Col span={12}>
@@ -174,7 +194,12 @@ const Personal = ({ setIndex, hide }) => {
                   label={`${t("form.dateOfBirth")}`}
                   name={"dateOfBirth"}
                 >
-                  <DatePicker size="large" style={{ width: "100%" }} placeholder="" />
+                  <DatePicker
+                    size="large"
+                    style={{ width: "100%" }}
+                    placeholder=""
+                    allowClear
+                  />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -184,7 +209,7 @@ const Personal = ({ setIndex, hide }) => {
                   label={`${t("form.placeOfBirth")}`}
                   name={"placeOfBirth"}
                 >
-                  <Input size="large" />
+                  <Input size="large" allowClear />
                 </Form.Item>
               </Col>
             </Row>
@@ -196,7 +221,7 @@ const Personal = ({ setIndex, hide }) => {
                   label={`${t("form.nationality")}`}
                   name={"nationality"}
                 >
-                  <Input size="large" style={{ width: "100%" }} />
+                  <Input size="large" style={{ width: "100%" }} allowClear />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -206,15 +231,21 @@ const Personal = ({ setIndex, hide }) => {
                   label={`${t("form.gender")}`}
                   name={"gender"}
                 >
-                  <Select size="large">
-                    <Select.Option value="Male">{`${t("form.genderMale")}`}</Select.Option>
-                    <Select.Option value="Female">{`${t("form.genderFemale")}`}</Select.Option>
-                    <Select.Option value="Other">{`${t("form.genderOther")}`}</Select.Option>
+                  <Select size="large" allowClear>
+                    <Select.Option value="Male">{`${t(
+                      "form.genderMale"
+                    )}`}</Select.Option>
+                    <Select.Option value="Female">{`${t(
+                      "form.genderFemale"
+                    )}`}</Select.Option>
+                    <Select.Option value="Other">{`${t(
+                      "form.genderOther"
+                    )}`}</Select.Option>
                   </Select>
                 </Form.Item>
               </Col>
             </Row>
-            <FormSocials />
+            <FormSocials additionalOpen={additionalOpen} />
           </Col>
         </Collapse.Panel>
       </Collapse>
