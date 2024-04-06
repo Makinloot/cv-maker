@@ -7,6 +7,7 @@ import Experience from "./components/Experience";
 import Education from "./components/Education";
 import style from "./CVForm.module.css";
 import { useTranslation } from "react-i18next";
+import moment from "moment";
 
 const CVForm = () => {
   const { additionalInformation, croppedImg, formRedirect } = useAppContext();
@@ -129,7 +130,7 @@ const CVForm = () => {
       };
       sessionStorage.setItem("cvData", JSON.stringify(cvData));
       await setData(cvData);
-      // console.log("data", cvData);
+      console.log("data on submit", cvData);
       navigate(`/cv/${formRedirect}`);
     } catch (error) {
       console.log(error, "error setting values");
@@ -182,21 +183,45 @@ const CVForm = () => {
               address: formInitialValues?.address,
               zip: formInitialValues?.zip,
               city: formInitialValues?.city,
-              // dateOfBirth: formInitialValues?.dateOfBirth && null,
+              // TODO: FIX DATE
+              // dateOfBirth: formInitialValues?.dateOfBirth ? moment(formInitialValues.dateOfBirth, "DD.MM.YYYY") : null,
               placeOfBirth: formInitialValues?.placeOfBirth,
               nationality: formInitialValues?.nationality,
               gender: formInitialValues?.gender,
-              socialName: formInitialValues?.socials[0].socialName,
-              socialName2: formInitialValues?.socials[1].socialName,
-              socialName3: formInitialValues?.socials[2].socialName,
-              socialLink: formInitialValues?.socials[0].socialLink,
-              socialLink2: formInitialValues?.socials[1].socialLink,
-              socialLink3: formInitialValues?.socials[2].socialLink,
+              socialName: formInitialValues?.socials[0]?.socialName,
+              socialName2: formInitialValues?.socials[1]?.socialName,
+              socialName3: formInitialValues?.socials[2]?.socialName,
+              socialLink: formInitialValues?.socials[0]?.socialLink,
+              socialLink2: formInitialValues?.socials[1]?.socialLink,
+              socialLink3: formInitialValues?.socials[2]?.socialLink,
+              // education section
+              // TODO: DATES
               education: formInitialValues?.education,
-              languages: formInitialValues?.languages,
+              college: formInitialValues?.education[0]?.college,
+              college2: formInitialValues?.education[1]?.college,
+              degree: formInitialValues?.education[0]?.degree,
+              degree2: formInitialValues?.education[1]?.degree,
+              language: formInitialValues?.languages[0]?.language,
+              language2: formInitialValues?.languages[1]?.language,
+              language3: formInitialValues?.languages[2]?.language,
+              language4: formInitialValues?.languages[3]?.language,
+              languageLevel: formInitialValues?.languages[0]?.level,
+              languageLevel2: formInitialValues?.languages[1]?.level,
+              languageLevel3: formInitialValues?.languages[2]?.level,
+              languageLevel4: formInitialValues?.languages[3]?.level,
               aboutMe: formInitialValues?.aboutMe,
+              // experience section
+              // TODO: DATES
               skills: formInitialValues?.skills?.map((item) => item),
-              experience: formInitialValues?.experience,
+              position: formInitialValues?.experience[0]?.position,
+              position2: formInitialValues?.experience[1]?.position,
+              position3: formInitialValues?.experience[2]?.position,
+              company: formInitialValues?.experience[0]?.companyName,
+              company2: formInitialValues?.experience[1]?.companyName,
+              company3: formInitialValues?.experience[2]?.companyName,
+              aboutJob: formInitialValues?.experience[0]?.aboutJob,
+              aboutJob2: formInitialValues?.experience[1]?.aboutJob,
+              aboutJob3: formInitialValues?.experience[2]?.aboutJob,
             }}
           >
             <Card

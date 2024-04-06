@@ -1,18 +1,28 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, Form, Input, Row, Select } from "antd";
 import style from "../CVForm.module.css";
 import { useTranslation } from "react-i18next";
 
 const FormLanguages = () => {
   const [languages, setLanguages] = useState(0);
-  const [languageValues, setLanguageValues] = useState({
-    language: "",
-    language2: "",
-    language3: "",
-    language4: "",
-  });
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const sessionStorageValues = JSON.parse(sessionStorage.getItem("cvData"));
+    if (sessionStorageValues?.languages) {
+      if (sessionStorageValues.languages[0]?.language) {
+        setLanguages(0)
+      }
+      if (sessionStorageValues.languages[1]?.language) {
+        setLanguages(1)
+      }
+      if (sessionStorageValues.languages[2]?.language) {
+        setLanguages(2)
+      }
+    }
+  }, [])
+
   return (
     <>
       <p style={{ margin: "10px 0 0", fontSize: "1.25rem" }}>
@@ -21,51 +31,41 @@ const FormLanguages = () => {
       <LanguageComponent
         name={"language"}
         levelName={"languageLevel"}
-        setLanguageValues={setLanguageValues}
-        languageValues={languageValues.language}
+
       />
       {languages > 0 && (
         <LanguageComponent
           name={"language2"}
           levelName={"languageLevel2"}
-          setLanguageValues={setLanguageValues}
-          languageValues={languageValues.language2}
+
         />
       )}
       {languages > 1 && (
         <LanguageComponent
           name={"language3"}
           levelName={"languageLevel3"}
-          setLanguageValues={setLanguageValues}
-          languageValues={languageValues.language3}
+
         />
       )}
       {languages > 2 && (
         <LanguageComponent
           name={"language4"}
           levelName={"languageLevel4"}
-          setLanguageValues={setLanguageValues}
-          languageValues={languageValues.language4}
+
         />
       )}
-      <Row gutter={8} justify={"end"}>
-        <Col>
+      <Row gutter={[8, 8]} justify={"end"}>
+        <Col span={24} sm={12}>
           <Button
             className="w100"
             onClick={() => setLanguages(languages + 1)}
-            disabled={
-              languageValues.language === ""
-                ? true
-                : languages > 2
-                ? true
-                : false
-            }
+            disabled={languages > 2 && true}
             type="primary"
           >
             {t("form.addLanguage")}
           </Button>
         </Col>
-        <Col>
+        <Col span={24} sm={12}>
           <Button
             className="w100"
             onClick={() => setLanguages(languages - 1)}
@@ -83,14 +83,13 @@ const FormLanguages = () => {
 
 const LanguageComponent = ({
   name,
-  levelName,
-  setLanguageValues,
-  languageValues,
+  levelName
 }) => {
   const { t } = useTranslation();
+
   return (
     <Row gutter={8}>
-      <Col span={19}>
+      <Col span={24} sm={19}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
@@ -98,25 +97,12 @@ const LanguageComponent = ({
           name={name}
         >
           <Input
-            onChange={(e) => {
-              if (e.target.value === null) {
-                setLanguageValues((prevValue) => ({
-                  ...prevValue,
-                  [name]: "",
-                }));
-              } else {
-                setLanguageValues((prevValue) => ({
-                  ...prevValue,
-                  [name]: e.target.value,
-                }));
-              }
-            }}
             allowClear
             size="large"
           />
         </Form.Item>
       </Col>
-      <Col span={5}>
+      <Col span={24} sm={5}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
@@ -124,7 +110,6 @@ const LanguageComponent = ({
           name={levelName}
         >
           <Select
-            disabled={languageValues === "" ? true : false}
             allowClear
             size="large"
           >

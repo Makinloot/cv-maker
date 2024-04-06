@@ -26,3 +26,13 @@
 .numberInput {
   -moz-appearance: textfield;
 }
+
+@media (max-width: 500px) {
+  .formWrapper {
+    padding: 0;
+  }
+
+  .ant-card-body {
+    /* padding: 0 !important; */
+  }
+}

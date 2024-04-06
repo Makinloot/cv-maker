@@ -10,13 +10,14 @@ const FormSocials = ({ additionalOpen }) => {
 
   useEffect(() => {
     const sessionStorageValues = JSON.parse(sessionStorage.getItem("cvData"));
-    if (sessionStorageValues?.socials[1]?.socialName) {
-      setSocialLinks(1);
+    if (sessionStorageValues?.socials) {
+      if (sessionStorageValues?.socials[1]?.socialName) {
+        setSocialLinks(1);
+      }
+      if (sessionStorageValues?.socials[2]?.socialName) {
+        setSocialLinks(2);
+      }
     }
-    if (sessionStorageValues?.socials[2]?.socialName) {
-      setSocialLinks(2);
-    }
-    console.log("from socials", sessionStorageValues?.socials);
   }, [additionalOpen]);
 
   return (
@@ -28,8 +29,8 @@ const FormSocials = ({ additionalOpen }) => {
       {socialLinks > 1 && (
         <SocialsComponent name={"socialName3"} urlName={"socialLink3"} />
       )}
-      <Row gutter={8} justify={"end"}>
-        <Col>
+      <Row gutter={[8, 8]} justify={"end"}>
+        <Col span={24} sm={12}>
           <Button
             className="w100"
             onClick={() => setSocialLinks(socialLinks + 1)}
@@ -39,7 +40,7 @@ const FormSocials = ({ additionalOpen }) => {
             {t("form.addSocial")}
           </Button>
         </Col>
-        <Col>
+        <Col span={24} sm={12}>
           <Button
             className="w100"
             onClick={() => setSocialLinks(socialLinks - 1)}
@@ -59,7 +60,7 @@ const SocialsComponent = ({ name, urlName }) => {
   const { t } = useTranslation();
   return (
     <Row gutter={8}>
-      <Col span={12}>
+      <Col span={24} sm={12}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
@@ -69,7 +70,7 @@ const SocialsComponent = ({ name, urlName }) => {
           <Input style={{ width: "100%" }} allowClear size="large" />
         </Form.Item>
       </Col>
-      <Col span={12}>
+      <Col span={24} sm={12}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}

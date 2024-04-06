@@ -29,3 +29,17 @@
   height: 34px;
   border-radius: 100%;
 }
+
+@media (max-width: 665px) {
+  .colorContainer {
+    right: 0;
+    top: -50px;
+    flex-direction: row;
+  }
+
+  .languageContainer {
+    right: 138px;
+    top: -50px;
+    flex-direction: row;
+  }
+}

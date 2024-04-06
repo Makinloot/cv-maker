@@ -1,17 +1,28 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, DatePicker, Form, Input, Row } from "antd";
 import style from "../CVForm.module.css";
 import { useTranslation } from "react-i18next";
 
 const FormExperience = () => {
   const [experience, setExperience] = useState(0);
-  const [experienceValue, setExperienceValue] = useState({
-    position: "",
-    position2: "",
-    position3: "",
-  });
   const { t } = useTranslation()
+
+  useEffect(() => {
+    const sessionStorageValues = JSON.parse(sessionStorage.getItem("cvData"));
+    if (sessionStorageValues?.experience) {
+      if (sessionStorageValues.experience[0]?.position || sessionStorageValues.experience[0]?.companyName || sessionStorageValues.experience[0]?.aboutJob) {
+        setExperience(0)
+      }
+      if (sessionStorageValues.experience[1]?.position || sessionStorageValues.experience[1]?.companyName || sessionStorageValues.experience[1]?.aboutJob) {
+        setExperience(1)
+      }
+      if (sessionStorageValues.experience[2]?.position || sessionStorageValues.experience[2]?.companyName || sessionStorageValues.experience[2]?.aboutJob) {
+        setExperience(2)
+      }
+    }
+  }, [])
+
   return (
     <>
       <ExperienceComponent
@@ -20,8 +31,6 @@ const FormExperience = () => {
         positionName={"position"}
         aboutJobName={"aboutJob"}
         companyName={"company"}
-        experienceValue={experienceValue.position}
-        setExperienceValue={setExperienceValue}
       />
       {experience > 0 && (
         <ExperienceComponent
@@ -30,8 +39,6 @@ const FormExperience = () => {
           positionName={"position2"}
           aboutJobName={"aboutJob2"}
           companyName={"company2"}
-          experienceValue={experienceValue.position2}
-          setExperienceValue={setExperienceValue}
         />
       )}
       {experience > 1 && (
@@ -41,28 +48,22 @@ const FormExperience = () => {
           positionName={"position3"}
           aboutJobName={"aboutJob3"}
           companyName={"company3"}
-          experienceValue={experienceValue.position3}
-          setExperienceValue={setExperienceValue}
         />
       )}
-      <Row gutter={8} justify={"end"}>
-        <Col>
+      <Row gutter={[8, 8]} justify={"end"}>
+        <Col span={24} sm={12}>
           <Button
             className="w100"
             onClick={() => setExperience(experience + 1)}
             disabled={
-              experienceValue.position === ""
-                ? true
-                : experience > 1
-                ? true
-                : false
+              experience > 1 && true
             }
             type="primary"
           >
-           {t("form.addExperience")}
+            {t("form.addExperience")}
           </Button>
         </Col>
-        <Col>
+        <Col span={24} sm={12}>
           <Button
             className="w100"
             onClick={() => setExperience(experience - 1)}
@@ -91,7 +92,7 @@ const ExperienceComponent = ({
   return (
     <>
       <Row gutter={8}>
-        <Col span={12}>
+        <Col span={24} sm={12}>
           <Form.Item
             className={style.formItem}
             labelCol={{ style: { padding: "0 0 2px" } }}
@@ -102,26 +103,13 @@ const ExperienceComponent = ({
               className="w100"
               picker="month"
               format="MM.YYYY"
-              onChange={(e) => {
-                if (e === null) {
-                  setExperienceValue((prevValue) => ({
-                    ...prevValue,
-                    [positionName]: "",
-                  }));
-                } else {
-                  setExperienceValue((prevValue) => ({
-                    ...prevValue,
-                    [positionName]: e.format("MM.YYYY"),
-                  }));
-                }
-              }}
               placeholder=""
               allowClear
               size="large"
             />
           </Form.Item>
         </Col>
-        <Col span={12}>
+        <Col span={24} sm={12}>
           <Form.Item
             className={style.formItem}
             labelCol={{ style: { padding: "0 0 2px" } }}

@@ -10,7 +10,7 @@
 .subTitle {
   text-align: center;
   margin: 10px auto 40px;
-   max-width: 340px;
+  max-width: 340px;
 }
 
 .welcomeAnimationContainer {
@@ -56,4 +56,52 @@
 
 .cardImage {
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subTitle {
+    font-size: .95rem;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 670px) {
+  .welcomeAnimationContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .welcomeAnimation {
+    margin: 0 auto;
+    order: 2;
+  }
+
+  .getStartedBtn {
+    margin: 40px 0 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcomeAnimation {
+    width: 280px;
+  }
+
+  .getStartedBtn {
+    width: 180px;
+    height: 65px;
+    font-size: 1rem;
+  }
+
+  .instructionItem {
+    width: 100% !important;
+    text-align: center;
+    list-style-type: none;
+    font-size: .95rem;
+    text-align: left;
+  }
+
 }

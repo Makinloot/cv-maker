@@ -1,25 +1,29 @@
-  
-  .title {
-    text-align: center;
-    font-size: 2rem;
-  }
+   .title {
+     text-align: center;
+     font-size: 2rem;
+   }
 
-  .welcomeText {
-    width: 1000px;
-    max-width: 50%;
-    text-align: center;
-    margin: 20px auto 60px;
-    font-size: 1.2rem;
-    font-family: "inter-regular";
+   .welcomeText {
+     width: 900px;
+     max-width: 100%;
+     text-align: center;
+     margin: 20px auto 60px;
+     font-size: 1.2rem;
+     font-family: "inter-regular";
+   }
+
+   .cardTitle {
+     text-align: center;
+     text-transform: capitalize;
+     margin: 10px 0;
+   }
+
+   .cardImage {
+     width: 100%;
+   }
+
+   @media (max-width: 670px) {
+    .welcomeText {
+      font-size: 1rem;
+    }
   }
-  
-  .cardTitle {
-    text-align: center;
-    text-transform: capitalize;
-    margin: 10px 0;
-  }
-  
-  .cardImage {
-    width: 100%;
-  }
-  

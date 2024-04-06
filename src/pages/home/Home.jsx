@@ -45,6 +45,7 @@ const Home = () => {
             </h3>
             <ul className="flexCenter" style={{ flexDirection: "column" }}>
               <li
+                className={style.instructionItem}
                 style={{
                   fontSize: "1.2rem",
                   margin: "5px 0",
@@ -56,6 +57,7 @@ const Home = () => {
                 </span>
               </li>
               <li
+                className={style.instructionItem}
                 style={{
                   fontSize: "1.2rem",
                   margin: "5px 0",
@@ -67,6 +69,7 @@ const Home = () => {
                 </span>
               </li>
               <li
+                className={style.instructionItem}
                 style={{
                   fontSize: "1.2rem",
                   margin: "5px 0",
@@ -78,6 +81,7 @@ const Home = () => {
                 </span>
               </li>
               <li
+                className={style.instructionItem}
                 style={{
                   fontSize: "1.2rem",
                   margin: "5px 0",

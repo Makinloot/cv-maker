@@ -7,6 +7,8 @@ import CVForm from "../../cv-form/CVForm";
 import OtagoCV from "../../../pages/otago/OtagoCV";
 import { theme } from "antd";
 import Templates from "../../../pages/templates/Templates";
+import FinishedResumeButtons from "../../finishedResumeButtons/FinishedResumeButtons";
+import ErrorPage from "../../../pages/error-page/ErrorPage";
 
 const Main = () => {
   const {
@@ -14,10 +16,8 @@ const Main = () => {
   } = theme.useToken();
   return (
     <Content
+      className="main-content-wrapper"
       style={{
-        margin: "24px 16px 0",
-        padding: 24,
-        minHeight: "100vh",
         borderRadius: borderRadiusLG,
         backgroundColor: colorBgContainer,
       }}
@@ -34,8 +34,10 @@ const Main = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                flexDirection: 'column'
               }}
             >
+              <FinishedResumeButtons />
               <AucklandCV />
             </div>
           }
@@ -68,6 +70,7 @@ const Main = () => {
             </div>
           }
         />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Content>
   );

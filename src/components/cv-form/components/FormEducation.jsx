@@ -32,8 +32,8 @@ const FormEducation = () => {
           educationValue={educationValue.educationStart2}
         />
       )}
-      <Row gutter={8} justify={"end"}>
-        <Col>
+      <Row gutter={[8, 8]} justify={"end"}>
+        <Col span={24} sm={12}>
           <Button
             className="w100"
             onClick={() => setEducation(education + 1)}
@@ -49,7 +49,7 @@ const FormEducation = () => {
             {t("form.addEducation")}
           </Button>
         </Col>
-        <Col>
+        <Col span={24} sm={12}>
           <Button
             className="w100"
             onClick={() => setEducation(education - 1)}
@@ -76,7 +76,7 @@ const EducationComponent = ({
   const { t } = useTranslation()
   return (
     <Row gutter={8}>
-      <Col span={12}>
+      <Col span={24} sm={12}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
@@ -105,7 +105,7 @@ const EducationComponent = ({
           />
         </Form.Item>
       </Col>
-      <Col span={12}>
+      <Col span={24} sm={12}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}

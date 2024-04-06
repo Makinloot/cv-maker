@@ -44,6 +44,12 @@ h6.georgian {
   padding: 0 1rem;
 }
 
+.main-content-wrapper {
+  margin: 24px 16px 0;
+  padding: 24px;
+  min-height: 100vh;
+}
+
 /* global styles */
 .flexRow {
   display: flex;
@@ -93,4 +99,11 @@ h6.georgian {
 
 .instructionSpan.georgian {
   font-family: "geo-times" !important;
+}
+
+@media (max-width: 500px) {
+  .main-content-wrapper {
+    padding: 8px;
+    margin: 24px 8px 0;
+  }
 }

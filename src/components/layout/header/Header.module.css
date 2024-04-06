@@ -1,3 +1,14 @@
+.headerBig {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: "center";
+}
+
+.headerSmall {
+  display: none;
+}
+
 .headerLinkContainer {
   padding-left: 20px;
   display: flex;
@@ -24,4 +35,31 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
+}
+
+.headerLinkunderline {
+  position: absolute;
+  height: 2px;
+  top: 45px;
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 0;
+  }
+
+  .headerBig {
+    display: none;
+  }
+
+  .headerSmall {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 64px;
+  }
+
+  .headerLinkUnderline {
+    /* top: 600px !important; */
+  }
 }

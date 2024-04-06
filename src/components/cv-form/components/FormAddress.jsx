@@ -17,7 +17,7 @@ const FormAddress = () => {
         </Form.Item>
       </Col>
       <Row gutter={8}>
-        <Col span={12}>
+        <Col span={24} sm={12}>
           <Form.Item
             className={style.formItem}
             labelCol={{ style: { padding: "0 0 2px" } }}
@@ -27,7 +27,7 @@ const FormAddress = () => {
             <Input allowClear size="large" />
           </Form.Item>
         </Col>
-        <Col span={12}>
+        <Col span={24} sm={12}>
           <Form.Item
             className={style.formItem}
             labelCol={{ style: { padding: "0 0 2px" } }}

@@ -9,7 +9,7 @@ const FormPhone = () => {
 
   return (
     <Row gutter={8}>
-      <Col span={7}>
+      <Col span={24} sm={7}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}
@@ -28,7 +28,7 @@ const FormPhone = () => {
           </Select>
         </Form.Item>
       </Col>
-      <Col span={17}>
+      <Col span={24} sm={17}>
         <Form.Item
           className={style.formItem}
           labelCol={{ style: { padding: "0 0 2px" } }}

@@ -11,14 +11,16 @@ const Experience = ({ setIndex, hide }) => {
       <FormSkills />
       <FormExperience />
       <Row justify={"space-between"}>
-        <Button
-          type="primary"
-          style={{ margin: "20px 0 0", width: 100 }}
-          onClick={() => setIndex(0)}
-        >
-          {t("form.experiencePrevious")}
-        </Button>
-        <Tooltip>
+        <Col>
+          <Button
+            type="primary"
+            style={{ margin: "20px 0 0", width: 100 }}
+            onClick={() => setIndex(0)}
+          >
+            {t("form.experiencePrevious")}
+          </Button>
+        </Col>
+        <Col>
           <Button
             type="primary"
             style={{ margin: "20px 0 0", width: 100 }}
@@ -26,7 +28,7 @@ const Experience = ({ setIndex, hide }) => {
           >
             {t("form.experienceNext")}
           </Button>
-        </Tooltip>
+        </Col>
       </Row>
     </Col>
   );
