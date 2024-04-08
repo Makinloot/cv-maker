@@ -32,7 +32,7 @@
   width: 200px;
   height: 80px;
   font-size: 1.2rem;
-  font-family: 'inter-bold';
+  font-family: "inter-bold";
 }
 
 .welcomeText {
@@ -64,7 +64,7 @@
   }
 
   .subTitle {
-    font-size: .95rem;
+    font-size: 0.95rem;
     font-weight: 500;
   }
 }
@@ -96,12 +96,15 @@
     font-size: 1rem;
   }
 
+  ul {
+    padding-left: 1rem;
+  }
+
   .instructionItem {
     width: 100% !important;
     text-align: center;
-    list-style-type: none;
-    font-size: .95rem;
+    /* list-style-type: none; */
+    font-size: 0.95rem;
     text-align: left;
   }
-
 }

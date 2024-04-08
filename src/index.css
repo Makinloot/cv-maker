@@ -106,4 +106,12 @@ h6.georgian {
     padding: 8px;
     margin: 24px 8px 0;
   }
+
+  .form-container {
+    padding: 0;
+  }
+
+  .form-container .ant-card-body {
+    padding: 8px;
+  }
 }

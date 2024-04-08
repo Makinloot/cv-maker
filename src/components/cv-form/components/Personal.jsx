@@ -35,9 +35,12 @@ const Personal = ({ setIndex, hide }) => {
       sessionStorageValues?.placeOfBirth ||
       sessionStorageValues?.nationality ||
       sessionStorageValues?.gender ||
-      (sessionStorageValues?.socials[0] && sessionStorageValues?.socials[0].socialName) ||
-      (sessionStorageValues?.socials[1] && sessionStorageValues?.socials[1].socialName) ||
-      (sessionStorageValues?.socials[2] && sessionStorageValues?.socials[2].socialName)
+      (sessionStorageValues?.socials[0] &&
+        sessionStorageValues?.socials[0].socialName) ||
+      (sessionStorageValues?.socials[1] &&
+        sessionStorageValues?.socials[1].socialName) ||
+      (sessionStorageValues?.socials[2] &&
+        sessionStorageValues?.socials[2].socialName)
     ) {
       setAdditionalOpen(true);
       setAdditionalInformation(true);
@@ -51,17 +54,18 @@ const Personal = ({ setIndex, hide }) => {
       <Row gutter={8}>
         {formRedirect === "auckland" ? null : formRedirect ===
           "otago" ? null : (
-          <Col span={5} style={{ position: "relative" }}>
+          <Col span={24} md={5} style={{ position: "relative" }}>
             <FormImage />
           </Col>
         )}
         <Col
-          span={
+          span={24}
+          md={
             formRedirect === "auckland"
               ? 24
               : formRedirect === "otago"
-                ? 24
-                : 19
+              ? 24
+              : 19
           }
         >
           <Col span={24}>
@@ -253,11 +257,11 @@ const Personal = ({ setIndex, hide }) => {
         <Tooltip
           title={
             nameValues.firstName !== "" &&
-              nameValues.firstName.length >= 2 &&
-              nameValues.lastName !== "" &&
-              nameValues.lastName.length >= 2
-              // todo translate georgian
-              ? ""
+            nameValues.firstName.length >= 2 &&
+            nameValues.lastName !== "" &&
+            nameValues.lastName.length >= 2
+              ? // todo translate georgian
+                ""
               : "Please fill out first name and last name with at least 2 characters each."
           }
         >
@@ -266,9 +270,9 @@ const Personal = ({ setIndex, hide }) => {
               type="primary"
               disabled={
                 nameValues.firstName !== "" &&
-                  nameValues.firstName.length >= 2 &&
-                  nameValues.lastName !== "" &&
-                  nameValues.lastName.length >= 2
+                nameValues.firstName.length >= 2 &&
+                nameValues.lastName !== "" &&
+                nameValues.lastName.length >= 2
                   ? false
                   : true
               }

@@ -166,7 +166,7 @@ const CVForm = () => {
 
   return (
     <div className="Form">
-      <div className="container">
+      <div className="form-container container">
         <div className={style.formContainer}>
           <Form
             onFinish={onFinish}
