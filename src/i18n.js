@@ -96,6 +96,14 @@ i18next
             addEducation: "Add education",
             removeEducation: "Remove education",
           },
+          result: {
+            title: 'CV successfully generated!',
+            subTitle: 'Edit or download your resume',
+            editBtn: 'Edit CV',
+            homeBtn: 'Home',
+            downloadBtn: 'Download now !',
+            loadingBtn: 'Loading document'
+          },
           aside: {
             home: "Home",
             templates: "Templates",
@@ -188,6 +196,14 @@ i18next
             degree: "ხარისხი",
             addEducation: "დაამატე განათლება",
             removeEducation: "წაშალე განათლება",
+          },
+          result: {
+            title: 'რეზიუმე წარმატებით დაგენერირდა!',
+            subTitle: 'შეცვალეთ ან გადმოწერეთ რეზიუმე',
+            editBtn: 'შეცვალე სივი',
+            homeBtn: 'მთავარი',
+            downloadBtn: 'გადმოწერა',
+            loadingBtn: 'იტვირთება დოკუმენტი'
           },
           aside: {
             home: "მთავარი",

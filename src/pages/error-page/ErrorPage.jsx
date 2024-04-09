@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const ErrorPage = () => {
     return (
-        <div style={{  height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Result
                 status="404"
                 title="404"

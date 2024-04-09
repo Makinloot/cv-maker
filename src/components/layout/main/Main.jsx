@@ -37,7 +37,6 @@ const Main = () => {
                 flexDirection: 'column'
               }}
             >
-              <FinishedResumeButtons />
               <AucklandCV />
             </div>
           }

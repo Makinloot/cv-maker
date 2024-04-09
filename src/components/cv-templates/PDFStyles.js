@@ -20,6 +20,7 @@ const PDFStyles = StyleSheet.create({
     height: "100vh",
     width: 850,
     maxWidth: "100%",
+    marginTop: 50
   },
   sider: {
     flex: 0.4045,
