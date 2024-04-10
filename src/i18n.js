@@ -95,6 +95,7 @@ i18next
             degree: "Degree",
             addEducation: "Add education",
             removeEducation: "Remove education",
+            languageValidation: "To use georgian alphabet change CV language!"
           },
           result: {
             title: 'CV successfully generated!',
@@ -196,6 +197,7 @@ i18next
             degree: "ხარისხი",
             addEducation: "დაამატე განათლება",
             removeEducation: "წაშალე განათლება",
+            languageValidation: "ქართული ანბანის გამოსაყენებლად შეცვალეთ სივის ენა!"
           },
           result: {
             title: 'რეზიუმე წარმატებით დაგენერირდა!',

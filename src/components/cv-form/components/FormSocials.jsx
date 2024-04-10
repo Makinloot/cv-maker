@@ -3,6 +3,7 @@ import { Button, Col, Form, Input, Row } from "antd";
 import style from "../CVForm.module.css";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../../../context/CVContext";
 
 const FormSocials = ({ additionalOpen }) => {
   const [socialLinks, setSocialLinks] = useState(0);
@@ -57,6 +58,7 @@ const FormSocials = ({ additionalOpen }) => {
 };
 
 const SocialsComponent = ({ name, urlName }) => {
+  const { validateGeorgian } = useAppContext()
   const { t } = useTranslation();
   return (
     <Row gutter={8}>
@@ -66,6 +68,9 @@ const SocialsComponent = ({ name, urlName }) => {
           labelCol={{ style: { padding: "0 0 2px" } }}
           label={`${t("form.websiteName")}`}
           name={name}
+          rules={[{
+            validator: validateGeorgian
+          }]}
         >
           <Input style={{ width: "100%" }} allowClear size="large" />
         </Form.Item>

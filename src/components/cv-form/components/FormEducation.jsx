@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button, Col, DatePicker, Form, Input, Row } from "antd";
 import style from "../CVForm.module.css";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../../../context/CVContext";
 
 const FormEducation = () => {
   const [education, setEducation] = useState(0);
@@ -73,6 +74,7 @@ const EducationComponent = ({
   setEducationValue,
   educationValue,
 }) => {
+  const { validateGeorgian } = useAppContext()
   const { t } = useTranslation()
   return (
     <Row gutter={8}>
@@ -130,6 +132,9 @@ const EducationComponent = ({
               labelCol={{ style: { padding: "0 0 2px" } }}
               label={t("form.college")}
               name={collegeName}
+              rules={[{
+                validator: validateGeorgian
+              }]}
             >
               <Input allowClear size="large" />
             </Form.Item>
@@ -140,6 +145,9 @@ const EducationComponent = ({
               labelCol={{ style: { padding: "0 0 2px" } }}
               label={t("form.degree")}
               name={degreeName}
+              rules={[{
+                validator: validateGeorgian
+              }]}
             >
               <Input allowClear size="large" />
             </Form.Item>

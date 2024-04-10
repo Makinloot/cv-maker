@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Col, DatePicker, Form, Input, Row } from "antd";
 import style from "../CVForm.module.css";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../../../context/CVContext";
 
 const FormExperience = () => {
   const [experience, setExperience] = useState(0);
@@ -88,6 +89,7 @@ const ExperienceComponent = ({
   setExperienceValue,
   experienceValue,
 }) => {
+  const { validateGeorgian } = useAppContext()
   const { t } = useTranslation()
   return (
     <>
@@ -134,6 +136,9 @@ const ExperienceComponent = ({
           labelCol={{ style: { padding: "0 0 2px" } }}
           label={`${t("form.position")}`}
           name={positionName}
+          rules={[{
+            validator: validateGeorgian
+          }]}
         >
           <Input
             disabled={experienceValue === "" ? true : false}
@@ -148,6 +153,9 @@ const ExperienceComponent = ({
           labelCol={{ style: { padding: "0 0 2px" } }}
           label={`${t("form.company")}`}
           name={companyName}
+          rules={[{
+            validator: validateGeorgian
+          }]}
         >
           <Input
             disabled={experienceValue === "" ? true : false}
@@ -162,6 +170,9 @@ const ExperienceComponent = ({
           labelCol={{ style: { padding: "0 0 2px" } }}
           label={`${t("form.aboutJob")}`}
           name={aboutJobName}
+          rules={[{
+            validator: validateGeorgian
+          }]}
         >
           <Input.TextArea
             disabled={experienceValue === "" ? true : false}

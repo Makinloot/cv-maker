@@ -19,8 +19,9 @@ import FormSocials from "./FormSocials";
 import { useAppContext } from "../../../context/CVContext";
 import FormImage from "./FormImage";
 import { useTranslation } from "react-i18next";
+
 const Personal = ({ setIndex, hide }) => {
-  const { setAdditionalInformation, formRedirect } = useAppContext();
+  const { setAdditionalInformation, formRedirect, validateGeorgian } = useAppContext();
   const [additionalOpen, setAdditionalOpen] = useState(false);
   const [nameValues, setNameValues] = useState({
     firstName: JSON.parse(sessionStorage.getItem("cvData"))?.firstName || "",
@@ -64,8 +65,8 @@ const Personal = ({ setIndex, hide }) => {
             formRedirect === "auckland"
               ? 24
               : formRedirect === "otago"
-              ? 24
-              : 19
+                ? 24
+                : 19
           }
         >
           <Col span={24}>
@@ -87,6 +88,7 @@ const Personal = ({ setIndex, hide }) => {
                   max: 20,
                   message: t("form.firstNameErrorMaximum"),
                 },
+                { validator: validateGeorgian }
               ]}
             >
               <Input
@@ -120,6 +122,9 @@ const Personal = ({ setIndex, hide }) => {
                   max: 20,
                   message: t("form.lastNameErrorMaximum"),
                 },
+                {
+                  validator: validateGeorgian
+                }
               ]}
             >
               <Input
@@ -143,6 +148,9 @@ const Personal = ({ setIndex, hide }) => {
           labelCol={{ style: { padding: "0 0 2px" } }}
           label={`${t("form.aboutMe")}`}
           name={"aboutMe"}
+          rules={[{
+            validator: validateGeorgian
+          }]}
         >
           <Input.TextArea allowClear size="large" />
         </Form.Item>
@@ -212,6 +220,9 @@ const Personal = ({ setIndex, hide }) => {
                   labelCol={{ style: { padding: "0 0 2px" } }}
                   label={`${t("form.placeOfBirth")}`}
                   name={"placeOfBirth"}
+                  rules={[{
+                    validator: validateGeorgian
+                  }]}
                 >
                   <Input size="large" allowClear />
                 </Form.Item>
@@ -224,6 +235,9 @@ const Personal = ({ setIndex, hide }) => {
                   labelCol={{ style: { padding: "0 0 2px" } }}
                   label={`${t("form.nationality")}`}
                   name={"nationality"}
+                  rules={[{
+                    validator: validateGeorgian
+                  }]}
                 >
                   <Input size="large" style={{ width: "100%" }} allowClear />
                 </Form.Item>
@@ -249,6 +263,7 @@ const Personal = ({ setIndex, hide }) => {
                 </Form.Item>
               </Col>
             </Row>
+            {/* socials */}
             <FormSocials additionalOpen={additionalOpen} />
           </Col>
         </Collapse.Panel>
@@ -257,11 +272,11 @@ const Personal = ({ setIndex, hide }) => {
         <Tooltip
           title={
             nameValues.firstName !== "" &&
-            nameValues.firstName.length >= 2 &&
-            nameValues.lastName !== "" &&
-            nameValues.lastName.length >= 2
+              nameValues.firstName.length >= 2 &&
+              nameValues.lastName !== "" &&
+              nameValues.lastName.length >= 2
               ? // todo translate georgian
-                ""
+              ""
               : "Please fill out first name and last name with at least 2 characters each."
           }
         >
@@ -270,9 +285,9 @@ const Personal = ({ setIndex, hide }) => {
               type="primary"
               disabled={
                 nameValues.firstName !== "" &&
-                nameValues.firstName.length >= 2 &&
-                nameValues.lastName !== "" &&
-                nameValues.lastName.length >= 2
+                  nameValues.firstName.length >= 2 &&
+                  nameValues.lastName !== "" &&
+                  nameValues.lastName.length >= 2
                   ? false
                   : true
               }

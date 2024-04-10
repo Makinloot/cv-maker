@@ -1,8 +1,10 @@
 import { Col, Form, Input, Row } from "antd";
 import style from "../CVForm.module.css";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../../../context/CVContext";
 
-const FormAddress = () => {
+const FormAddress = () => { 
+  const { validateGeorgian } = useAppContext()
   const { t } = useTranslation()
   return (
     <>
@@ -12,6 +14,9 @@ const FormAddress = () => {
           labelCol={{ style: { padding: "0 0 2px" } }}
           label={`${t("form.address")}`}
           name={"address"}
+          rules={[{
+            validator: validateGeorgian
+          }]}
         >
           <Input allowClear size="large" />
         </Form.Item>
@@ -33,6 +38,9 @@ const FormAddress = () => {
             labelCol={{ style: { padding: "0 0 2px" } }}
             label={`${t("form.cityTown")}`}
             name={"city"}
+            rules={[{
+              validator: validateGeorgian
+            }]}
           >
             <Input allowClear size="large" />
           </Form.Item>

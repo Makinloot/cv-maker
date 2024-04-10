@@ -4,6 +4,7 @@ import interRegular from "../assets/fonts/Inter-Regular.ttf";
 import interSemiBold from "../assets/fonts/Inter-SemiBold.ttf";
 import notoRegular from "../assets/fonts/NotoSansGeorgian_Condensed-Regular.ttf";
 import notoBold from "../assets/fonts/NotoSansGeorgian_Condensed-Bold.ttf";
+import { useTranslation } from "react-i18next";
 
 Font.register({ family: "inter-regular", src: interRegular });
 Font.register({ family: "inter-bold", src: interSemiBold });
@@ -18,6 +19,7 @@ const useAppContext = () => {
 
 // eslint-disable-next-line react/prop-types
 const ContextProvider = ({ children }) => {
+  const { t } = useTranslation()
   const [data, setData] = useState(null);
   const [additionalInformation, setAdditionalInformation] = useState(false);
   const [croppedImg, setCroppedImg] = useState("");
@@ -49,27 +51,37 @@ const ContextProvider = ({ children }) => {
     if (type === "bold-bold") {
       return resumeLanguage === "ge"
         ? {
-            fontFamily: "noto-bold",
-            letterSpacing: 1.1,
-            textTransform: "lowercase",
-          }
+          fontFamily: "noto-bold",
+          letterSpacing: 1.1,
+          textTransform: "lowercase",
+        }
         : { fontFamily: "inter-bold" };
     } else if (type === "regular-bold") {
       return resumeLanguage === "ge"
         ? {
-            fontFamily: "noto-regular",
-            letterSpacing: 1.1,
-            textTransform: "lowercase",
-          }
+          fontFamily: "noto-regular",
+          letterSpacing: 1.1,
+          textTransform: "lowercase",
+        }
         : { fontFamily: "inter-bold" };
     } else if (type === "regular-regular") {
       return resumeLanguage === "ge"
         ? {
-            fontFamily: "noto-regular",
-            letterSpacing: 1.1,
-            textTransform: "lowercase",
-          }
+          fontFamily: "noto-regular",
+          letterSpacing: 1.1,
+          textTransform: "lowercase",
+        }
         : { fontFamily: "inter-regular" };
+    }
+  };
+
+  const validateGeorgian = (_, value) => {
+    const georgianRegex = /[\u10A0-\u10FF]/g; // Regular expression to match Georgian alphabet
+
+    if (resumeLanguage === 'en' && georgianRegex.test(value)) {
+      return Promise.reject(t("form.languageValidation"));
+    } else {
+      return Promise.resolve();
     }
   };
 
@@ -92,6 +104,7 @@ const ContextProvider = ({ children }) => {
     setResumeLanguage,
     resumeLanguage,
     resumeFontFamily,
+    validateGeorgian
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };

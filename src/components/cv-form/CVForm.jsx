@@ -7,7 +7,6 @@ import Experience from "./components/Experience";
 import Education from "./components/Education";
 import style from "./CVForm.module.css";
 import { useTranslation } from "react-i18next";
-import moment from "moment";
 
 const CVForm = () => {
   const { additionalInformation, croppedImg, formRedirect } = useAppContext();

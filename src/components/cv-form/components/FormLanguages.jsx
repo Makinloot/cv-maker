@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Col, Form, Input, Row, Select } from "antd";
 import style from "../CVForm.module.css";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../../../context/CVContext";
 
 const FormLanguages = () => {
   const [languages, setLanguages] = useState(0);
@@ -85,6 +86,7 @@ const LanguageComponent = ({
   name,
   levelName
 }) => {
+  const { validateGeorgian } = useAppContext()
   const { t } = useTranslation();
 
   return (
@@ -95,6 +97,9 @@ const LanguageComponent = ({
           labelCol={{ style: { padding: "0 0 2px" } }}
           label={t("form.language")}
           name={name}
+          rules={[{
+            validator: validateGeorgian
+          }]}
         >
           <Input
             allowClear
